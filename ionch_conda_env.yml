@@ -1,0 +1,15 @@
+name: HodgkinHuxley
+channels:
+  - rothnic
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - openpyxl
+  - autograd
+prefix: /opt/anaconda3/envs/HodgkinHuxley
