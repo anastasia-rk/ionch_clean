@@ -87,7 +87,7 @@ def optimise_first_segment(roi,input_roi,output_roi,support_roi,state_known_roi,
     boundaries_betas = pints.RectangularBoundaries(np.zeros_like(init_betas), upper_bound_beta * np.ones_like(init_betas))
     optimiser_inner = pints.OptimisationController(error_inner, x0=init_betas, sigma0=sigma0_betas,
                                                    boundaries=boundaries_betas, method=pints.CMAES)
-    optimiser_inner.set_max_iterations(30000)
+    optimiser_inner.set_max_iterations(60000)
     optimiser_inner.set_max_unchanged_iterations(iterations=50, threshold=1e-10)
     optimiser_inner.set_parallel(False)
     optimiser_inner.set_log_to_screen(False)
@@ -125,7 +125,7 @@ def optimise_segment(roi,input_roi,output_roi,support_roi,state_known_roi,init_b
     boundaries_betas = pints.RectangularBoundaries(np.zeros_like(init_betas), upper_bound_beta * np.ones_like(init_betas))
     optimiser_inner = pints.OptimisationController(error_inner, x0=init_betas, sigma0=sigma0_betas,
                                                    boundaries=boundaries_betas, method=pints.CMAES)
-    optimiser_inner.set_max_iterations(30000)
+    optimiser_inner.set_max_iterations(60000)
     # optimiser_inner.method().set_population_size(min(5, len(init_betas)/2))
     optimiser_inner.set_max_unchanged_iterations(iterations=50, threshold=1e-10)
     optimiser_inner.set_parallel(False)
@@ -334,31 +334,31 @@ if __name__ == '__main__':
     x_ar = solution.sol(times)
     current_true = observation(times, x_ar, thetas_true)
 
-    # ## single state model
-    # # use a as unknown state
-    # theta_true = [np.log(2.26e-4), np.log(0.0699), np.log(3.45e-5), np.log(0.05462)]
-    # inLogScale = True
-    # param_names = ['p_1','p_2','p_3','p_4']
-    # a0 = [0]
-    # ion_channel_model_one_state = ode_a_only
-    # solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], a0, args=[theta_true], dense_output=True, method='LSODA',
-    #                                   rtol=1e-8, atol=1e-8)
-    # state_known_index = state_names.index('r')  # assume that we know r
-    # state_known = x_ar[state_known_index, :]
-    # state_name = hidden_state_names = 'a'
-
-    ## use r as unknown state
-    theta_true = [np.log(0.0873), np.log(8.91e-3), np.log(5.15e-3), np.log(0.03158)]
+    ## single state model
+    # use a as unknown state
+    theta_true = [np.log(2.26e-4), np.log(0.0699), np.log(3.45e-5), np.log(0.05462)]
     inLogScale = True
-    param_names = ['p_5','p_6','p_7','p_8']
-    r0 = [1]
-    ion_channel_model_one_state = ode_r_only
-    solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], r0, args=[theta_true], dense_output=True,
-                                        method='LSODA',
-                                        rtol=1e-8, atol=1e-10)
-    state_known_index = state_names.index('a')  # assume that we know a
-    state_known = x_ar[state_known_index,:]
-    state_name = hidden_state_names = 'r'
+    param_names = ['p_1','p_2','p_3','p_4']
+    a0 = [0]
+    ion_channel_model_one_state = ode_a_only
+    solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], a0, args=[theta_true], dense_output=True, method='LSODA',
+                                      rtol=1e-8, atol=1e-8)
+    state_known_index = state_names.index('r')  # assume that we know r
+    state_known = x_ar[state_known_index, :]
+    state_name = hidden_state_names = 'a'
+
+    # ## use r as unknown state
+    # theta_true = [np.log(0.0873), np.log(8.91e-3), np.log(5.15e-3), np.log(0.03158)]
+    # inLogScale = True
+    # param_names = ['p_5','p_6','p_7','p_8']
+    # r0 = [1]
+    # ion_channel_model_one_state = ode_r_only
+    # solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], r0, args=[theta_true], dense_output=True,
+    #                                     method='LSODA',
+    #                                     rtol=1e-8, atol=1e-10)
+    # state_known_index = state_names.index('a')  # assume that we know a
+    # state_known = x_ar[state_known_index,:]
+    # state_name = hidden_state_names = 'r'
     ################################################################################################################
     ## store true hidden state
     state_hidden_true = x_ar[state_names.index(state_name), :]
@@ -577,7 +577,8 @@ if __name__ == '__main__':
             return data_fit_cost
     ####################################################################################################################
     ## Create objects for the optimisation
-    lambd = 1 # 0.3 # 0 # 1
+    # lambd = 1 # 0.3 # 0 # 1
+    lambdas = [1, 10, 100, 1000]
     # set initial values and boundaries depending on the scale of search space
     if inLogScale:
         # theta in log scale
@@ -609,332 +610,338 @@ if __name__ == '__main__':
     tic = tm.time()
     model_bsplines = bsplineOutput()
     ####################################################################################################################
-    # fit states at the true ODE param values to get the baseline value
-    Thetas_ODE = theta_true.copy()
-    # fit the b-spline surface given the true value of the ODE parameter vector
-    result_at_truth = inner_optimisation(Thetas_ODE,times_roi,voltage_roi,current_roi,knots_roi,states_known_roi,init_betas_roi)
-    betas_sample, inner_costs_sample, state_fitted_roi = result_at_truth
-    if len(state_fitted_roi.items())>1:
-        list_of_states = [state_values for _, state_values in state_fitted_roi.items()]
-        state_all_segments = np.array(list_of_states)
-    else:
-        state_all_segments = np.array(state_fitted_roi[hidden_state_names])
-    ## this is to be read at outer cost computation
-    #### end of loop over segments
-    # evaluate the cost functions at the sampled value of ODE parameter vector
-    InnerCost_given_true_theta = sum(inner_costs_sample)
-    OuterCost_given_true_theta = error_outer(Thetas_ODE)
-    GradCost_given_true_theta = (InnerCost_given_true_theta - OuterCost_given_true_theta) / lambd
-    print('Costs at truth:')
-    print('True theta: ', theta_true)
-    print('Lambda: {0:8.3f}'.format(lambd))
-    # print all of the above three costs in one print command
-    print('Inner cost: {0:8.8f} \t Data cost: {1:8.8f} \t Gradient matching cost: {2:8.8f}'.format(InnerCost_given_true_theta,
-                                                                                       OuterCost_given_true_theta,
-                                                                                       GradCost_given_true_theta))
-    ####################################################################################################################
-    # take 1: loosely based on ask-tell example from  pints
-    convergence_threshold =1e-8
-    iter_for_convergence = 20
-    # Create an outer optimisation object
-    big_tic = tm.time()
-    # optimiser_outer = pints.CMAES(x0=init_thetas,sigma0=sigma0_thetas, boundaries=boundaries_thetas) # with simple rectangular boundaries
-    optimiser_outer = pints.CMAES(x0=init_thetas, sigma0=sigma0_thetas, boundaries=boundaries_thetas_Michael) # with boundaries accounting for the reaction rates
-    optimiser_outer.set_population_size(min(len(theta_true)*5,30))
-    ## Create placeholders for the optimisation
-    theta_visited = []
-    theta_guessed = []
-    f_guessed = []
-    theta_best = []
-    f_outer_best = []
-    f_inner_best = []
-    f_gradient_best = []
-    InnerCosts_all = []
-    OuterCosts_all = []
-    GradCost_all = []
-    # run outer optimisation for some iterations
-    # create a folder to store the results for a given lambda and state
-    folderName = 'Results_' + state_name + '_lambda_' + str(int(lambd))
-    if not os.path.exists(folderName):
-        os.makedirs(folderName)
-    # create a csv file to store the results
-    csv_file_name = folderName+'/iterations_one_state_'+state_name+'.csv'
-    column_names = ['Iteration','Walker','Theta_1','Theta_2','Theta_3','Theta_4','Inner Cost', 'Outer Cost', 'Gradient Cost']
-    # parallelisation settings
-    ncpu = mp.cpu_count()
-    ncores = 10
-    # open the file to write to
-    with open(csv_file_name, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(column_names)
-        # run the outer optimisation
-        for i in range(2):
-            # get the next points (multiple locations)
-            thetas = optimiser_outer.ask()
-            # create the placeholder for cost functions
-            OuterCosts = []
-            InnerCosts = []
-            GradCosts = []
-            betas_visited = []
-            # for each theta in the sample
-            tic = tm.time()
-            # run inner optimisation for each theta sample
-            with mp.get_context('fork').Pool(processes=min(ncpu, ncores)) as pool:
-                results = pool.starmap(inner_optimisation,
-                                       zip(thetas, repeat(times_roi), repeat(voltage_roi), repeat(current_roi),
-                                           repeat(knots_roi), repeat(states_known_roi), repeat(init_betas_roi)))
-            # package results is a list of tuples
-            # extract the results
-            for iSample, result in enumerate(results):
-                betas_sample, inner_costs_sample, state_fitted_at_sample = result
-                # get the states at this sample
-                if len(state_fitted_roi.items()) > 1:
-                    list_of_states = [state_values for _, state_values in state_fitted_at_sample.items()]
-                    state_all_segments = np.array(list_of_states)
-                else:
-                    state_all_segments = np.array(state_fitted_at_sample[hidden_state_names])
-                # evaluate the cost functions at the sampled value of ODE parameter vector
-                InnerCost = sum(inner_costs_sample)
-                OuterCost = error_outer(thetas[iSample, :])
-                GradCost = (InnerCost - OuterCost) / lambd
-                # store the costs
-                InnerCosts.append(InnerCost)
-                OuterCosts.append(OuterCost)
-                GradCosts.append(GradCost)
-                betas_visited.append(betas_sample)
-            # tell the optimiser about the costs
-            optimiser_outer.tell(OuterCosts)
-            # store the best point
-            index_best = OuterCosts.index(min(OuterCosts))
-            theta_best.append(thetas[index_best, :])
-            f_outer_best.append(OuterCosts[index_best])
-            f_inner_best.append(InnerCosts[index_best])
-            f_gradient_best.append(GradCosts[index_best])
-            betas_best = betas_visited[index_best]
-            # ad hoc solution to the problem of the optimiser getting stuck at the boundary
-            init_betas_roi = []
-            for betas_to_intitialise in betas_best:
-                if any(betas_to_intitialise == upper_bound_beta):
-                    # find index of the offending beta
-                    index = np.where(betas_to_intitialise == upper_bound_beta)[0]
-                    betas_to_intitialise[index] = upper_bound_beta * 0.9
-                init_betas_roi.append(betas_to_intitialise)
-            # store the costs for all samples in the iteration
-            InnerCosts_all.append(InnerCosts)
-            OuterCosts_all.append(OuterCosts)
-            GradCost_all.append(GradCosts)
-            # store the visited points
-            theta_visited.append(thetas)
+    ## loop over lambdas
+    for lambd in lambdas:
+        print('lambda = ', lambd)
+        # run the ebtire optimisation for a given lambda below, plot and store all results
+        ####################################################################################################################
+        # fit states at the true ODE param values to get the baseline value
+        Thetas_ODE = theta_true.copy()
+        # fit the b-spline surface given the true value of the ODE parameter vector
+        result_at_truth = inner_optimisation(Thetas_ODE,times_roi,voltage_roi,current_roi,knots_roi,states_known_roi,init_betas_roi)
+        betas_sample, inner_costs_sample, state_fitted_roi = result_at_truth
+        if len(state_fitted_roi.items())>1:
+            list_of_states = [state_values for _, state_values in state_fitted_roi.items()]
+            state_all_segments = np.array(list_of_states)
+        else:
+            state_all_segments = np.array(state_fitted_roi[hidden_state_names])
+        ## this is to be read at outer cost computation
+        #### end of loop over segments
+        # evaluate the cost functions at the sampled value of ODE parameter vector
+        InnerCost_given_true_theta = sum(inner_costs_sample)
+        OuterCost_given_true_theta = error_outer(Thetas_ODE)
+        GradCost_given_true_theta = (InnerCost_given_true_theta - OuterCost_given_true_theta) / lambd
+        print('Costs at truth:')
+        print('True theta: ', theta_true)
+        print('Lambda: {0:8.3f}'.format(lambd))
+        # print all of the above three costs in one print command
+        print('Inner cost: {0:8.8f} \t Data cost: {1:8.8f} \t Gradient matching cost: {2:8.8f}'.format(InnerCost_given_true_theta,
+                                                                                           OuterCost_given_true_theta,
+                                                                                           GradCost_given_true_theta))
+        ####################################################################################################################
+        # take 1: loosely based on ask-tell example from  pints
+        convergence_threshold =1e-8
+        iter_for_convergence = 20
+        # Create an outer optimisation object
+        # optimiser_outer = pints.CMAES(x0=init_thetas,sigma0=sigma0_thetas, boundaries=boundaries_thetas) # with simple rectangular boundaries
+        optimiser_outer = pints.CMAES(x0=init_thetas, sigma0=sigma0_thetas, boundaries=boundaries_thetas_Michael) # with boundaries accounting for the reaction rates
+        optimiser_outer.set_population_size(min(len(theta_true)*5,30))
+        ## Create placeholders for the optimisation
+        theta_visited = []
+        theta_guessed = []
+        f_guessed = []
+        theta_best = []
+        f_outer_best = []
+        f_inner_best = []
+        f_gradient_best = []
+        InnerCosts_all = []
+        OuterCosts_all = []
+        GradCost_all = []
+        # run outer optimisation for some iterations
+        # create a folder to store the results for a given lambda and state
+        folderName = 'Results_' + state_name + '_lambda_' + str(int(lambd))
+        if not os.path.exists(folderName):
+            os.makedirs(folderName)
+        # create a csv file to store the results
+        csv_file_name = folderName+'/iterations_one_state_'+state_name+'.csv'
+        column_names = ['Iteration','Walker','Theta_1','Theta_2','Theta_3','Theta_4','Inner Cost', 'Outer Cost', 'Gradient Cost']
+        # parallelisation settings
+        ncpu = mp.cpu_count()
+        ncores = 10
+        big_tic = tm.time()
+        # open the file to write to
+        with open(csv_file_name, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(column_names)
+            # run the outer optimisation
+            for i in range(200):
+                # get the next points (multiple locations)
+                thetas = optimiser_outer.ask()
+                # create the placeholder for cost functions
+                OuterCosts = []
+                InnerCosts = []
+                GradCosts = []
+                betas_visited = []
+                # for each theta in the sample
+                tic = tm.time()
+                # run inner optimisation for each theta sample
+                with mp.get_context('fork').Pool(processes=min(ncpu, ncores)) as pool:
+                    results = pool.starmap(inner_optimisation,
+                                           zip(thetas, repeat(times_roi), repeat(voltage_roi), repeat(current_roi),
+                                               repeat(knots_roi), repeat(states_known_roi), repeat(init_betas_roi)))
+                # package results is a list of tuples
+                # extract the results
+                for iSample, result in enumerate(results):
+                    betas_sample, inner_costs_sample, state_fitted_at_sample = result
+                    # get the states at this sample
+                    if len(state_fitted_roi.items()) > 1:
+                        list_of_states = [state_values for _, state_values in state_fitted_at_sample.items()]
+                        state_all_segments = np.array(list_of_states)
+                    else:
+                        state_all_segments = np.array(state_fitted_at_sample[hidden_state_names])
+                    # evaluate the cost functions at the sampled value of ODE parameter vector
+                    InnerCost = sum(inner_costs_sample)
+                    OuterCost = error_outer(thetas[iSample, :])
+                    GradCost = (InnerCost - OuterCost) / lambd
+                    # store the costs
+                    InnerCosts.append(InnerCost)
+                    OuterCosts.append(OuterCost)
+                    GradCosts.append(GradCost)
+                    betas_visited.append(betas_sample)
+                # tell the optimiser about the costs
+                optimiser_outer.tell(OuterCosts)
+                # store the best point
+                index_best = OuterCosts.index(min(OuterCosts))
+                theta_best.append(thetas[index_best, :])
+                f_outer_best.append(OuterCosts[index_best])
+                f_inner_best.append(InnerCosts[index_best])
+                f_gradient_best.append(GradCosts[index_best])
+                betas_best = betas_visited[index_best]
+                # ad hoc solution to the problem of the optimiser getting stuck at the boundary
+                init_betas_roi = []
+                for betas_to_intitialise in betas_best:
+                    if any(betas_to_intitialise == upper_bound_beta):
+                        # find index of the offending beta
+                        index = np.where(betas_to_intitialise == upper_bound_beta)[0]
+                        betas_to_intitialise[index] = upper_bound_beta * 0.9
+                    init_betas_roi.append(betas_to_intitialise)
+                # store the costs for all samples in the iteration
+                InnerCosts_all.append(InnerCosts)
+                OuterCosts_all.append(OuterCosts)
+                GradCost_all.append(GradCosts)
+                # store the visited points
+                theta_visited.append(thetas)
 
-            # print the results
-            print('Iteration: ', i)
-            print('Best parameters: ', theta_best[-1])
-            print('Best objective: ', f_outer_best[-1])
-            print('Mean objective: ', np.mean(OuterCosts))
-            print('Inner objective at best sample: ', f_inner_best[-1])
-            print('Gradient objective at best sample: ', f_gradient_best[-1])
-            print('Time elapsed: ', tm.time() - tic)
+                # print the results
+                print('Iteration: ', i)
+                print('Best parameters: ', theta_best[-1])
+                print('Best objective: ', f_outer_best[-1])
+                print('Mean objective: ', np.mean(OuterCosts))
+                print('Inner objective at best sample: ', f_inner_best[-1])
+                print('Gradient objective at best sample: ', f_gradient_best[-1])
+                print('Time elapsed: ', tm.time() - tic)
 
-            # write the results to a csv file
-            for iWalker in range(len(thetas)):
-                row = [i, iWalker] + list(thetas[iWalker]) + [InnerCosts[iWalker], OuterCosts[iWalker],
-                                                              GradCosts[iWalker]]
-                writer.writerow(row)
-            file.flush()
+                # write the results to a csv file
+                for iWalker in range(len(thetas)):
+                    row = [i, iWalker] + list(thetas[iWalker]) + [InnerCosts[iWalker], OuterCosts[iWalker],
+                                                                  GradCosts[iWalker]]
+                    writer.writerow(row)
+                file.flush()
 
-            # check for convergence
-            if (i > iter_for_convergence):
-                # check how the cost increment changed over the last 10 iterations
-                d_cost = np.diff(f_outer_best[-iter_for_convergence:])
-                # if all incrementa are below a threshold break the loop
-                if all(d <= convergence_threshold for d in d_cost):
-                    print("No changes in" + str(iter_for_convergence) + "iterations. Terminating")
-                    break
-            ## end convergence check condition
-        ## end loop over iterations
-    big_toc = tm.time()
-    # convert the lists to numpy arrays
-    theta_best = np.array(theta_best)
-    f_outer_best = np.array(f_outer_best)
-    f_inner_best = np.array(f_inner_best)
-    f_gradient_best = np.array(f_gradient_best)
-    print('Total time taken: ', big_toc - big_tic)
-    print('===========================================================================================================')
-    ####################################################################################################################
-    ## save the best betas as a table to csv file
-    df_betas = pd.DataFrame()
-    for i, beta in enumerate(init_betas_roi):
-        df_betas['segment_'+str(i)] = beta
-    df_betas.to_csv(folderName+'/best_betas_'+state_name+'.csv', index=False)
-    ####################################################################################################################
-    # produce optimised model output
-    Thetas_ODE = theta_best[-1]
-    state_fitted_roi = {key: [] for key in hidden_state_names}
-    deriv_fitted_roi = {key: [] for key in hidden_state_names}
-    rhs_fitted_roi = {key: [] for key in hidden_state_names}
-    for iSegment in range(1):
-        segment = times_roi[iSegment]
-        knots = knots_roi[iSegment]
-        betas_segment = init_betas_roi[iSegment]
-        model_output = model_bsplines_test.simulate(betas_segment, knots, segment)
-        state_at_estimate, deriv_at_estimate, rhs_at_estimate = np.split(model_output, 3, axis=1)
-        for iState, stateName in enumerate(hidden_state_names):
-            state_fitted_roi[stateName] += list(state_at_estimate[:, iState])
-            deriv_fitted_roi[stateName] += list(deriv_at_estimate[:, iState])
-            rhs_fitted_roi[stateName] += list(rhs_at_estimate[:, iState])
-    for iSegment in range(1, len(times_roi)):
-        segment = times_roi[iSegment]
-        knots = knots_roi[iSegment]
-        betas_segment = init_betas_roi[iSegment]
-        model_output = model_bsplines_test.simulate(betas_segment, knots, segment)
-        state_at_estimate, deriv_at_estimate, rhs_at_estimate = np.split(model_output, 3, axis=1)
-        for iState, stateName in enumerate(hidden_state_names):
-            state_fitted_roi[stateName] += list(state_at_estimate[1:, iState])
-            deriv_fitted_roi[stateName] += list(deriv_at_estimate[1:, iState])
-            rhs_fitted_roi[stateName] += list(rhs_at_estimate[1:, iState])
-    # stitch segments together
-    if len(state_fitted_roi.items()) > 1:
-        list_of_states = [state_values for _, state_values in state_fitted_roi.items()]
-        state_all_segments = np.array(list_of_states)
-        list_of_derivs = [deriv_values for _, deriv_values in deriv_fitted_roi.items()]
-        deriv_all_segments = np.array(list_of_states)
-        list_of_rhs = [rhs_values for _, rhs_values in rhs_fitted_roi.items()]
-        rhs_all_segments = np.array(list_of_states)
-    else:
-        state_all_segments = np.array(state_fitted_roi[hidden_state_names])
-        deriv_all_segments = np.array(deriv_fitted_roi[hidden_state_names])
-        rhs_all_segments = np.array(rhs_fitted_roi[hidden_state_names])
+                # check for convergence
+                if (i > iter_for_convergence):
+                    # check how the cost increment changed over the last 10 iterations
+                    d_cost = np.diff(f_outer_best[-iter_for_convergence:])
+                    # if all incrementa are below a threshold break the loop
+                    if all(d <= convergence_threshold for d in d_cost):
+                        print("No changes in" + str(iter_for_convergence) + "iterations. Terminating")
+                        break
+                ## end convergence check condition
+            ## end loop over iterations
+        big_toc = tm.time()
+        # convert the lists to numpy arrays
+        theta_best = np.array(theta_best)
+        f_outer_best = np.array(f_outer_best)
+        f_inner_best = np.array(f_inner_best)
+        f_gradient_best = np.array(f_gradient_best)
+        print('Total time taken: ', big_toc - big_tic)
+        print('===========================================================================================================')
+        ####################################################################################################################
+        ## save the best betas as a table to csv file
+        df_betas = pd.DataFrame()
+        for i, beta in enumerate(init_betas_roi):
+            df_betas['segment_'+str(i)] = beta
+        df_betas.to_csv(folderName+'/best_betas_'+state_name+'.csv', index=False)
+        ####################################################################################################################
+        # produce optimised model output
+        Thetas_ODE = theta_best[-1]
+        state_fitted_roi = {key: [] for key in hidden_state_names}
+        deriv_fitted_roi = {key: [] for key in hidden_state_names}
+        rhs_fitted_roi = {key: [] for key in hidden_state_names}
+        for iSegment in range(1):
+            segment = times_roi[iSegment]
+            knots = knots_roi[iSegment]
+            betas_segment = init_betas_roi[iSegment]
+            model_output = model_bsplines_test.simulate(betas_segment, knots, segment)
+            state_at_estimate, deriv_at_estimate, rhs_at_estimate = np.split(model_output, 3, axis=1)
+            for iState, stateName in enumerate(hidden_state_names):
+                state_fitted_roi[stateName] += list(state_at_estimate[:, iState])
+                deriv_fitted_roi[stateName] += list(deriv_at_estimate[:, iState])
+                rhs_fitted_roi[stateName] += list(rhs_at_estimate[:, iState])
+        for iSegment in range(1, len(times_roi)):
+            segment = times_roi[iSegment]
+            knots = knots_roi[iSegment]
+            betas_segment = init_betas_roi[iSegment]
+            model_output = model_bsplines_test.simulate(betas_segment, knots, segment)
+            state_at_estimate, deriv_at_estimate, rhs_at_estimate = np.split(model_output, 3, axis=1)
+            for iState, stateName in enumerate(hidden_state_names):
+                state_fitted_roi[stateName] += list(state_at_estimate[1:, iState])
+                deriv_fitted_roi[stateName] += list(deriv_at_estimate[1:, iState])
+                rhs_fitted_roi[stateName] += list(rhs_at_estimate[1:, iState])
+        # stitch segments together
+        if len(state_fitted_roi.items()) > 1:
+            list_of_states = [state_values for _, state_values in state_fitted_roi.items()]
+            state_all_segments = np.array(list_of_states)
+            list_of_derivs = [deriv_values for _, deriv_values in deriv_fitted_roi.items()]
+            deriv_all_segments = np.array(list_of_states)
+            list_of_rhs = [rhs_values for _, rhs_values in rhs_fitted_roi.items()]
+            rhs_all_segments = np.array(list_of_states)
+        else:
+            state_all_segments = np.array(state_fitted_roi[hidden_state_names])
+            deriv_all_segments = np.array(deriv_fitted_roi[hidden_state_names])
+            rhs_all_segments = np.array(rhs_fitted_roi[hidden_state_names])
 
-    current_model = g * state_all_segments[:] * state_known * (voltage - EK)
-    # save the model output into a pickle file - in case the plots break again!
-    with open(folderName + '/model_output_' + state_name + '.pkl', 'wb') as f:
-        pkl.dump([times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments], f)
-    ####################################################################################################################
-    # plot evolution of inner costs
-    plt.figure(figsize=(10, 6))
-    plt.semilogy()
-    plt.xlabel('Iteration')
-    plt.ylabel('Inner optimisation cost')
-    for iIter in range(len(f_outer_best) - 1):
+        current_model = g * state_all_segments[:] * state_known * (voltage - EK)
+        # save the model output into a pickle file - in case the plots break again!
+        with open(folderName + '/model_output_' + state_name + '.pkl', 'wb') as f:
+            pkl.dump([times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments], f)
+        ####################################################################################################################
+        # plot evolution of inner costs
+        plt.figure(figsize=(10, 6))
+        plt.semilogy()
+        plt.xlabel('Iteration')
+        plt.ylabel('Inner optimisation cost')
+        for iIter in range(len(f_outer_best) - 1):
+            plt.scatter(iIter * np.ones(len(InnerCosts_all[iIter])), InnerCosts_all[iIter], c='k', marker='.', alpha=.5,
+                        linewidths=0)
+        iIter += 1
         plt.scatter(iIter * np.ones(len(InnerCosts_all[iIter])), InnerCosts_all[iIter], c='k', marker='.', alpha=.5,
-                    linewidths=0)
-    iIter += 1
-    plt.scatter(iIter * np.ones(len(InnerCosts_all[iIter])), InnerCosts_all[iIter], c='k', marker='.', alpha=.5,
-                linewidths=0, label='Sample cost min: J(C / Theta, Y) = ' + "{:.5e}".format(min(InnerCosts_all[iIter])))
-    plt.plot(f_inner_best, '-b', linewidth=1.5,
-             label='Best cost:J(C / Theta_{best}, Y) = ' + "{:.5e}".format(
-                 f_inner_best[-1]))
-    plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m', linewidth=2.5,
-             alpha=.5,
-             label='Collocation solution: J(C / Theta_{true}, Y) = ' + "{:.5e}".format(InnerCost_given_true_theta))
-    plt.legend(loc='best')
-    plt.tight_layout()
-    plt.savefig(folderName + '/inner_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
+                    linewidths=0, label='Sample cost min: J(C / Theta, Y) = ' + "{:.5e}".format(min(InnerCosts_all[iIter])))
+        plt.plot(f_inner_best, '-b', linewidth=1.5,
+                 label='Best cost:J(C / Theta_{best}, Y) = ' + "{:.5e}".format(
+                     f_inner_best[-1]))
+        plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m', linewidth=2.5,
+                 alpha=.5,
+                 label='Collocation solution: J(C / Theta_{true}, Y) = ' + "{:.5e}".format(InnerCost_given_true_theta))
+        plt.legend(loc='best')
+        plt.tight_layout()
+        plt.savefig(folderName + '/inner_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
 
-    # plot evolution of outer costs
-    plt.figure(figsize=(10, 6))
-    plt.semilogy()
-    plt.xlabel('Iteration')
-    plt.ylabel('Outer optimisation cost')
-    for iIter in range(len(f_outer_best) - 1):
+        # plot evolution of outer costs
+        plt.figure(figsize=(10, 6))
+        plt.semilogy()
+        plt.xlabel('Iteration')
+        plt.ylabel('Outer optimisation cost')
+        for iIter in range(len(f_outer_best) - 1):
+            plt.scatter(iIter * np.ones(len(OuterCosts_all[iIter])), OuterCosts_all[iIter], c='k', marker='.', alpha=.5,
+                        linewidths=0)
+        iIter += 1
         plt.scatter(iIter * np.ones(len(OuterCosts_all[iIter])), OuterCosts_all[iIter], c='k', marker='.', alpha=.5,
-                    linewidths=0)
-    iIter += 1
-    plt.scatter(iIter * np.ones(len(OuterCosts_all[iIter])), OuterCosts_all[iIter], c='k', marker='.', alpha=.5,
-                linewidths=0, label='Sample cost: H(Theta / C, Y)')
-    # plt.plot(range(iIter), np.ones(iIter) * OuterCost_true, '-m', linewidth=2.5, alpha=.5,label=r'B-splines fit to true state: $H(\Theta \mid  \hat{C}_{direct}, \bar{\mathbf{y}}) = $' + "{:.7f}".format(
-    #              OuterCost_true))
-    plt.plot(range(len(f_outer_best)), np.ones(len(f_outer_best)) * OuterCost_given_true_theta, '--m', linewidth=2.5,
-             alpha=.5, label='Collocation solution: H(Theta_{true} /  C, Y) = ' + "{:.5e}".format(
-            OuterCost_given_true_theta))
-    plt.plot(f_outer_best, '-b', linewidth=1.5,
-             label='Best cost:H(Theta_{best} / C, Y) = ' + "{:.5e}".format(f_outer_best[-1]))
-    plt.legend(loc='best')
-    plt.tight_layout()
-    plt.savefig(folderName + '/outer_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
+                    linewidths=0, label='Sample cost: H(Theta / C, Y)')
+        # plt.plot(range(iIter), np.ones(iIter) * OuterCost_true, '-m', linewidth=2.5, alpha=.5,label=r'B-splines fit to true state: $H(\Theta \mid  \hat{C}_{direct}, \bar{\mathbf{y}}) = $' + "{:.7f}".format(
+        #              OuterCost_true))
+        plt.plot(range(len(f_outer_best)), np.ones(len(f_outer_best)) * OuterCost_given_true_theta, '--m', linewidth=2.5,
+                 alpha=.5, label='Collocation solution: H(Theta_{true} /  C, Y) = ' + "{:.5e}".format(
+                OuterCost_given_true_theta))
+        plt.plot(f_outer_best, '-b', linewidth=1.5,
+                 label='Best cost:H(Theta_{best} / C, Y) = ' + "{:.5e}".format(f_outer_best[-1]))
+        plt.legend(loc='best')
+        plt.tight_layout()
+        plt.savefig(folderName + '/outer_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
 
-    # plot evolution of outer costs
-    plt.figure(figsize=(10, 6))
-    plt.semilogy()
-    plt.xlabel('Iteration')
-    plt.ylabel('Gradient matching cost')
-    for iIter in range(len(f_gradient_best) - 1):
+        # plot evolution of outer costs
+        plt.figure(figsize=(10, 6))
+        plt.semilogy()
+        plt.xlabel('Iteration')
+        plt.ylabel('Gradient matching cost')
+        for iIter in range(len(f_gradient_best) - 1):
+            plt.scatter(iIter * np.ones(len(GradCost_all[iIter])), GradCost_all[iIter], c='k', marker='.', alpha=.5,
+                        linewidths=0)
+        iIter += 1
         plt.scatter(iIter * np.ones(len(GradCost_all[iIter])), GradCost_all[iIter], c='k', marker='.', alpha=.5,
-                    linewidths=0)
-    iIter += 1
-    plt.scatter(iIter * np.ones(len(GradCost_all[iIter])), GradCost_all[iIter], c='k', marker='.', alpha=.5,
-                linewidths=0, label='Sample cost: G_{ODE}(C / Theta, Y)')
-    plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m',
-             linewidth=2.5, alpha=.5, label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
-            GradCost_given_true_theta))
-    plt.plot(f_gradient_best, '-b', linewidth=1.5,
-             label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
-    plt.legend(loc='best')
-    plt.tight_layout()
-    plt.savefig(folderName + '/gradient_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
+                    linewidths=0, label='Sample cost: G_{ODE}(C / Theta, Y)')
+        plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m',
+                 linewidth=2.5, alpha=.5, label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
+                GradCost_given_true_theta))
+        plt.plot(f_gradient_best, '-b', linewidth=1.5,
+                 label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
+        plt.legend(loc='best')
+        plt.tight_layout()
+        plt.savefig(folderName + '/gradient_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
 
-    # plot parameter values after search was done on decimal scale
-    fig, axes = plt.subplots(len(theta_true), 1, figsize=(5 * len(theta_true), 8), sharex=True)
-    for iAx, ax in enumerate(axes.flatten()):
-        for iIter in range(len(theta_best)):
-            x_visited_iter = theta_visited[iIter][:, iAx]
-            ax.scatter(iIter * np.ones(len(x_visited_iter)), x_visited_iter, c='k', marker='.', alpha=.2, linewidth=0)
-        ax.plot(range(iIter + 1), np.ones(iIter + 1) * theta_true[iAx], '--m', linewidth=2.5, alpha=.5,
-                label=r"true: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_true[iAx]))
-        # ax.plot(theta_guessed[:,iAx],'--r',linewidth=1.5,label=r"guessed: $\theta_{"+str(iAx+1)+"} = $" +"{:.4f}".format(theta_guessed[-1,iAx]))
-        ax.plot(theta_best[:, iAx], '-b', linewidth=1.5,
-                label=r"best: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_best[-1, iAx]))
-        ax.set_ylabel('log(' + param_names[iAx] + ')')
-        ax.legend(loc='best')
-    plt.tight_layout()
-    plt.savefig(folderName + '/ODE_params_one_state_log_scale_' + state_name + '.png', dpi=400)
+        # plot parameter values after search was done on decimal scale
+        fig, axes = plt.subplots(len(theta_true), 1, figsize=(5 * len(theta_true), 8), sharex=True)
+        for iAx, ax in enumerate(axes.flatten()):
+            for iIter in range(len(theta_best)):
+                x_visited_iter = theta_visited[iIter][:, iAx]
+                ax.scatter(iIter * np.ones(len(x_visited_iter)), x_visited_iter, c='k', marker='.', alpha=.2, linewidth=0)
+            ax.plot(range(iIter + 1), np.ones(iIter + 1) * theta_true[iAx], '--m', linewidth=2.5, alpha=.5,
+                    label=r"true: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_true[iAx]))
+            # ax.plot(theta_guessed[:,iAx],'--r',linewidth=1.5,label=r"guessed: $\theta_{"+str(iAx+1)+"} = $" +"{:.4f}".format(theta_guessed[-1,iAx]))
+            ax.plot(theta_best[:, iAx], '-b', linewidth=1.5,
+                    label=r"best: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_best[-1, iAx]))
+            ax.set_ylabel('log(' + param_names[iAx] + ')')
+            ax.legend(loc='best')
+        plt.tight_layout()
+        plt.savefig(folderName + '/ODE_params_one_state_log_scale_' + state_name + '.png', dpi=400)
 
-    # plot parameter values converting from log scale to decimal
-    fig, axes = plt.subplots(len(theta_true), 1, figsize=(5 * len(theta_true), 8), sharex=True)
-    for iAx, ax in enumerate(axes.flatten()):
-        for iIter in range(len(theta_best)):
-            x_visited_iter = theta_visited[iIter][:, iAx]
-            ax.scatter(iIter * np.ones(len(x_visited_iter)), np.exp(x_visited_iter), c='k', marker='.', alpha=.2,
-                       linewidth=0)
-        ax.plot(range(iIter + 1), np.ones(iIter + 1) * np.exp(theta_true[iAx]), '--m', linewidth=2.5, alpha=.5,
-                label="true: " + param_names[iAx] + " = " + "{:.6f}".format(np.exp(theta_true[iAx])))
-        # ax.plot(np.exp(theta_guessed[:,iAx]),'--r',linewidth=1.5,label="guessed: $a_{"+str(iAx+1)+"} = $" +"{:.4f}".format(np.exp(theta_guessed[-1,iAx])))
-        ax.plot(np.exp(theta_best[:, iAx]), '-b', linewidth=1.5,
-                label="best: " + param_names[iAx] + " = " + "{:.6f}".format(np.exp(theta_best[-1, iAx])))
-        ax.set_ylabel(param_names[iAx])
-        ax.set_yscale('log')
-        ax.legend(loc='best')
-    ax.set_xlabel('Iteration')
-    plt.tight_layout()
-    plt.savefig(folderName + '/ODE_params_one_state_' + state_name + '.png', dpi=400)
-    ####################################################################################################################
-    # plot evolution of inner costs
-    fig, axes = plt.subplots(3, 1, figsize=(14, 9), sharex=True)
-    # y_labels = ['I', '$\dot{' + state_name + '}$', '$' + state_name + '$']
-    y_labels = ['I', 'd' + state_name, state_name]
-    axes[0].plot(times, current_true, '-k', label='Current true')
-    axes[0].plot(times, current_model, '--r', label='Optimised model output')
-    axes[1].plot(times, deriv_all_segments, '--r', label='B-spline derivative')
-    axes[1].plot(times, rhs_all_segments, '--c', label='RHS at collocation solution')
-    axes[2].plot(times, state_hidden_true, '-k', label=state_name + 'true')
-    axes[2].plot(times, state_all_segments, '--r', label='Collocation solution')
-    for iAx, ax in enumerate(axes.flatten()):
-        ax.legend(fontsize=12, loc='best')
-        ax.set_ylabel(y_labels[iAx], fontsize=12)
-    ax.set_xlabel('time,ms', fontsize=12)
-    plt.tight_layout(pad=0.3)
-    plt.savefig(folderName + '/cost_terms_ask_tell_one_state_' + state_name + '.png', dpi=400)
+        # plot parameter values converting from log scale to decimal
+        fig, axes = plt.subplots(len(theta_true), 1, figsize=(5 * len(theta_true), 8), sharex=True)
+        for iAx, ax in enumerate(axes.flatten()):
+            for iIter in range(len(theta_best)):
+                x_visited_iter = theta_visited[iIter][:, iAx]
+                ax.scatter(iIter * np.ones(len(x_visited_iter)), np.exp(x_visited_iter), c='k', marker='.', alpha=.2,
+                           linewidth=0)
+            ax.plot(range(iIter + 1), np.ones(iIter + 1) * np.exp(theta_true[iAx]), '--m', linewidth=2.5, alpha=.5,
+                    label="true: " + param_names[iAx] + " = " + "{:.6f}".format(np.exp(theta_true[iAx])))
+            # ax.plot(np.exp(theta_guessed[:,iAx]),'--r',linewidth=1.5,label="guessed: $a_{"+str(iAx+1)+"} = $" +"{:.4f}".format(np.exp(theta_guessed[-1,iAx])))
+            ax.plot(np.exp(theta_best[:, iAx]), '-b', linewidth=1.5,
+                    label="best: " + param_names[iAx] + " = " + "{:.6f}".format(np.exp(theta_best[-1, iAx])))
+            ax.set_ylabel(param_names[iAx])
+            ax.set_yscale('log')
+            ax.legend(loc='best')
+        ax.set_xlabel('Iteration')
+        plt.tight_layout()
+        plt.savefig(folderName + '/ODE_params_one_state_' + state_name + '.png', dpi=400)
+        ####################################################################################################################
+        # plot evolution of inner costs
+        fig, axes = plt.subplots(3, 1, figsize=(14, 9), sharex=True)
+        # y_labels = ['I', '$\dot{' + state_name + '}$', '$' + state_name + '$']
+        y_labels = ['I', 'd' + state_name, state_name]
+        axes[0].plot(times, current_true, '-k', label='Current true')
+        axes[0].plot(times, current_model, '--r', label='Optimised model output')
+        axes[1].plot(times, deriv_all_segments, '--r', label='B-spline derivative')
+        axes[1].plot(times, rhs_all_segments, '--c', label='RHS at collocation solution')
+        axes[2].plot(times, state_hidden_true, '-k', label=state_name + 'true')
+        axes[2].plot(times, state_all_segments, '--r', label='Collocation solution')
+        for iAx, ax in enumerate(axes.flatten()):
+            ax.legend(fontsize=12, loc='best')
+            ax.set_ylabel(y_labels[iAx], fontsize=12)
+        ax.set_xlabel('time,ms', fontsize=12)
+        plt.tight_layout(pad=0.3)
+        plt.savefig(folderName + '/cost_terms_ask_tell_one_state_' + state_name + '.png', dpi=400)
 
-    fig, axes = plt.subplots(3, 1, figsize=(14, 9), sharex=True)
-    # y_labels = ['$I_{true} - I_{model}$', '$\dot{' + state_name + r'} - RHS(\beta)$', r'$' + state_name + r'$ - $\Phi\beta$']
-    y_labels = ['I_true - I_model', 'd' + state_name + '(C) - RHS(C)', state_name + '(C) - Phi C']
-    axes[0].plot(times, current_true - current_model, '-k', label='Data error')
-    axes[1].plot(times, deriv_all_segments - rhs_all_segments, '-k', label='Derivative error')
-    axes[2].plot(times, state_hidden_true - state_all_segments, '-k', label='Approximation error')
-    for iAx, ax in enumerate(axes.flatten()):
-        ax.legend(fontsize=12, loc='best')
-        ax.set_ylabel(y_labels[iAx], fontsize=12)
-    ax.set_xlabel('time,ms', fontsize=12)
-    plt.tight_layout(pad=0.3)
-    plt.savefig(folderName + '/erros_ask_tell_one_state_' + state_name + '.png', dpi=400)
-    ####################################################################################################################
+        fig, axes = plt.subplots(3, 1, figsize=(14, 9), sharex=True)
+        # y_labels = ['$I_{true} - I_{model}$', '$\dot{' + state_name + r'} - RHS(\beta)$', r'$' + state_name + r'$ - $\Phi\beta$']
+        y_labels = ['I_true - I_model', 'd' + state_name + '(C) - RHS(C)', state_name + '(C) - Phi C']
+        axes[0].plot(times, current_true - current_model, '-k', label='Data error')
+        axes[1].plot(times, deriv_all_segments - rhs_all_segments, '-k', label='Derivative error')
+        axes[2].plot(times, state_hidden_true - state_all_segments, '-k', label='Approximation error')
+        for iAx, ax in enumerate(axes.flatten()):
+            ax.legend(fontsize=12, loc='best')
+            ax.set_ylabel(y_labels[iAx], fontsize=12)
+        ax.set_xlabel('time,ms', fontsize=12)
+        plt.tight_layout(pad=0.3)
+        plt.savefig(folderName + '/erros_ask_tell_one_state_' + state_name + '.png', dpi=400)
+        #################################################################################################################
+    ## end of loop over lambda values

@@ -12,6 +12,7 @@ import time as tm
 import random
 import csv
 import os
+import pickle as pkl
 plt.ioff()
 plt.rcParams['figure.figsize'] = (20,10)
 plt.rcParams['figure.dpi'] = 400
