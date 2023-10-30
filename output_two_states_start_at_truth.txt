@@ -1,0 +1,87 @@
+Number of B-spline coeffs per segment: 18
+Costs at truth:
+True theta:  [ -8.39497556  -2.66068963 -10.27455123  -2.90735516  -2.43840482
+  -4.72058104  -5.26875856  -3.45523127]
+Lambda:  100.000
+Inner cost: 3.46642102 	 Data cost: 1.63196414 	 Gradient matching cost: 0.01834457
+Iteration:  0
+Best parameters:  [ -8.60068864  -2.48162101 -10.36154307  -2.78291891  -2.42501026
+  -4.62873263  -5.62528282  -3.45871487]
+Best objective:  1.5098151902894603
+Mean objective:  3.3826860184962104
+Inner objective at best sample:  5.447409311639014
+Gradient objective at best sample:  0.03937594121349553
+Time elapsed:  970.3368346691132
+Iteration:  1
+Best parameters:  [ -8.44739157  -2.48453079 -10.32018444  -2.84316058  -2.28764785
+  -4.75773378  -5.4679913   -3.47906336]
+Best objective:  1.4993277273239711
+Mean objective:  2.5399521311123956
+Inner objective at best sample:  4.45159306207476
+Gradient objective at best sample:  0.029522653347507893
+Time elapsed:  1032.349639415741
+Total time taken:  2002.7263667583466
+============================================================================================================
+Traceback (most recent call last):
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/texmanager.py", line 255, in _run_checked_subprocess
+    report = subprocess.check_output(
+  File "/usr/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/usr/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'latex'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sbzak6/ionch_clean/try_ask_tell_two_states_segments.py", line 840, in <module>
+    plt.tight_layout()
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/pyplot.py", line 2349, in tight_layout
+    return gcf().tight_layout(pad=pad, h_pad=h_pad, w_pad=w_pad, rect=rect)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/figure.py", line 3509, in tight_layout
+    engine.execute(self)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/layout_engine.py", line 178, in execute
+    kwargs = get_tight_layout_figure(
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/_tight_layout.py", line 266, in get_tight_layout_figure
+    kwargs = _auto_adjust_subplotpars(fig, renderer,
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/_tight_layout.py", line 82, in _auto_adjust_subplotpars
+    bb += [martist._get_tightbbox_for_layout_only(ax, renderer)]
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/artist.py", line 1415, in _get_tightbbox_for_layout_only
+    return obj.get_tightbbox(*args, **{**kwargs, "for_layout_only": True})
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/axes/_base.py", line 4385, in get_tightbbox
+    ba = martist._get_tightbbox_for_layout_only(axis, renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/artist.py", line 1415, in _get_tightbbox_for_layout_only
+    return obj.get_tightbbox(*args, **{**kwargs, "for_layout_only": True})
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/axis.py", line 1325, in get_tightbbox
+    self._update_label_position(renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/axis.py", line 2304, in _update_label_position
+    bboxes, bboxes2 = self._get_tick_boxes_siblings(renderer=renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/axis.py", line 2100, in _get_tick_boxes_siblings
+    tlb, tlb2 = axis._get_ticklabel_bboxes(ticks_to_draw, renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/axis.py", line 1304, in _get_ticklabel_bboxes
+    return ([tick.label1.get_window_extent(renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/axis.py", line 1304, in <listcomp>
+    return ([tick.label1.get_window_extent(renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/text.py", line 959, in get_window_extent
+    bbox, info, descent = self._get_layout(self._renderer)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/text.py", line 378, in _get_layout
+    _, lp_h, lp_d = _get_text_metrics_with_cache(
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/text.py", line 97, in _get_text_metrics_with_cache
+    return _get_text_metrics_with_cache_impl(
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/text.py", line 105, in _get_text_metrics_with_cache_impl
+    return renderer_ref().get_text_width_height_descent(text, fontprop, ismath)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/backends/backend_agg.py", line 226, in get_text_width_height_descent
+    return super().get_text_width_height_descent(s, prop, ismath)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/backend_bases.py", line 645, in get_text_width_height_descent
+    return self.get_texmanager().get_text_width_height_descent(
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/texmanager.py", line 368, in get_text_width_height_descent
+    dvifile = cls.make_dvi(tex, fontsize)
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/texmanager.py", line 300, in make_dvi
+    cls._run_checked_subprocess(
+  File "/home/sbzak6/ak_ionch/lib/python3.10/site-packages/matplotlib/texmanager.py", line 259, in _run_checked_subprocess
+    raise RuntimeError(
+RuntimeError: Failed to process string with tex because latex could not be found
