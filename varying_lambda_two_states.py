@@ -374,10 +374,10 @@ if __name__ == '__main__':
     ################################################################################################################
     ## B-spline representation setup
     # set times of jumps and a B-spline knot sequence
-    nPoints_closest = 40  # the number of points from each jump where knots are placed at the finest grid
-    nPoints_between_closest = 20  # step between knots at the finest grid
-    nPoints_around_jump = 60  # the time period from jump on which we place medium grid
-    step_between_knots = 60  # this is the step between knots around the jump in the medium grid
+    nPoints_closest = 30  # the number of points from each jump where knots are placed at the finest grid
+    nPoints_between_closest = 10  # step between knots at the finest grid
+    nPoints_around_jump = 50  # the time period from jump on which we place medium grid
+    step_between_knots = 50  # this is the step between knots around the jump in the medium grid
     nPoints_between_jumps = 2  # this is the number of knots at the coarse grid corresponding to slowly changing values
     ## find switchpoints
     d2v_dt2 = np.diff(volts_new, n=2)
@@ -685,7 +685,7 @@ if __name__ == '__main__':
             writer = csv.writer(file)
             writer.writerow(column_names)
             # run the outer optimisation
-            for i in range(2):
+            for i in range(200):
                 # get the next points (multiple locations)
                 thetas = optimiser_outer.ask()
                 # create the placeholder for cost functions

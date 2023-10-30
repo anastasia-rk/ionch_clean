@@ -362,6 +362,7 @@ if __name__ == '__main__':
     ################################################################################################################
     ## store true hidden state
     state_hidden_true = x_ar[state_names.index(state_name), :]
+    rhs_true = ion_channel_model_one_state(times, state_hidden_true, theta_true)
     ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables
     theta_lower_boundary = [np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5))]
     theta_upper_boundary = [np.log(10 ** (3)), np.log(0.4), np.log(10 ** (3)), np.log(0.4)]
@@ -369,9 +370,9 @@ if __name__ == '__main__':
     ## B-spline representation setup
     # set times of jumps and a B-spline knot sequence
     nPoints_closest = 30  # the number of points from each jump where knots are placed at the finest grid
-    nPoints_between_closest = 15  # step between knots at the finest grid
-    nPoints_around_jump = 60  # the time period from jump on which we place medium grid
-    step_between_knots = 60  # this is the step between knots around the jump in the medium grid
+    nPoints_between_closest = 10  # step between knots at the finest grid
+    nPoints_around_jump = 50  # the time period from jump on which we place medium grid
+    step_between_knots = 50  # this is the step between knots around the jump in the medium grid
     nPoints_between_jumps = 2  # this is the number of knots at the coarse grid corresponding to slowly changing values
     ## find switchpoints
     d2v_dt2 = np.diff(volts_new, n=2)
@@ -814,7 +815,7 @@ if __name__ == '__main__':
         current_model = g * state_all_segments[:] * state_known * (voltage - EK)
         # save the model output into a pickle file - in case the plots break again!
         with open(folderName + '/model_output_' + state_name + '.pkl', 'wb') as f:
-            pkl.dump([times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments], f)
+            pkl.dump([times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments,InnerCost_given_true_theta, OuterCost_given_true_theta, GradCost_given_true_theta], f)
         ####################################################################################################################
         # plot evolution of inner costs
         plt.figure(figsize=(10, 6))
@@ -920,6 +921,7 @@ if __name__ == '__main__':
         y_labels = ['I', 'd' + state_name, state_name]
         axes[0].plot(times, current_true, '-k', label='Current true')
         axes[0].plot(times, current_model, '--r', label='Optimised model output')
+        axes[1].plot(times, rhs_true, '-k', label='RHS true')
         axes[1].plot(times, deriv_all_segments, '--r', label='B-spline derivative')
         axes[1].plot(times, rhs_all_segments, '--c', label='RHS at collocation solution')
         axes[2].plot(times, state_hidden_true, '-k', label=state_name + 'true')
