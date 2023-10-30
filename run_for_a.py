@@ -318,7 +318,7 @@ if __name__ == '__main__':
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
 
     ## define the time interval on which the fitting will be done
-    tlim = [1500, 11300]
+    tlim = [3500, 14300]
     times = np.linspace(*tlim, tlim[-1]-tlim[0],endpoint=False)
     volts_new = V(times)
     ## Generate the synthetic data
@@ -369,10 +369,10 @@ if __name__ == '__main__':
     ################################################################################################################
     ## B-spline representation setup
     # set times of jumps and a B-spline knot sequence
-    nPoints_closest = 30  # the number of points from each jump where knots are placed at the finest grid
-    nPoints_between_closest = 10  # step between knots at the finest grid
-    nPoints_around_jump = 50  # the time period from jump on which we place medium grid
-    step_between_knots = 50  # this is the step between knots around the jump in the medium grid
+    nPoints_closest = 4  # the number of points from each jump where knots are placed at the finest grid
+    nPoints_between_closest = 2  # step between knots at the finest grid
+    nPoints_around_jump = 80  # the time period from jump on which we place medium grid
+    step_between_knots = 16  # this is the step between knots around the jump in the medium grid
     nPoints_between_jumps = 2  # this is the number of knots at the coarse grid corresponding to slowly changing values
     ## find switchpoints
     d2v_dt2 = np.diff(volts_new, n=2)

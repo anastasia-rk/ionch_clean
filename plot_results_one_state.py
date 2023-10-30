@@ -85,30 +85,30 @@ if __name__ == '__main__':
     current_true = observation(times, x_ar, thetas_true)
 
     ## single state model
-    # use a as unknown state
-    theta_true = [np.log(2.26e-4), np.log(0.0699), np.log(3.45e-5), np.log(0.05462)]
-    inLogScale = True
-    param_names = ['p_1','p_2','p_3','p_4']
-    a0 = [0]
-    ion_channel_model_one_state = ode_a_only
-    solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], a0, args=[theta_true], dense_output=True, method='LSODA',
-                                      rtol=1e-8, atol=1e-8)
-    state_known_index = state_names.index('r')  # assume that we know r
-    state_known = x_ar[state_known_index, :]
-    state_name = hidden_state_names = 'a'
-
-    # ## use r as unknown state
-    # theta_true = [np.log(0.0873), np.log(8.91e-3), np.log(5.15e-3), np.log(0.03158)]
+    # # use a as unknown state
+    # theta_true = [np.log(2.26e-4), np.log(0.0699), np.log(3.45e-5), np.log(0.05462)]
     # inLogScale = True
-    # param_names = ['p_5','p_6','p_7','p_8']
-    # r0 = [1]
-    # ion_channel_model_one_state = ode_r_only
-    # solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], r0, args=[theta_true], dense_output=True,
-    #                                     method='LSODA',
-    #                                     rtol=1e-8, atol=1e-10)
-    # state_known_index = state_names.index('a')  # assume that we know a
-    # state_known = x_ar[state_known_index,:]
-    # state_name = hidden_state_names = 'r'
+    # param_names = ['p_1','p_2','p_3','p_4']
+    # a0 = [0]
+    # ion_channel_model_one_state = ode_a_only
+    # solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], a0, args=[theta_true], dense_output=True, method='LSODA',
+    #                                   rtol=1e-8, atol=1e-8)
+    # state_known_index = state_names.index('r')  # assume that we know r
+    # state_known = x_ar[state_known_index, :]
+    # state_name = hidden_state_names = 'a'
+
+    ## use r as unknown state
+    theta_true = [np.log(0.0873), np.log(8.91e-3), np.log(5.15e-3), np.log(0.03158)]
+    inLogScale = True
+    param_names = ['p_5','p_6','p_7','p_8']
+    r0 = [1]
+    ion_channel_model_one_state = ode_r_only
+    solution_one_state = sp.integrate.solve_ivp(ion_channel_model_one_state, [0,tlim[-1]], r0, args=[theta_true], dense_output=True,
+                                        method='LSODA',
+                                        rtol=1e-8, atol=1e-10)
+    state_known_index = state_names.index('a')  # assume that we know a
+    state_known = x_ar[state_known_index,:]
+    state_name = hidden_state_names = 'r'
     ################################################################################################################
     ## store true hidden state
     state_hidden_true = x_ar[state_names.index(state_name), :]
@@ -118,8 +118,8 @@ if __name__ == '__main__':
     with open(folderName + '/model_output_' + state_name + '.pkl', 'rb') as f:
         # load the model output
         model_output = pkl.load(f)
-    # times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments = model_output
-    times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments, InnerCost_given_true_theta, OuterCost_given_true_theta, GradCost_given_true_theta = model_output
+    times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments = model_output
+    # times, current_model, state_all_segments, deriv_all_segments, rhs_all_segments, InnerCost_given_true_theta, OuterCost_given_true_theta, GradCost_given_true_theta = model_output
     # load the optimisation metrix from the csv file in the folderName directory
     df = pd.read_csv(folderName + '/iterations_one_state_' + state_name + '.csv')
     # load best betas from the csv file in the folderName directory
@@ -168,9 +168,9 @@ if __name__ == '__main__':
     plt.plot(f_inner_best, '-b', linewidth=1.5,
              label='Best cost:J(C / Theta_{best}, Y) = ' + "{:.5e}".format(
                  f_inner_best[-1]))
-    plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m', linewidth=2.5,
-             alpha=.5,
-             label='Collocation solution: J(C / Theta_{true}, Y) = ' + "{:.5e}".format(InnerCost_given_true_theta))
+    # plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m', linewidth=2.5,
+    #          alpha=.5,
+    #          label='Collocation solution: J(C / Theta_{true}, Y) = ' + "{:.5e}".format(InnerCost_given_true_theta))
     plt.legend(loc='best')
     plt.tight_layout()
     plt.savefig(folderName + '/inner_cost_ask_tell_one_state_' + state_name + '.png', dpi=400)
@@ -188,9 +188,9 @@ if __name__ == '__main__':
                 linewidths=0, label='Sample cost: H(Theta / C, Y)')
     # plt.plot(range(iIter), np.ones(iIter) * OuterCost_true, '-m', linewidth=2.5, alpha=.5,label=r'B-splines fit to true state: $H(\Theta \mid  \hat{C}_{direct}, \bar{\mathbf{y}}) = $' + "{:.7f}".format(
     #              OuterCost_true))
-    plt.plot(range(len(f_outer_best)), np.ones(len(f_outer_best)) * OuterCost_given_true_theta, '--m', linewidth=2.5,
-             alpha=.5, label='Collocation solution: H(Theta_{true} /  C, Y) = ' + "{:.5e}".format(
-            OuterCost_given_true_theta))
+    # plt.plot(range(len(f_outer_best)), np.ones(len(f_outer_best)) * OuterCost_given_true_theta, '--m', linewidth=2.5,
+    #          alpha=.5, label='Collocation solution: H(Theta_{true} /  C, Y) = ' + "{:.5e}".format(
+    #         OuterCost_given_true_theta))
     plt.plot(f_outer_best, '-b', linewidth=1.5,
              label='Best cost:H(Theta_{best} / C, Y) = ' + "{:.5e}".format(f_outer_best[-1]))
     plt.legend(loc='best')
@@ -208,9 +208,9 @@ if __name__ == '__main__':
     iIter += 1
     plt.scatter(iIter * np.ones(len(GradCosts_all[iIter])), GradCosts_all[iIter], c='k', marker='.', alpha=.5,
                 linewidths=0, label='Sample cost: G_{ODE}(C / Theta, Y)')
-    plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m',
-             linewidth=2.5, alpha=.5, label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
-            GradCost_given_true_theta))
+    # plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m',
+    #          linewidth=2.5, alpha=.5, label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
+    #         GradCost_given_true_theta))
     plt.plot(f_gradient_best, '-b', linewidth=1.5,
              label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
     plt.legend(loc='best')
