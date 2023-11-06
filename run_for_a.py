@@ -695,7 +695,7 @@ if __name__ == '__main__':
                 for iSample, result in enumerate(results):
                     betas_sample, inner_costs_sample, state_fitted_at_sample = result
                     # get the states at this sample
-                    if len(state_fitted_roi.items()) > 1:
+                    if len(state_fitted_at_sample.items()) > 1:
                         list_of_states = [state_values for _, state_values in state_fitted_at_sample.items()]
                         state_all_segments = np.array(list_of_states)
                     else:

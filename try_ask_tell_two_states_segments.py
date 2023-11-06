@@ -1,6 +1,7 @@
 # imports
 import numpy as np
 
+import setup
 from setup import *
 import multiprocessing as mp
 from itertools import repeat
@@ -358,15 +359,38 @@ if __name__ == '__main__':
     thetas_true = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
     theta_true = np.log(thetas_true[:-1])
     param_names = [f'p_{i}' for i in range(1,len(theta_true)+1)]
-    g = 0.1524
+    state_names = ['a', 'r']
     inLogScale = True
-    # initialise and solve ODE
-    x0 = [0, 1]
-    state_names = ['a','r']
-    # solve initial value problem
-    solution = sp.integrate.solve_ivp(hh_model, [0,tlim[-1]], x0, args=[thetas_true], dense_output=True,method='LSODA',rtol=1e-8,atol=1e-8)
-    state_hidden_true = solution.sol(times)
-    current_true = observation(times, state_hidden_true, thetas_true)
+    # HH model
+    # g = 0.1524
+    # x0 = [0, 1]
+    # # solve initial value problem
+    # solution = sp.integrate.solve_ivp(hh_model, [0,tlim[-1]], x0, args=[thetas_true], dense_output=True,method='LSODA',rtol=1e-8,atol=1e-8)
+    # state_hidden_true = solution.sol(times)
+    # current_HH = observation(times, state_hidden_true, thetas_true)
+    # current_true = current_HH
+
+    ## Kemp model
+    p_kemp = [8.5318e-03, 8.3176e-02, 1.2628e-02, 1.03628e-07, 2.702763e-01, 1.580004e-02, 7.6669948e-02, 2.2457500e-02,
+              1.490338e-01, 2.431569e-02, 5.58072e-04, 4.06619e-02, 8.471005e-02]
+    g = 8.471005e-02
+    # find steady state at -80mV to use as initial condition
+    x0_init = [0.5, 0.5, 0]
+    # run for a long time for the slow rate states to settle
+    t_end = 10e5
+    solution_ss = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], x0_init, args=[p_kemp], dense_output=True,
+                                         method='LSODA', rtol=1e-8, atol=1e-8)
+    ss = solution_ss.sol(t_end)
+    print('Steady state at V=-80mv: ', ss)
+    new_solution = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], ss, args=[p_kemp], dense_output=True,
+                                          method='LSODA', rtol=1e-8, atol=1e-8)
+    x0_kemp = ss
+    solution_kemp = sp.integrate.solve_ivp(setup.kemp_model, [0, tlim[-1]], x0_kemp, args=[p_kemp], dense_output=True,
+                                           method='LSODA', rtol=1e-8, atol=1e-8)
+    x_kemp = solution_kemp.sol(times)
+    current_kemp = kemp_observation(times, x_kemp, p_kemp)
+    current_true = current_kemp
+
     state_names = hidden_state_names= ['a','r']
     ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables
     theta_lower_boundary = [np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5))]

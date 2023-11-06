@@ -63,9 +63,30 @@ def kemp_model(t, x, theta):
     v = V(t)
     a1 = p[0] * np.exp(p[1] * v)
     b1 = p[2] * np.exp(-p[3] * v)
-    ah = p[6] * np.exp(p[7] * v)
-    bh = p[4] * np.exp(-p[5] * v)
-    a2 = p[8] * np.exp(-p[9] * v)
+
+    ah = p[6] * np.exp(-p[7] * v)
+    bh = p[4] * np.exp(p[5] * v)
+
+    a2 = p[8] * np.exp(p[9] * v)
+    b2 = p[10] * np.exp(-p[11] * v)
+    dop = a2*c1 - b2*op
+    dc1 = b2*op + a1*(1 - op - c1) - (a2 + b1)*c1
+    h_inf = ah/(ah + bh)
+    tau_h = 1/(ah + bh)
+    dh = (h_inf - h)/tau_h
+    return [dop,dc1,dh]
+
+def kemp_model_ss(t, x, theta):
+    op, c1, h = x[:3]
+    *p, g = theta[:13]
+    v = -80
+    a1 = p[0] * np.exp(p[1] * v)
+    b1 = p[2] * np.exp(-p[3] * v)
+
+    ah = p[6] * np.exp(-p[7] * v)
+    bh = p[4] * np.exp(p[5] * v)
+
+    a2 = p[8] * np.exp(p[9] * v)
     b2 = p[10] * np.exp(-p[11] * v)
     dop = a2*c1 - b2*op
     dc1 = b2*op + a1*(1 - op - c1) - (a2 + b1)*c1
@@ -95,7 +116,7 @@ if __name__ == '__main__':
     # interpolate with smaller time step (milliseconds)
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
 
-    tlim = [0, 13000]
+    tlim = [0, 14500]
     times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
     ###################################################################################################################
     ## Generate data
@@ -108,18 +129,40 @@ if __name__ == '__main__':
     x_ar = solution.sol(times)
     current = observation(times, x_ar, p_true)
 
-    x0_kemp = [0,1,1]
-    # params takent from Kemp et.al. Table 2 WT, conductance is taken for cell 1.
-    p_kemp = [ 8.5318e-03,  8.3176e-02,  1.2628e-02,  1.03628e-07,  2.702763e-01,  1.580004e-02,  7.6669948e-02,  2.2457500e-02,  1.490338e-01,  2.431569e-02,  5.58072e-04,  4.06619e-02, 8.471005e-02]
-    solution_kemp = sp.integrate.solve_ivp(kemp_model, [0,tlim[-1]], x0_kemp, args=[p_kemp], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+
+    #  Kemp model
+    # params taken from Kemp et.al. Table 2 WT, conductance is taken for cell 1.
+    p_kemp = [8.5318e-03, 8.3176e-02, 1.2628e-02, 1.03628e-07, 2.702763e-01, 1.580004e-02, 7.6669948e-02, 2.2457500e-02,
+              1.490338e-01, 2.431569e-02, 5.58072e-04, 4.06619e-02, 8.471005e-02]
+    # find steady state at -80mV to use as initial condition
+    x0_init = [0.5,0.5,0]
+    # run for a long time for the slow rate states to settle
+    t_end = 10e5
+    solution_ss = sp.integrate.solve_ivp(kemp_model_ss, [0,t_end], x0_init, args=[p_kemp], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+    ss = solution_ss.sol(t_end)
+    print('Steady state at V=-80mv: ', ss)
+    new_solution =  sp.integrate.solve_ivp(kemp_model_ss, [0,t_end], ss, args=[p_kemp], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+
+    # plot the the steady states at -80mV
+    fig, ax = plt.subplots(3,1)
+    ax[0].plot(solution_ss.t, solution_ss.y[0], label='op')
+    ax[0].plot(new_solution.t, new_solution.y[0], label='op from SS')
+    ax[1].plot(solution_ss.t, solution_ss.y[1], label='c1')
+    ax[1].plot(new_solution.t, new_solution.y[1], label='c1 from SS')
+    ax[2].plot(solution_ss.t, solution_ss.y[2], label='h')
+    ax[2].plot(new_solution.t, new_solution.y[2], label='h from SS')
+    ax[0].legend()
+    ax[1].legend()
+    ax[2].legend()
+    plt.tight_layout()
+    plt.show()
+
+    x0_kemp = ss
+    solution_kemp = sp.integrate.solve_ivp(kemp_model, [0, tlim[-1]], x0_kemp, args=[p_kemp], dense_output=True,
+                                           method='LSODA', rtol=1e-8, atol=1e-8)
     x_kemp = solution_kemp.sol(times)
-    current_kemp = kemp_observation(times,x_kemp,p_kemp)
+    current_kemp = kemp_observation(times, x_kemp, p_kemp)
 
-
-    # p_test = [2.268e-4, 0.058, 0.000141, 0.0808,  0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
-    # solution_test =  sp.integrate.solve_ivp(hh_model, [0,tlim[-1]], x0, args=[p_test], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
-    # x_test = solution_test.sol(times)
-    # current_test = observation(times,x_test,p_test)
 
     # select times for ROI
     ROI_start = 3300
@@ -165,31 +208,53 @@ if __name__ == '__main__':
     ## plot three states and the output
     fig, axes = plt.subplots(2, 2)
     axes[0, 0].plot(times, x_ar[0,:], 'b',label='HH')
-    axes[0, 0].plot(times, x_kemp[0, :], 'r',label='Kemp')
+    # axes[0, 0].plot(times, x_kemp[0, :], 'r',label='Kemp')
     # axes[0, 0].plot(times[2:][switchpoints_roi], x_ar[0,2:][switchpoints_roi], 'r.')
     axes[0, 0].set_xlabel('times, ms')
     axes[0, 0].set_ylabel('a gating variable')
     axes[0, 0].set_xlim(tlim)
     axes[0, 1].plot(times, x_ar[1,:], 'b',label='HH')
-    axes[0, 1].plot(times, x_kemp[2, :], 'r',label='Kemp')
+    # axes[0, 1].plot(times, x_kemp[2, :], 'r',label='Kemp')
     # axes[0, 1].plot(times[2:][switchpoints_roi], x_ar[1,2:][switchpoints_roi], 'r.')
     axes[0, 1].set_xlabel('times, ms')
     axes[0, 1].set_ylabel('r gating variable')
     axes[0, 1].set_xlim(tlim)
-    axes[1, 0].plot(times, volts_new, 'b',label='Kemp')
+    axes[1, 0].plot(times, volts_new, 'b',label='Input voltage')
     # axes[1, 0].plot(times[2:][switchpoints_roi], volts_new[2:][switchpoints_roi], 'r.')
     axes[1, 0].set_xlabel('times, ms')
     axes[1, 0].set_ylabel('voltage, mV')
     axes[1, 0].set_xlim(tlim)
     axes[1, 1].plot(times, current, 'b',label='HH')
-    axes[1, 1].plot(times, current_kemp, 'r',label='Kemp')
+    # axes[1, 1].plot(times, current_kemp, 'r',label='Kemp')
     # axes[1, 1].plot(times[2:][switchpoints_roi], current[2:][switchpoints_roi], 'r.')
     axes[1, 1].set_xlabel('times, ms')
     axes[1, 1].set_ylabel('Current, A')
     axes[1, 1].set_xlim(tlim)
     axes[1, 1].legend(fontsize=14, loc='best')
     plt.tight_layout()
-    plt.savefig('Figures/generated_data.png')
+    plt.savefig('Figures/generated_data_HH.png')
+
+    # create a figure with 2x2 axes that plots three states of kemp solution and the output
+    fig, axes = plt.subplots(2, 2)
+    axes[0, 0].plot(times, x_kemp[0, :], 'r',label='Kemp')
+    axes[0, 0].set_xlabel('times, ms')
+    axes[0, 0].set_ylabel('O gating variable')
+    axes[0, 0].set_xlim(tlim)
+    axes[0, 1].plot(times, x_kemp[1, :], 'r',label='Kemp')
+    axes[0, 1].set_xlabel('times, ms')
+    axes[0, 1].set_ylabel('C1 gating variable')
+    axes[0, 1].set_xlim(tlim)
+    axes[1, 0].plot(times, x_kemp[2,:], 'r',label='Kemp')
+    axes[1, 0].set_xlabel('times, ms')
+    axes[1, 0].set_ylabel('h gating variable')
+    axes[1, 0].set_xlim(tlim)
+    axes[1, 1].plot(times, current_kemp, 'r',label='Kemp')
+    axes[1, 1].set_xlabel('times, ms')
+    axes[1, 1].set_ylabel('Current, nA')
+    axes[1, 1].set_xlim(tlim)
+    axes[1, 1].legend(fontsize=14, loc='best')
+    plt.tight_layout()
+    plt.savefig('Figures/generated_data_Kemp.png')
 
     # set times of jumps and a B-spline knot sequence
     nPoints_closest = 15  # the number of points from each jump where knots are placed at the finest grid
