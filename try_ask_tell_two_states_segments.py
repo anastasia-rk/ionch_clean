@@ -26,6 +26,44 @@ def hh_model(t, x, theta):
     dr = (r_inf - r) / tau_r
     return [da,dr]
 
+def kemp_model(t, x, theta):
+    op, c1, h = x[:3]
+    *p, g = theta[:13]
+    v = V(t)
+    a1 = p[0] * np.exp(p[1] * v)
+    b1 = p[2] * np.exp(-p[3] * v)
+
+    ah = p[6] * np.exp(-p[7] * v)
+    bh = p[4] * np.exp(p[5] * v)
+
+    a2 = p[8] * np.exp(p[9] * v)
+    b2 = p[10] * np.exp(-p[11] * v)
+    dop = a2*c1 - b2*op
+    dc1 = b2*op + a1*(1 - op - c1) - (a2 + b1)*c1
+    h_inf = ah/(ah + bh)
+    tau_h = 1/(ah + bh)
+    dh = (h_inf - h)/tau_h
+    return [dop,dc1,dh]
+
+def kemp_model_ss(t, x, theta):
+    op, c1, h = x[:3]
+    *p, g = theta[:13]
+    v = -80
+    a1 = p[0] * np.exp(p[1] * v)
+    b1 = p[2] * np.exp(-p[3] * v)
+
+    ah = p[6] * np.exp(-p[7] * v)
+    bh = p[4] * np.exp(p[5] * v)
+
+    a2 = p[8] * np.exp(p[9] * v)
+    b2 = p[10] * np.exp(-p[11] * v)
+    dop = a2*c1 - b2*op
+    dc1 = b2*op + a1*(1 - op - c1) - (a2 + b1)*c1
+    h_inf = ah/(ah + bh)
+    tau_h = 1/(ah + bh)
+    dh = (h_inf - h)/tau_h
+    return [dop,dc1,dh]
+
 def two_state_model(t, x, theta):
     a, r = x[:2]
     p = theta[:8]
@@ -348,9 +386,10 @@ if __name__ == '__main__':
     volt_times, volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',').T
     # interpolate with smaller time step (milliseconds)
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
-
+    # define the weight on the gradienet matching cost
+    lambd = 10000  # 0.3 # 0 # 1 ## - found out that with multiple states a cost with lambda 1 does not cope for segments where a is almost flat
     ## define the time interval on which the fitting will be done
-    tlim = [3500, 14300]
+    tlim = [300, 14899]
     times = np.linspace(*tlim, tlim[-1]-tlim[0],endpoint=False)
     volts_new = V(times)
     ## Generate the synthetic data
@@ -361,35 +400,33 @@ if __name__ == '__main__':
     param_names = [f'p_{i}' for i in range(1,len(theta_true)+1)]
     state_names = ['a', 'r']
     inLogScale = True
-    # HH model
-    # g = 0.1524
-    # x0 = [0, 1]
-    # # solve initial value problem
-    # solution = sp.integrate.solve_ivp(hh_model, [0,tlim[-1]], x0, args=[thetas_true], dense_output=True,method='LSODA',rtol=1e-8,atol=1e-8)
-    # state_hidden_true = solution.sol(times)
-    # current_HH = observation(times, state_hidden_true, thetas_true)
-    # current_true = current_HH
+    ## HH model
+    g = 0.1524
+    x0 = [0, 1]
+    # solve initial value problem
+    solution = sp.integrate.solve_ivp(hh_model, [0,tlim[-1]], x0, args=[thetas_true], dense_output=True,method='LSODA',rtol=1e-8,atol=1e-8)
+    state_hidden_true = solution.sol(times)
+    RHS_hidden_true = hh_model(times, state_hidden_true, thetas_true)
+    current_HH = observation(times, state_hidden_true, thetas_true)
+    current_true = current_HH
 
-    ## Kemp model
-    p_kemp = [8.5318e-03, 8.3176e-02, 1.2628e-02, 1.03628e-07, 2.702763e-01, 1.580004e-02, 7.6669948e-02, 2.2457500e-02,
-              1.490338e-01, 2.431569e-02, 5.58072e-04, 4.06619e-02, 8.471005e-02]
-    g = 8.471005e-02
-    # find steady state at -80mV to use as initial condition
-    x0_init = [0.5, 0.5, 0]
-    # run for a long time for the slow rate states to settle
-    t_end = 10e5
-    solution_ss = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], x0_init, args=[p_kemp], dense_output=True,
-                                         method='LSODA', rtol=1e-8, atol=1e-8)
-    ss = solution_ss.sol(t_end)
-    print('Steady state at V=-80mv: ', ss)
-    new_solution = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], ss, args=[p_kemp], dense_output=True,
-                                          method='LSODA', rtol=1e-8, atol=1e-8)
-    x0_kemp = ss
-    solution_kemp = sp.integrate.solve_ivp(setup.kemp_model, [0, tlim[-1]], x0_kemp, args=[p_kemp], dense_output=True,
-                                           method='LSODA', rtol=1e-8, atol=1e-8)
-    x_kemp = solution_kemp.sol(times)
-    current_kemp = kemp_observation(times, x_kemp, p_kemp)
-    current_true = current_kemp
+    # ## Kemp model
+    # p_kemp = [8.5318e-03, 8.3176e-02, 1.2628e-02, 1.03628e-07, 2.702763e-01, 1.580004e-02, 7.6669948e-02, 2.2457500e-02,
+    #           1.490338e-01, 2.431569e-02, 5.58072e-04, 4.06619e-02, 8.471005e-02]
+    # g = 8.471005e-02
+    # # find steady state at -80mV to use as initial condition
+    # x0_init = [0.5, 0.5, 0]
+    # # run for a long time for the slow rate states to settle
+    # t_end = 10e5
+    # solution_ss = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], x0_init, args=[p_kemp], dense_output=True,
+    #                                      method='LSODA', rtol=1e-8, atol=1e-8)
+    # x0_kemp = solution_ss.sol(t_end)
+    # print('Steady state at V=-80mv: ', x0_kemp)
+    # solution_kemp = sp.integrate.solve_ivp(setup.kemp_model, [0, tlim[-1]], x0_kemp, args=[p_kemp], dense_output=True,
+    #                                        method='LSODA', rtol=1e-8, atol=1e-8)
+    # x_kemp = solution_kemp.sol(times)
+    # current_kemp = kemp_observation(times, x_kemp, p_kemp)
+    # current_true = current_kemp
 
     state_names = hidden_state_names= ['a','r']
     ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables
@@ -406,8 +443,8 @@ if __name__ == '__main__':
     ## find switchpoints
     d2v_dt2 = np.diff(volts_new, n=2)
     dv_dt = np.diff(volts_new)
-    der1_nonzero = np.abs(dv_dt) > 1e-6
-    der2_nonzero = np.abs(d2v_dt2) > 1e-6
+    der1_nonzero = np.abs(dv_dt) > 1e-1
+    der2_nonzero = np.abs(d2v_dt2) > 1e-1
     switchpoints = [a and b for a, b in zip(der1_nonzero, der2_nonzero)]
     ####################################################################################################################
     # get the times of all jumps
@@ -620,7 +657,6 @@ if __name__ == '__main__':
             return data_fit_cost
     ####################################################################################################################
     ## Create objects for the optimisation
-    lambd = 100 # 0.3 # 0 # 1 ## - found out that with multiple states a cost with lambda 1 does not cope for segments where a is almost flat
     # set initial values and boundaries
     if inLogScale:
         # theta in log scale
@@ -672,8 +708,9 @@ if __name__ == '__main__':
                                                                                        GradCost_given_true_theta))
     ####################################################################################################################
     # take 1: loosely based on ask-tell example from  pints
-    convergence_threshold = 1e-9
+    convergence_threshold = 1e-8
     iter_for_convergence = 20
+    max_iter = 400
     # Create an outer optimisation object
     big_tic = tm.time()
     # optimiser_outer = pints.CMAES(x0=init_thetas,sigma0=sigma0_thetas, boundaries=boundaries_thetas) # with simple rectangular boundaries
@@ -700,13 +737,13 @@ if __name__ == '__main__':
                     'Gradient Cost']
     # parallelisation settings
     ncpu = mp.cpu_count()
-    ncores = 10
+    ncores = 12
     # open the file to write to
     with open(csv_file_name, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(column_names)
         # run the outer optimisation
-        for i in range(200):
+        for i in range(max_iter):
             # get the next points (multiple locations)
             thetas = optimiser_outer.ask()
             # create the placeholder for cost functions
@@ -800,7 +837,6 @@ if __name__ == '__main__':
         df_betas['segment_'+str(i)] = beta
     df_betas.to_csv('best_betas_both_states.csv', index=False)
     ####################################################################################################################
-    ####################################################################################################################
     # plot optimised model output
     Thetas_ODE = theta_best[-1]
     state_fitted_roi = {key: [] for key in hidden_state_names}
@@ -816,8 +852,7 @@ if __name__ == '__main__':
             state_fitted_roi[stateName] += list(state_at_estimate[:, iState])
             deriv_fitted_roi[stateName] += list(deriv_at_estimate[:, iState])
             rhs_fitted_roi[stateName] += list(rhs_at_estimate[:, iState])
-    ####################################################################################################################
-    #  optimise the following segments by matching the first B-spline height to the previous segment
+    ## optimised the following segments
     for iSegment in range(1, len(times_roi)):
         segment = times_roi[iSegment]
         knots = knots_roi[iSegment]
@@ -833,9 +868,9 @@ if __name__ == '__main__':
         list_of_states = [state_values for _, state_values in state_fitted_roi.items()]
         state_all_segments = np.array(list_of_states)
         list_of_derivs = [deriv_values for _, deriv_values in deriv_fitted_roi.items()]
-        deriv_all_segments = np.array(list_of_states)
+        deriv_all_segments = np.array(list_of_derivs)
         list_of_rhs = [rhs_values for _, rhs_values in rhs_fitted_roi.items()]
-        rhs_all_segments = np.array(list_of_states)
+        rhs_all_segments = np.array(list_of_rhs)
     else:
         state_all_segments = np.array(state_fitted_roi[hidden_state_names])
         deriv_all_segments = np.array(deriv_fitted_roi[hidden_state_names])
@@ -930,14 +965,26 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.savefig(folderName+'/ODE_params_two_states.png',dpi=400)
     ####################################################################################################################
+    # plot model outputs given best theta
+    # get initial values from the B-spline fit
+    x0_optimised_ODE = state_all_segments[:,0]
+    # solve ODE with best theta
+    solution_optimised_ODE = sp.integrate.solve_ivp(two_state_model, [0,tlim[-1]], x0_optimised_ODE, args=[Thetas_ODE], dense_output=True,method='LSODA',rtol=1e-8,atol=1e-8)
+    states_optimised_ODE = solution_optimised_ODE.sol(times)
+    RHS_optimised_ODE = two_state_model(times, states_optimised_ODE, Thetas_ODE)
+    current_ODE_output = observation(times,states_optimised_ODE,Thetas_ODE)
+    # plot model outputs given best theta
     fig, axes = plt.subplot_mosaic([['a)'], ['b)'], ['c)']], layout='constrained',sharex=True)
     y_labels = ['I', 'a', 'r']
-    axes['a)'].plot(times, current_true, '-k', label=r'Current true', linewidth=2, alpha=0.7)
-    axes['a)'].plot(times, current_model, '--c', label=r'Optimised given true parameters')
-    axes['b)'].plot(times, solution.sol(times)[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
+    axes['a)'].plot(times, current_true, '-k', label=r'Current true (Kemp model)', linewidth=2, alpha=0.7)
+    axes['a)'].plot(times, current_model, '--c', label=r'Current from B-spline approximation')
+    axes['a)'].plot(times, current_ODE_output, '--m', label=r'Current from optimised HH ODE output')
+    axes['b)'].plot(times, state_hidden_true[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
     axes['b)'].plot(times, state_fitted_roi[state_names[0]], '--c', label=r'B-spline approximation given best theta')
-    axes['c)'].plot(times, solution.sol(times)[1, :], '-k', label=r'r true', linewidth=2, alpha=0.7)
+    axes['b)'].plot(times, states_optimised_ODE[0, :], '--m', label=r'HH ODE solution given best theta')
+    axes['c)'].plot(times, state_hidden_true[1, :], '-k', label=r'r true', linewidth=2, alpha=0.7)
     axes['c)'].plot(times, state_fitted_roi[state_names[1]], '--c', label=r'B-spline approximation given best theta')
+    axes['c)'].plot(times, states_optimised_ODE[1,:], '--m', label=r'HH ODE solution given best theta')
     iAx = 0
     for _, ax in axes.items():
         ax.set_ylabel(y_labels[iAx], fontsize=12)
@@ -953,16 +1000,24 @@ if __name__ == '__main__':
     # y_labels = ['$I_{true} - I_{model}$',r'$\dot{a} - RHS(\beta_a)$',r'$\dot{r} - RHS(\beta_r)$',r'$a$ - $\Phi\beta_a$', r'$r$ - $\Phi\beta_r$']
     y_labels = ['I_{true} - I_{model}', 'da(C) - RHS(C)', 'dr(C) - RHS(C)',
                 'a - Phi C_a', 'r - Phi C_r']
-    axes['a)'].plot(times, current_true - current_model, '-k', label='Data error')
-    axes['b)'].plot(times, deriv_all_segments[0,:] - rhs_all_segments[0,:], '-k', label='Derivative error')
-    axes['d)'].plot(times, solution.sol(times)[0, :] - state_all_segments[0,:], '-k', label='Approximation error')
-    axes['c)'].plot(times, deriv_all_segments[1,:] - rhs_all_segments[1,:], '-k',
-                    label='Derivative error')
-    axes['e)'].plot(times, solution.sol(times)[1, :] - state_all_segments[1,:], '-k',
-                    label='Approximation error')
+    axes['a)'].plot(times, current_true - current_model, '-k', label='Data error of B-spline approx.')
+    axes['a)'].plot(times, current_true - current_ODE_output, '--c', label='Data error of HH ODE solution')
+    axes['b)'].plot(times, deriv_all_segments[0, :] - rhs_all_segments[0, :], '-k', label='Derivative - RHS of B-spline approx.')
+    axes['b)'].plot(times, deriv_all_segments[0, :] - RHS_optimised_ODE[0], '--c',
+                    label='Derivative - RHS of HH ODE.')
+    axes['d)'].plot(times, state_hidden_true[0, :] - state_all_segments[0, :], '-k', label='B-spline approximation error')
+    axes['d)'].plot(times, state_hidden_true[0, :] - states_optimised_ODE[0, :], '--c', label='HH ODE solution error')
+    axes['c)'].plot(times, deriv_all_segments[1, :] - rhs_all_segments[1, :], '-k',
+                    label='Derivative - RHS of B-spline approx.')
+    axes['c)'].plot(times, deriv_all_segments[1, :] - RHS_optimised_ODE[1], '--c',
+                    label='Derivative - RHS of HH ODE.')
+    axes['e)'].plot(times, state_hidden_true[1, :] - state_all_segments[1, :], '-k',
+                    label='B-spline approximation error')
+    axes['e)'].plot(times, state_hidden_true[1, :] - states_optimised_ODE[1, :], '--c', label='HH ODE solution error')
+    iAx = 0
     for _, ax in axes.items():
-        ax.legend(fontsize=12, loc='best')
         ax.set_ylabel(y_labels[iAx], fontsize=12)
-    ax.set_xlabel('time,ms', fontsize=12)
+        ax.legend(fontsize=12, loc='upper left')
+        iAx += 1
     plt.tight_layout(pad=0.3)
     plt.savefig(folderName+'/erros_ask_tell_two_states.png', dpi=400)

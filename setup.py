@@ -116,7 +116,7 @@ if __name__ == '__main__':
     # interpolate with smaller time step (milliseconds)
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
 
-    tlim = [0, 14500]
+    tlim = [0, 14899]
     times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
     ###################################################################################################################
     ## Generate data
@@ -174,11 +174,23 @@ if __name__ == '__main__':
     ## Get the time instances when the voltage jumps
     volts_new = V(times)
     d2v_dt2 = np.diff(volts_new, n=2)
-    switchpoints = np.abs(d2v_dt2) > 1e-6
+    dv_dt = np.diff(volts_new)
+    der1_nonzero = np.abs(dv_dt) > 1e-2
+    der2_nonzero = np.abs(d2v_dt2) > 1e-1
+    switchpoints = [a and b for a, b in zip(der1_nonzero, der2_nonzero)]
     # ignore everything outside of the region of iterest
-    volts_roi = volts_new[ROI_start:ROI_end]
-    switchpoints_roi = switchpoints[ROI_start:ROI_end]
-    jump_times = [times_roi[0]] + [i+ROI_start for i, x in enumerate(switchpoints_roi) if x] + [times_roi[-1]]
+    # get the times of all jumps
+    a = [0] + [i for i, x in enumerate(switchpoints) if x] + [
+        len(times) - 1]  # get indeces of all the switchpoints, add t0 and tend
+    # remove consecutive numbers from the list
+    b = []
+    for i in range(len(a)):
+        if len(b) == 0:  # if the list is empty, we add first item from 'a' (In our example, it'll be 2)
+            b.append(a[i])
+        else:
+            if a[i] > a[i - 1] + 1:  # for every value of a, we compare the last digit from list b
+                b.append(a[i])
+    jump_indeces = b.copy()
 
 
     ## plot the interpolated voltage
@@ -220,7 +232,7 @@ if __name__ == '__main__':
     axes[0, 1].set_ylabel('r gating variable')
     axes[0, 1].set_xlim(tlim)
     axes[1, 0].plot(times, volts_new, 'b',label='Input voltage')
-    # axes[1, 0].plot(times[2:][switchpoints_roi], volts_new[2:][switchpoints_roi], 'r.')
+    axes[1, 0].plot(times[jump_indeces], volts_new[jump_indeces], 'r.')
     axes[1, 0].set_xlabel('times, ms')
     axes[1, 0].set_ylabel('voltage, mV')
     axes[1, 0].set_xlim(tlim)
@@ -263,9 +275,7 @@ if __name__ == '__main__':
     step_between_knots = 40  # this is the step between knots around the jump in the medium grid
     nPoints_between_jumps = 3  # this is the number of knots at the coarse grid corresponding to slowly changing values
 
-    # get the times of all jumps
-    jump_indeces = [0] + [i for i, x in enumerate(switchpoints_roi) if x] + [
-        len(ROI)]  # get indeces of all the switchpoints, add t0 and tend
+
     # jump_indeces =  [i for i, x in enumerate(switchpoints_new) if x] # indeces of switchpoints only
     abs_distance_lists = [[(num - index) for num in range(len(ROI) + 1)] for index in
                           jump_indeces]  # compute absolute distance between each time and time of jump

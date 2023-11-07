@@ -318,7 +318,7 @@ if __name__ == '__main__':
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
 
     ## define the time interval on which the fitting will be done
-    tlim = [3500, 14300]
+    tlim = [3000, 14899]
     times = np.linspace(*tlim, tlim[-1]-tlim[0],endpoint=False)
     volts_new = V(times)
     ## Generate the synthetic data
