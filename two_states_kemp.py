@@ -10,6 +10,11 @@ matplotlib.use('AGG')
 plt.ioff()
 
 # definitions
+
+# get Voltage for time in ms
+def V(t):
+    return volts_intepolated(t/ 1000)
+
 def hh_model(t, x, theta):
     a, r = x[:2]
     *p, g = theta[:9]
@@ -79,6 +84,11 @@ def two_state_model(t, x, theta):
     da = (a_inf - a) / tau_a
     dr = (r_inf - r) / tau_r
     return [da,dr]
+
+def kemp_observation(t, x, theta):
+    op, c1, h = x[:3]
+    *p, g = theta[:13]
+    return g * op * h * (V(t) - EK)
 
 def observation(t, x, theta):
     # I
@@ -474,14 +484,14 @@ if __name__ == '__main__':
         ROI_start = jump
         ROI_end = jump_indeces[iJump + 1] + 1  # add one to ensure that t_end equals to t_start of the following segment
         ROI = times[ROI_start:ROI_end]
-        x_ar = solution.sol(ROI)
+        x_ar = solution_kemp.sol(ROI)
         # get time points to compute the fit to ODE cost
         times_roi.append(ROI)
         # save states
-        states_roi.append(x_ar)
+        # states_roi.append(x_ar)
         states_known_roi.append([1]*len(ROI)) # adding ones in case we have situation where one of the known states is involved in output fn
         # save current
-        current_roi.append(observation(ROI, x_ar, thetas_true))
+        current_roi.append(kemp_observation(ROI, x_ar, thetas_true))
         # save voltage
         voltage_roi.append(V(ROI))
         ## add colloation points
@@ -676,7 +686,7 @@ if __name__ == '__main__':
     model_segments = SegmentOutput()
     ## create the problem of comparing the modelled current with measured current
     voltage = V(times)  # must read voltage at the correct times to match the output
-    current_true = observation(times, solution.sol(times), thetas_true)
+    current_true = kemp_observation(times, solution_kemp.sol(times), thetas_true)
     values_to_match_output_ode = np.transpose(np.array([current_true, voltage]))
     # ^ we actually only need first two columns in this array but pints wants to have the same number of values and outputs
     problem_outer = pints.MultiOutputProblem(model=model_segments, times=times,
@@ -710,7 +720,7 @@ if __name__ == '__main__':
     # take 1: loosely based on ask-tell example from  pints
     convergence_threshold = 1e-8
     iter_for_convergence = 20
-    max_iter = 400
+    max_iter = 500
     # Create an outer optimisation object
     big_tic = tm.time()
     # optimiser_outer = pints.CMAES(x0=init_thetas,sigma0=sigma0_thetas, boundaries=boundaries_thetas) # with simple rectangular boundaries
@@ -894,7 +904,7 @@ if __name__ == '__main__':
     plt.plot(f_inner_best, '-b', linewidth=1.5,
              label='Best cost:J(C / Theta_{best}, Y) = ' + "{:.5e}".format(
                  f_inner_best[-1]))
-    plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m', linewidth=2.5, alpha=.5, label='Collocation solution: J(C / Theta_{true}, Y) = '  +"{:.5e}".format(InnerCost_given_true_theta))
+    # plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m', linewidth=2.5, alpha=.5, label='Collocation solution: J(C / Theta_{true}, Y) = '  +"{:.5e}".format(InnerCost_given_true_theta))
     plt.legend(loc='best')
     plt.tight_layout()
     plt.savefig(folderName+'/inner_cost_ask_tell_two_states.png',dpi=400)
@@ -928,8 +938,8 @@ if __name__ == '__main__':
                     linewidths=0)
     iIter += 1
     plt.scatter(iIter * np.ones(len(GradCost_all[iIter])), GradCost_all[iIter], c='k', marker='.', alpha=.5,linewidths=0, label='Sample cost: G_{ODE}(C / Theta, Y)')
-    plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m', linewidth=2.5, alpha=.5,label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
-                 GradCost_given_true_theta))
+    # plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m', linewidth=2.5, alpha=.5,label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
+    #              GradCost_given_true_theta))
     plt.plot(f_gradient_best,'-b',linewidth=1.5,label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
     plt.legend(loc='best')
     plt.tight_layout()
@@ -941,7 +951,7 @@ if __name__ == '__main__':
         for iIter in range(len(theta_best)):
             x_visited_iter = theta_visited[iIter][:,iAx]
             ax.scatter(iIter*np.ones(len(x_visited_iter)),x_visited_iter,c='k',marker='.',alpha=.2,linewidth=0)
-        ax.plot(range(iIter+1),np.ones(iIter+1)*theta_true[iAx], '--m', linewidth=2.5,alpha=.5, label=r"true: log("+param_names[iAx]+") = " +"{:.6f}".format(theta_true[iAx]))
+        # ax.plot(range(iIter+1),np.ones(iIter+1)*theta_true[iAx], '--m', linewidth=2.5,alpha=.5, label=r"true: log("+param_names[iAx]+") = " +"{:.6f}".format(theta_true[iAx]))
         # ax.plot(theta_guessed[:,iAx],'--r',linewidth=1.5,label=r"guessed: $\theta_{"+str(iAx+1)+"} = $" +"{:.4f}".format(theta_guessed[-1,iAx]))
         ax.plot(theta_best[:,iAx],'-b',linewidth=1.5,label=r"best: log("+param_names[iAx]+") = " +"{:.6f}".format(theta_best[-1,iAx]))
         ax.set_ylabel('log('+param_names[iAx]+')')
@@ -955,7 +965,7 @@ if __name__ == '__main__':
         for iIter in range(len(theta_best)):
             x_visited_iter = theta_visited[iIter][:,iAx]
             ax.scatter(iIter*np.ones(len(x_visited_iter)),np.exp(x_visited_iter),c='k',marker='.',alpha=.2,linewidth=0)
-        ax.plot(range(iIter+1),np.ones(iIter+1)*np.exp(theta_true[iAx]), '--m', linewidth=2.5,alpha=.5, label="true: "+param_names[iAx]+" = " +"{:.6f}".format(np.exp(theta_true[iAx])))
+        # ax.plot(range(iIter+1),np.ones(iIter+1)*np.exp(theta_true[iAx]), '--m', linewidth=2.5,alpha=.5, label="true: "+param_names[iAx]+" = " +"{:.6f}".format(np.exp(theta_true[iAx])))
         # ax.plot(np.exp(theta_guessed[:,iAx]),'--r',linewidth=1.5,label="guessed: $a_{"+str(iAx+1)+"} = $" +"{:.4f}".format(np.exp(theta_guessed[-1,iAx])))
         ax.plot(np.exp(theta_best[:,iAx]),'-b',linewidth=1.5,label="best: "+param_names[iAx]+" = " +"{:.6f}".format(np.exp(theta_best[-1,iAx])))
         ax.set_ylabel(param_names[iAx])
@@ -972,16 +982,16 @@ if __name__ == '__main__':
     solution_optimised_ODE = sp.integrate.solve_ivp(two_state_model, [0,tlim[-1]], x0_optimised_ODE, args=[Thetas_ODE], dense_output=True,method='LSODA',rtol=1e-8,atol=1e-8)
     states_optimised_ODE = solution_optimised_ODE.sol(times)
     RHS_optimised_ODE = two_state_model(times, states_optimised_ODE, Thetas_ODE)
-    current_ODE_output = observation(times,states_optimised_ODE,Thetas_ODE)
+    current_ODE_output = observation(times, states_optimised_ODE, Thetas_ODE)
     # plot model outputs given best theta
     fig, axes = plt.subplot_mosaic([['a)'], ['b)'], ['c)']], layout='constrained',sharex=True)
     y_labels = ['I', 'a', 'r']
     axes['a)'].plot(times, current_true, '-k', label=r'Current true (Kemp model)', linewidth=2, alpha=0.7)
     axes['a)'].plot(times, current_model, '--c', label=r'Current from B-spline approximation')
     axes['a)'].plot(times, current_ODE_output, '--m', label=r'Current from optimised HH ODE output')
-    axes['b)'].plot(times, state_hidden_true[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
+    # axes['b)'].plot(times, state_hidden_true[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
     axes['b)'].plot(times, state_fitted_roi[state_names[0]], '--c', label=r'B-spline approximation given best theta')
-    axes['b)'].plot(times, states_optimised_ODE[0, :], '--m', label=r'HH ODE solution given best theta')
+    # axes['b)'].plot(times, states_optimised_ODE[0, :], '--m', label=r'HH ODE solution given best theta')
     axes['c)'].plot(times, state_hidden_true[1, :], '-k', label=r'r true', linewidth=2, alpha=0.7)
     axes['c)'].plot(times, state_fitted_roi[state_names[1]], '--c', label=r'B-spline approximation given best theta')
     axes['c)'].plot(times, states_optimised_ODE[1,:], '--m', label=r'HH ODE solution given best theta')
@@ -1004,13 +1014,13 @@ if __name__ == '__main__':
     axes['a)'].plot(times, current_true - current_ODE_output, '--c', label='Data error of HH ODE solution')
     axes['b)'].plot(times, deriv_all_segments[0, :] - rhs_all_segments[0, :], '-k', label='Derivative - RHS of B-spline approx.')
     axes['b)'].plot(times, deriv_all_segments[0, :] - RHS_optimised_ODE[0], '--c',
-                    label='Derivative - RHS of HH ODE.')
+                    label='Derivative - RHS of HH ODE')
     axes['d)'].plot(times, state_hidden_true[0, :] - state_all_segments[0, :], '-k', label='B-spline approximation error')
     axes['d)'].plot(times, state_hidden_true[0, :] - states_optimised_ODE[0, :], '--c', label='HH ODE solution error')
     axes['c)'].plot(times, deriv_all_segments[1, :] - rhs_all_segments[1, :], '-k',
                     label='Derivative - RHS of B-spline approx.')
     axes['c)'].plot(times, deriv_all_segments[1, :] - RHS_optimised_ODE[1], '--c',
-                    label='Derivative - RHS of HH ODE.')
+                    label='Derivative - RHS of HH ODE')
     axes['e)'].plot(times, state_hidden_true[1, :] - state_all_segments[1, :], '-k',
                     label='B-spline approximation error')
     axes['e)'].plot(times, state_hidden_true[1, :] - states_optimised_ODE[1, :], '--c', label='HH ODE solution error')

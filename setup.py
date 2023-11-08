@@ -112,7 +112,6 @@ if __name__ == '__main__':
     #  check when the voltage jumps
     # read the times and valued of voltage clamp
     volt_times, volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',').T
-    switchpoints = np.abs(np.diff(volts, n=2)) > 1e-6
     # interpolate with smaller time step (milliseconds)
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
 

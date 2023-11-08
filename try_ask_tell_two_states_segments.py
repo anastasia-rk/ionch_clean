@@ -710,7 +710,7 @@ if __name__ == '__main__':
     # take 1: loosely based on ask-tell example from  pints
     convergence_threshold = 1e-8
     iter_for_convergence = 20
-    max_iter = 400
+    max_iter = 500
     # Create an outer optimisation object
     big_tic = tm.time()
     # optimiser_outer = pints.CMAES(x0=init_thetas,sigma0=sigma0_thetas, boundaries=boundaries_thetas) # with simple rectangular boundaries
@@ -1004,13 +1004,13 @@ if __name__ == '__main__':
     axes['a)'].plot(times, current_true - current_ODE_output, '--c', label='Data error of HH ODE solution')
     axes['b)'].plot(times, deriv_all_segments[0, :] - rhs_all_segments[0, :], '-k', label='Derivative - RHS of B-spline approx.')
     axes['b)'].plot(times, deriv_all_segments[0, :] - RHS_optimised_ODE[0], '--c',
-                    label='Derivative - RHS of HH ODE.')
+                    label='Derivative - RHS of HH ODE')
     axes['d)'].plot(times, state_hidden_true[0, :] - state_all_segments[0, :], '-k', label='B-spline approximation error')
     axes['d)'].plot(times, state_hidden_true[0, :] - states_optimised_ODE[0, :], '--c', label='HH ODE solution error')
     axes['c)'].plot(times, deriv_all_segments[1, :] - rhs_all_segments[1, :], '-k',
                     label='Derivative - RHS of B-spline approx.')
     axes['c)'].plot(times, deriv_all_segments[1, :] - RHS_optimised_ODE[1], '--c',
-                    label='Derivative - RHS of HH ODE.')
+                    label='Derivative - RHS of HH ODE')
     axes['e)'].plot(times, state_hidden_true[1, :] - state_all_segments[1, :], '-k',
                     label='B-spline approximation error')
     axes['e)'].plot(times, state_hidden_true[1, :] - states_optimised_ODE[1, :], '--c', label='HH ODE solution error')
