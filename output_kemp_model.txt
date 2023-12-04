@@ -1,0 +1,4011 @@
+Steady state at V=-80mv:  [0.00128227 0.00086883 0.85823026]
+Number of B-spline coeffs per segment: 26
+Costs at truth:
+True theta:  [ -8.39497556  -2.66068963 -10.27455123  -2.90735516  -2.43840482
+  -4.72058104  -5.26875856  -3.45523127]
+Lambda: 10000.000
+Inner cost: 20373.38443963 	 Data cost: 14443.86368250 	 Gradient matching cost: 0.59295208
+Iteration:  0
+Best parameters:  [ -8.59685137  -2.63546698 -10.44490693  -2.90851341  -2.66776457
+  -4.69687878  -5.31187958  -3.39494544]
+Best objective:  10002.081761254749
+Mean objective:  14380.928014208428
+Inner objective at best sample:  16115.834055704689
+Gradient objective at best sample:  0.611375229444994
+Time elapsed:  5270.208971500397
+Iteration:  1
+Best parameters:  [ -8.39215414  -2.52139908 -10.45155247  -2.89301086  -2.82631984
+  -4.52259999  -5.24219544  -3.71437921]
+Best objective:  7457.554058099348
+Mean objective:  11035.379743327047
+Inner objective at best sample:  13321.353756826842
+Gradient objective at best sample:  0.5863799698727493
+Time elapsed:  5162.133323431015
+Iteration:  2
+Best parameters:  [ -8.3864608   -2.81977068 -10.20898877  -3.08400224  -3.21728395
+  -4.29928912  -5.21974634  -3.12120578]
+Best objective:  2550.1940101383802
+Mean objective:  7797.639496706702
+Inner objective at best sample:  7104.173260603844
+Gradient objective at best sample:  0.45539792504654636
+Time elapsed:  3772.8293509483337
+Iteration:  3
+Best parameters:  [ -8.40460089  -2.65150873 -10.20833192  -3.0779994   -3.7156215
+  -4.52698031  -4.92809228  -2.38480094]
+Best objective:  377.19952927443614
+Mean objective:  4975.078938522542
+Inner objective at best sample:  230501395.85303196
+Gradient objective at best sample:  23050.10186535027
+Time elapsed:  4972.317087650299
+Iteration:  4
+Best parameters:  [-7.78024723 -2.20515941 -9.79832763 -2.93819129 -4.271505   -5.45367228
+ -5.33008425 -2.90475512]
+Best objective:  334.6623274847092
+Mean objective:  4032.4481998707533
+Inner objective at best sample:  14187.600604688716
+Gradient objective at best sample:  1.3852938277204006
+Time elapsed:  3262.5238184928894
+Iteration:  5
+Best parameters:  [ -8.62650711  -2.62840378 -11.21486204  -2.59581967  -4.85211668
+  -5.51368079  -6.13112264  -2.56321403]
+Best objective:  295.4218877446017
+Mean objective:  4368.708365532009
+Inner objective at best sample:  534254.4295162703
+Gradient objective at best sample:  53.39590076285257
+Time elapsed:  7952.862991571426
+Iteration:  6
+Best parameters:  [-9.32400485 -2.30148127 -9.11879361 -3.59224171 -4.80445303 -6.31625852
+ -5.11371158 -2.58172608]
+Best objective:  248.96072622331903
+Mean objective:  1435.7564552686863
+Inner objective at best sample:  2989965.418602016
+Gradient objective at best sample:  298.97164578757923
+Time elapsed:  4766.757773637772
+Iteration:  7
+Best parameters:  [ -9.97741515  -1.97174756 -11.6749442   -4.12199431  -7.05515398
+  -2.82271552  -3.30730688  -2.48623035]
+Best objective:  383.3890477444589
+Mean objective:  2514.2610857113655
+Inner objective at best sample:  702524039.9762857
+Gradient objective at best sample:  70252.3656587238
+Time elapsed:  2227.8170545101166
+Iteration:  8
+Best parameters:  [-12.33794027  -2.88211318 -10.65246538  -3.92914889 -11.3274642
+  -2.60387144  -3.93273502  -5.26490497]
+Best objective:  435.21566204565283
+Mean objective:  2110.254408991306
+Inner objective at best sample:  882.8585570983694
+Gradient objective at best sample:  0.04476428950527166
+Time elapsed:  2127.475162744522
+Iteration:  9
+Best parameters:  [-10.32505248  -2.36661384  -9.6399288   -2.98581762  -6.39791494
+  -7.465675    -3.30156634  -6.34525166]
+Best objective:  414.5035325945288
+Mean objective:  586.5680621637224
+Inner objective at best sample:  875.4294003216529
+Gradient objective at best sample:  0.04609258677271241
+Time elapsed:  2209.8154668807983
+Iteration:  10
+Best parameters:  [ -8.24963245  -3.78905627 -12.41543447  -2.68195195  -9.38831393
+  -8.02386436  -4.31702603  -7.10242963]
+Best objective:  405.42727016011116
+Mean objective:  18702.316190893125
+Inner objective at best sample:  818.7034154121003
+Gradient objective at best sample:  0.04132761452519891
+Time elapsed:  1896.1908583641052
+Iteration:  11
+Best parameters:  [ -7.45329889  -2.97771098 -10.91527421  -5.67914152  -4.37347475
+  -9.85905349  -5.59200811  -2.35121289]
+Best objective:  311.42258298320485
+Mean objective:  11446.48747818111
+Inner objective at best sample:  128613338.95113799
+Gradient objective at best sample:  12861.302752855501
+Time elapsed:  3157.5833835601807
+Iteration:  12
+Best parameters:  [-11.4333293   -2.16167302  -9.94334823  -3.05335177 -11.40195166
+  -3.337392    -4.91073155  -6.0224271 ]
+Best objective:  399.1209907786408
+Mean objective:  847.7161511917008
+Inner objective at best sample:  823.4660126282876
+Gradient objective at best sample:  0.042434502184964674
+Time elapsed:  2403.6416339874268
+Iteration:  13
+Best parameters:  [-11.34279256  -3.8444163   -7.69020981  -4.42647274  -8.64528287
+  -4.05498074  -0.70253097  -9.48533627]
+Best objective:  407.79668741530844
+Mean objective:  600.9546628755585
+Inner objective at best sample:  4206.627838947293
+Gradient objective at best sample:  0.37988311515319845
+Time elapsed:  3756.2757318019867
+Iteration:  14
+Best parameters:  [-10.43600795  -5.27744973  -7.53773953  -4.00105495  -6.695565
+  -3.13764031  -1.30975859 -10.15228332]
+Best objective:  403.8832287397403
+Mean objective:  24974.41493696497
+Inner objective at best sample:  1411.5382654825326
+Gradient objective at best sample:  0.10076550367427922
+Time elapsed:  4645.823580503464
+Iteration:  15
+Best parameters:  [-10.59800748  -4.53902143  -6.68763287  -6.54336983  -7.5234549
+  -7.48127535  -1.762095    -5.09491575]
+Best objective:  403.72066254044427
+Mean objective:  895.0685201862163
+Inner objective at best sample:  1262.5363284936534
+Gradient objective at best sample:  0.08588156659532092
+Time elapsed:  4257.814914941788
+Iteration:  16
+Best parameters:  [-14.14350957  -2.93073257  -7.35714656  -4.67359055  -8.70505223
+  -7.2575218   -5.88732287  -7.61583791]
+Best objective:  395.00914749686166
+Mean objective:  743.9977666343559
+Inner objective at best sample:  801.5025484831253
+Gradient objective at best sample:  0.04064934009862637
+Time elapsed:  4184.5341646671295
+Iteration:  17
+Best parameters:  [-14.33661989  -1.70058374  -7.23553695  -5.14742571  -8.46526083
+  -1.63671042  -1.2566669   -7.49572363]
+Best objective:  342.9717123962541
+Mean objective:  639.9632941233133
+Inner objective at best sample:  2111.157391791031
+Gradient objective at best sample:  0.17681856793947767
+Time elapsed:  4564.028739452362
+Iteration:  18
+Best parameters:  [-10.72723772  -4.05558417  -6.96434678  -5.28532129  -7.85259112
+  -5.08808739  -3.15580504  -6.19825546]
+Best objective:  398.94141846266825
+Mean objective:  1432.9437846189549
+Inner objective at best sample:  825.7303055377721
+Gradient objective at best sample:  0.04267888870751038
+Time elapsed:  4642.746962308884
+Iteration:  19
+Best parameters:  [-11.26035039  -2.37719645  -6.46933364  -5.26839189 -10.7679679
+  -3.6384708   -2.98823506  -6.9188067 ]
+Best objective:  397.8853924978427
+Mean objective:  6766.741128142185
+Inner objective at best sample:  891.9031161835869
+Gradient objective at best sample:  0.049401772368574424
+Time elapsed:  4997.519783973694
+Iteration:  20
+Best parameters:  [-10.70751346  -4.13420551  -6.88523254  -4.82387752  -8.63502376
+  -6.78933975  -4.06885961  -6.41462493]
+Best objective:  396.16519965263177
+Mean objective:  542.6948366181862
+Inner objective at best sample:  821.9920936773065
+Gradient objective at best sample:  0.04258268940246747
+Time elapsed:  2908.721056699753
+Iteration:  21
+Best parameters:  [-10.24581417  -2.79483735  -7.30602824  -4.24357929  -8.90036347
+  -5.67854518  -3.84943698  -6.04259804]
+Best objective:  396.63631983788537
+Mean objective:  426.00784795957
+Inner objective at best sample:  821.2640997392953
+Gradient objective at best sample:  0.04246277799014099
+Time elapsed:  4103.074655532837
+Iteration:  22
+Best parameters:  [-10.94949596  -2.54495929  -6.6289609   -6.40210983  -9.67149902
+  -5.47197374  -4.11732533  -5.96311471]
+Best objective:  395.51835510062597
+Mean objective:  428.4010805595855
+Inner objective at best sample:  829.2297200381824
+Gradient objective at best sample:  0.043371136493755645
+Time elapsed:  4478.942165136337
+Iteration:  23
+Best parameters:  [-8.33453743 -3.03928278 -5.9747598  -6.59003048 -9.77028041 -5.53464437
+ -4.28817271 -4.57045136]
+Best objective:  393.1699522689352
+Mean objective:  455.863630583851
+Inner objective at best sample:  929.2140534339036
+Gradient objective at best sample:  0.053604410116496845
+Time elapsed:  4536.063835382462
+Iteration:  24
+Best parameters:  [ -9.78327699  -2.80104065  -6.3681945   -6.34492562 -10.19606796
+  -4.56693063  -3.72421914  -4.79503759]
+Best objective:  395.05137109647137
+Mean objective:  439.79152575562654
+Inner objective at best sample:  864.6824857628865
+Gradient objective at best sample:  0.04696311146664151
+Time elapsed:  4293.712635040283
+Iteration:  25
+Best parameters:  [ -8.80366815  -2.57238937  -6.47398568  -5.31331353 -11.01183078
+  -5.69215743  -3.59113322  -5.8861081 ]
+Best objective:  391.5928924658762
+Mean objective:  1283.0293925495125
+Inner objective at best sample:  1037.1379708878126
+Gradient objective at best sample:  0.06455450784219363
+Time elapsed:  4069.337293624878
+Iteration:  26
+Best parameters:  [ -6.79452281  -3.2089879   -5.76375107  -6.24403221 -10.55411424
+  -7.07473172  -7.95914649  -2.77036301]
+Best objective:  339.7747480614386
+Mean objective:  400.07279967093996
+Inner objective at best sample:  1591.0883689190753
+Gradient objective at best sample:  0.12513136208576367
+Time elapsed:  3796.494639635086
+Iteration:  27
+Best parameters:  [-5.81100497 -4.43972523 -6.05639295 -5.07550027 -9.89523386 -7.42142459
+ -5.48519772 -2.78865198]
+Best objective:  344.6244581100477
+Mean objective:  398.61117285425667
+Inner objective at best sample:  53630.21303826904
+Gradient objective at best sample:  5.328558858015899
+Time elapsed:  3861.8961272239685
+Iteration:  28
+Best parameters:  [-6.43940334 -4.20507977 -6.66419061 -5.24447696 -8.92412375 -7.2211311
+ -7.51326838 -2.86632208]
+Best objective:  360.65114821939727
+Mean objective:  491.6505337299738
+Inner objective at best sample:  1238.0694325530555
+Gradient objective at best sample:  0.08774182843336582
+Time elapsed:  3175.2509474754333
+Iteration:  29
+Best parameters:  [ -8.00703293  -2.67123692  -6.49232509  -6.7795096  -10.19334352
+  -3.79032422  -5.41100523  -2.8084213 ]
+Best objective:  301.7963963050293
+Mean objective:  408.9179471966474
+Inner objective at best sample:  47766.09545803861
+Gradient objective at best sample:  4.746429906173359
+Time elapsed:  3119.0449481010437
+Iteration:  30
+Best parameters:  [-6.41034591 -3.32334451 -5.98580142 -7.07272181 -9.16916649 -6.79455317
+ -4.23224308 -3.41955395]
+Best objective:  311.5259631607265
+Mean objective:  476.12124529617495
+Inner objective at best sample:  2204.771861022444
+Gradient objective at best sample:  0.18932458978617178
+Time elapsed:  4333.2968645095825
+Iteration:  31
+Best parameters:  [-7.6859477  -3.25267808 -6.18928759 -7.88109124 -8.06946216 -6.49453868
+ -5.58891674 -2.28388774]
+Best objective:  338.01688585427905
+Mean objective:  444.6725700182955
+Inner objective at best sample:  617220220.6367362
+Gradient objective at best sample:  61721.988261985025
+Time elapsed:  4556.643628358841
+Iteration:  32
+Best parameters:  [-7.29287343 -3.37260605 -6.23289334 -7.2251019  -7.16573319 -9.18703734
+ -6.987023   -2.86931697]
+Best objective:  348.1635000505763
+Mean objective:  622.9243316238895
+Inner objective at best sample:  1704.5292572439237
+Gradient objective at best sample:  0.1356365757193347
+Time elapsed:  4049.502892255783
+Iteration:  33
+Best parameters:  [-8.85142992 -2.37862153 -6.26644403 -8.09298252 -6.07823466 -7.36965377
+ -3.81818328 -2.61269585]
+Best objective:  287.5463449509401
+Mean objective:  430.60821958113917
+Inner objective at best sample:  23419619.602924466
+Gradient objective at best sample:  2341.9332056579515
+Time elapsed:  2981.750015258789
+Iteration:  34
+Best parameters:  [-6.59469271 -4.31652943 -6.3400543  -6.48247934 -6.09202207 -9.72117764
+ -4.88405305 -2.36658062]
+Best objective:  323.0487993651001
+Mean objective:  410.4242198474213
+Inner objective at best sample:  368137147.6240907
+Gradient objective at best sample:  36813.68245752913
+Time elapsed:  3662.310308456421
+Iteration:  35
+Best parameters:  [ -7.17803817  -3.22107952  -6.91808121  -8.13616212  -4.07044193
+ -10.88759269  -4.20294684  -2.70333608]
+Best objective:  229.7466731960828
+Mean objective:  453.2213227364945
+Inner objective at best sample:  2216891.321374313
+Gradient objective at best sample:  221.6661574701117
+Time elapsed:  3354.224753379822
+Iteration:  36
+Best parameters:  [-6.6550199  -3.20668543 -6.0384045  -7.64137141 -6.65167001 -9.22796422
+ -5.29226282 -2.3455526 ]
+Best objective:  300.81339917355194
+Mean objective:  901.1421614199612
+Inner objective at best sample:  265281025.42775193
+Gradient objective at best sample:  26528.072461435277
+Time elapsed:  3953.0094242095947
+Iteration:  37
+Best parameters:  [-6.89387287 -3.83525669 -6.13509679 -8.18582467 -5.14219454 -9.69089726
+ -3.46738765 -2.67747089]
+Best objective:  300.25367552394204
+Mean objective:  385.68085053445935
+Inner objective at best sample:  15336521.89500478
+Gradient objective at best sample:  1533.6221641329255
+Time elapsed:  2874.422451734543
+Iteration:  38
+Best parameters:  [-7.20239906 -3.0684524  -6.52458597 -7.5923239  -5.77672076 -9.88606036
+ -4.65911792 -2.79945815]
+Best objective:  302.71262430886026
+Mean objective:  431.9366975609911
+Inner objective at best sample:  211344.84053475867
+Gradient objective at best sample:  21.10421279104498
+Time elapsed:  3327.6527502536774
+Iteration:  39
+Best parameters:  [-7.75344636 -3.04388506 -7.05686745 -7.08008853 -6.16872172 -9.09588427
+ -4.31591175 -2.52447816]
+Best objective:  297.4399009129972
+Mean objective:  637.6051152684106
+Inner objective at best sample:  43572746.87935448
+Gradient objective at best sample:  4357.244943945357
+Time elapsed:  3289.0378437042236
+Iteration:  40
+Best parameters:  [ -5.57530502  -3.38490689  -6.26879155  -7.24685965  -5.67471556
+ -11.78951665  -6.35735095  -2.27100972]
+Best objective:  296.85582854741244
+Mean objective:  355.9413958788259
+Inner objective at best sample:  187171734.2829228
+Gradient objective at best sample:  18717.143742709424
+Time elapsed:  3726.986622571945
+Iteration:  41
+Best parameters:  [ -6.49213187  -3.29114209  -6.5620616   -7.44388242  -5.55415595
+ -10.16931597  -5.81677435  -2.5847708 ]
+Best objective:  294.80552147880627
+Mean objective:  348.5614602610959
+Inner objective at best sample:  682077.8273656078
+Gradient objective at best sample:  68.17830218441291
+Time elapsed:  3254.526109933853
+Iteration:  42
+Best parameters:  [-6.7384517  -3.36698018 -6.47154708 -8.07611725 -5.71311234 -9.22330313
+ -3.88949823 -2.54322091]
+Best objective:  280.1160584097214
+Mean objective:  334.8186656267298
+Inner objective at best sample:  71747501.49723548
+Gradient objective at best sample:  7174.722138117707
+Time elapsed:  2814.830268383026
+Iteration:  43
+Best parameters:  [ -7.58542185  -2.76676409  -6.9151868   -7.73430467  -5.51493695
+ -10.49507613  -3.89400876  -2.4685169 ]
+Best objective:  281.2269534385473
+Mean objective:  321.69004525302813
+Inner objective at best sample:  308033568.4618324
+Gradient objective at best sample:  30803.328723487895
+Time elapsed:  2855.922085762024
+Iteration:  44
+Best parameters:  [ -6.94298077  -3.08692994  -6.57989355  -8.55357503  -5.04257317
+ -11.67232767  -3.29926898  -2.7343089 ]
+Best objective:  275.5698257560142
+Mean objective:  319.65454641152564
+Inner objective at best sample:  8808271.804149412
+Gradient objective at best sample:  880.7996234323656
+Time elapsed:  3326.760617017746
+Iteration:  45
+Best parameters:  [ -7.10318928  -2.93604033  -6.81132129  -7.30991047  -4.22067407
+ -12.15568427  -3.61393128  -2.88972548]
+Best objective:  259.67178770797045
+Mean objective:  343.9751329166191
+Inner objective at best sample:  442608.50348921365
+Gradient objective at best sample:  44.23488317015057
+Time elapsed:  3003.584110021591
+Iteration:  46
+Best parameters:  [ -5.95995714  -3.41711524  -6.1438007   -8.54416816  -3.54570335
+ -16.0323633   -3.47109583  -3.05567535]
+Best objective:  223.60221239244882
+Mean objective:  339.03221675893394
+Inner objective at best sample:  46957.29471663947
+Gradient objective at best sample:  4.673369250424702
+Time elapsed:  3569.7872698307037
+Iteration:  47
+Best parameters:  [ -6.31184132  -3.12390276  -6.22020221  -7.36423752  -3.98575329
+ -14.11946922  -3.64171833  -2.73903096]
+Best objective:  225.7366773074593
+Mean objective:  309.15521337668906
+Inner objective at best sample:  3948148.414857154
+Gradient objective at best sample:  394.7922678179846
+Time elapsed:  3718.3322875499725
+Iteration:  48
+Best parameters:  [ -6.31486991  -3.55221055  -6.42961235  -9.25780441  -3.71744341
+ -12.59066223  -2.79917863  -2.52100357]
+Best objective:  222.12757703654026
+Mean objective:  387.912214354424
+Inner objective at best sample:  973977912.3881556
+Gradient objective at best sample:  97397.76902605785
+Time elapsed:  3253.21209859848
+Iteration:  49
+Best parameters:  [ -6.5701928   -3.68068048  -6.19428434  -9.149689    -3.38207236
+ -15.02492147  -3.77294876  -2.80619144]
+Best objective:  226.92444969955997
+Mean objective:  322.32944314980443
+Inner objective at best sample:  955596.7708049391
+Gradient objective at best sample:  95.53698463552395
+Time elapsed:  2254.058172225952
+Iteration:  50
+Best parameters:  [ -6.67538929  -3.57110314  -6.21369684  -7.44475655  -3.23281905
+ -15.87271221  -2.95437159  -2.91067311]
+Best objective:  199.10816389987224
+Mean objective:  458.27164636059024
+Inner objective at best sample:  1152776.8704612015
+Gradient objective at best sample:  115.25777622973015
+Time elapsed:  2330.0385801792145
+Iteration:  51
+Best parameters:  [ -6.81586249  -3.88548764  -6.50363228  -8.59169076  -2.62719745
+ -14.27782567  -2.21251054  -2.71985908]
+Best objective:  195.06486016138675
+Mean objective:  364.622066746481
+Inner objective at best sample:  94815328.73344181
+Gradient objective at best sample:  9481.513366858166
+Time elapsed:  2998.388391494751
+Iteration:  52
+Best parameters:  [ -7.11273425  -3.1978645   -6.64266313  -7.79218622  -4.17756613
+ -12.47283005  -4.32990567  -2.59608746]
+Best objective:  228.77795887058326
+Mean objective:  388.8078399268147
+Inner objective at best sample:  11036182.061366312
+Gradient objective at best sample:  1103.5953283407441
+Time elapsed:  2606.536875963211
+Iteration:  53
+Best parameters:  [ -6.28062279  -3.64504856  -6.52532419  -9.35981475  -3.01907888
+ -14.44943738  -3.11865792  -2.89011083]
+Best objective:  193.8927932282448
+Mean objective:  445.7648561605696
+Inner objective at best sample:  1031226.9560233229
+Gradient objective at best sample:  103.10330632300946
+Time elapsed:  2844.7572650909424
+Iteration:  54
+Best parameters:  [ -6.35442117  -3.12792793  -6.35647632  -8.04565977  -3.22231692
+ -12.59786141  -3.17512836  -3.02525717]
+Best objective:  194.4659655250636
+Mean objective:  312.7048176288083
+Inner objective at best sample:  126561.44759835419
+Gradient objective at best sample:  12.636698163282913
+Time elapsed:  2993.703925848007
+Iteration:  55
+Best parameters:  [ -7.05878803  -3.1082638   -6.49569028  -8.68809126  -3.06734993
+ -13.02621422  -3.24965621  -2.94472456]
+Best objective:  194.8919109402142
+Mean objective:  450.3313387963788
+Inner objective at best sample:  331905.61005729565
+Gradient objective at best sample:  33.17107181463554
+Time elapsed:  3370.7433094978333
+Iteration:  56
+Best parameters:  [ -6.97983035  -3.22440389  -6.21920898  -8.52209231  -3.05256729
+ -13.98463798  -2.72058838  -2.88403686]
+Best objective:  187.49541111215825
+Mean objective:  334.57478313439543
+Inner objective at best sample:  2748813.3735408555
+Gradient objective at best sample:  274.86258781297437
+Time elapsed:  4028.357455968857
+Iteration:  57
+Best parameters:  [ -7.20085087  -2.96183252  -6.87477601  -8.76892079  -2.63353413
+ -15.40824437  -2.65194357  -2.96118212]
+Best objective:  171.752482169398
+Mean objective:  269.5771825489533
+Inner objective at best sample:  920822.0997282582
+Gradient objective at best sample:  92.06503472460888
+Time elapsed:  3450.3819785118103
+Iteration:  58
+Best parameters:  [ -7.70482069  -2.82794529  -6.65727551  -8.3745233   -2.38421335
+ -14.73485177  -2.19826169  -3.06648101]
+Best objective:  176.51156114983831
+Mean objective:  243.3971150751278
+Inner objective at best sample:  513449.4312830549
+Gradient objective at best sample:  51.3272919721905
+Time elapsed:  3200.2256553173065
+Iteration:  59
+Best parameters:  [ -6.34762527  -3.29915422  -6.38092832  -9.22826187  -2.71790406
+ -15.57136339  -2.71468884  -3.04808792]
+Best objective:  172.6775769358792
+Mean objective:  231.4692609376519
+Inner objective at best sample:  213962.10172807664
+Gradient objective at best sample:  21.378942415114075
+Time elapsed:  3379.811864376068
+Iteration:  60
+Best parameters:  [ -6.83052622  -3.34485507  -6.58061644  -9.66736216  -2.511508
+ -14.76304077  -2.45785536  -3.01199988]
+Best objective:  170.59373804980186
+Mean objective:  213.65022005870446
+Inner objective at best sample:  648303.7090953047
+Gradient objective at best sample:  64.81331153572549
+Time elapsed:  2409.0313284397125
+Iteration:  61
+Best parameters:  [ -6.18750391  -3.82653485  -6.19510174 -10.30903026  -2.47021531
+ -15.31876195  -2.31494439  -2.98875047]
+Best objective:  170.7655440942767
+Mean objective:  219.8735752431362
+Inner objective at best sample:  1284443.4615343565
+Gradient objective at best sample:  128.4272695990262
+Time elapsed:  3271.6343338489532
+Iteration:  62
+Best parameters:  [ -6.98059431  -3.25967569  -6.6232388   -8.16809619  -2.22208164
+ -14.34828811  -2.07941847  -3.01371698]
+Best objective:  164.50942718441743
+Mean objective:  238.3548230597992
+Inner objective at best sample:  1413798.0801021939
+Gradient objective at best sample:  141.36335706750094
+Time elapsed:  3561.6268277168274
+Iteration:  63
+Best parameters:  [ -6.96740379  -2.76372948  -6.60529622  -8.26699503  -2.11567871
+ -14.22575839  -2.16485935  -3.02952565]
+Best objective:  149.69915555485363
+Mean objective:  218.6112184839145
+Inner objective at best sample:  833893.357488995
+Gradient objective at best sample:  83.374365833344
+Time elapsed:  4043.494831800461
+Iteration:  64
+Best parameters:  [ -6.64006569  -3.22837785  -6.57073059 -10.63528881  -2.01234485
+ -14.98071743  -1.98618986  -3.06735982]
+Best objective:  160.2625447444026
+Mean objective:  242.9267649327412
+Inner objective at best sample:  686167.1078685952
+Gradient objective at best sample:  68.60068453238507
+Time elapsed:  3946.8293578624725
+Iteration:  65
+Best parameters:  [ -6.34264271  -3.48645993  -6.51783489  -8.43202105  -2.26603958
+ -13.91730204  -2.22422822  -2.98554114]
+Best objective:  159.59477509985064
+Mean objective:  204.62059129270943
+Inner objective at best sample:  1541827.2978118802
+Gradient objective at best sample:  154.16677030367805
+Time elapsed:  3218.3042039871216
+Iteration:  66
+Best parameters:  [ -6.26030452  -3.10991055  -6.62187984  -9.44529539  -2.35285415
+ -14.85064358  -2.27907224  -2.92561964]
+Best objective:  149.96513897374558
+Mean objective:  207.15383114838312
+Inner objective at best sample:  3431559.7645154134
+Gradient objective at best sample:  343.140979937644
+Time elapsed:  3541.429200410843
+Iteration:  67
+Best parameters:  [ -6.38755679  -3.59892203  -6.38758481  -8.27479547  -1.64131359
+ -15.7366459   -1.49086806  -3.02093213]
+Best objective:  157.07142595771666
+Mean objective:  210.39230215365092
+Inner objective at best sample:  4150942.4407758806
+Gradient objective at best sample:  415.0785369349923
+Time elapsed:  3593.1134400367737
+Iteration:  68
+Best parameters:  [ -5.49150686  -3.65760114  -6.02656873  -7.57110872  -2.12344232
+ -14.13992761  -2.07221331  -2.93537478]
+Best objective:  155.59305852759118
+Mean objective:  221.21501604435636
+Inner objective at best sample:  4461848.398717813
+Gradient objective at best sample:  446.1692805659286
+Time elapsed:  4225.874606132507
+Iteration:  69
+Best parameters:  [ -6.03844739  -3.16840828  -6.59312864  -8.46946011  -1.99532158
+ -15.01957335  -2.04450387  -2.9688156 ]
+Best objective:  145.75242786290542
+Mean objective:  223.9342062695994
+Inner objective at best sample:  2742361.780657071
+Gradient objective at best sample:  274.22160282292083
+Time elapsed:  4457.819843292236
+Iteration:  70
+Best parameters:  [ -5.52606174  -3.26005871  -5.97160195  -8.89165428  -2.2396231
+ -14.38754879  -2.03121647  -2.91407541]
+Best objective:  136.96629570358533
+Mean objective:  250.77621189863
+Inner objective at best sample:  6920115.859087774
+Gradient objective at best sample:  691.997889279207
+Time elapsed:  3949.6653776168823
+Iteration:  71
+Best parameters:  [ -5.27563454  -3.27831952  -6.08695422  -7.94892239  -2.17767315
+ -13.50720266  -2.16579872  -2.92416425]
+Best objective:  133.35361324296198
+Mean objective:  203.2843351094655
+Inner objective at best sample:  4324709.9894184815
+Gradient objective at best sample:  432.4576635805239
+Time elapsed:  3438.213221311569
+Iteration:  72
+Best parameters:  [ -5.44707384  -3.11913652  -6.33576859  -8.19210028  -2.08057403
+ -14.58794291  -2.22434063  -2.99645675]
+Best objective:  132.15213808884326
+Mean objective:  197.88900372596768
+Inner objective at best sample:  1179813.9644295545
+Gradient objective at best sample:  117.96818122914657
+Time elapsed:  4133.1014976501465
+Iteration:  73
+Best parameters:  [ -6.43158685  -2.58656193  -7.0746526   -9.10282569  -2.07396795
+ -14.1500742   -2.20487212  -2.97906222]
+Best objective:  137.6760102702285
+Mean objective:  227.4484674833833
+Inner objective at best sample:  1629233.9775865485
+Gradient objective at best sample:  162.90963015762784
+Time elapsed:  3690.9071247577667
+Iteration:  74
+Best parameters:  [ -5.27961964  -3.28351431  -6.34758201  -8.55541204  -1.89610512
+ -14.16090072  -2.07481379  -3.0040243 ]
+Best objective:  140.9021341590099
+Mean objective:  209.75318704637186
+Inner objective at best sample:  1378660.1852569862
+Gradient objective at best sample:  137.8519283122827
+Time elapsed:  4267.4842619895935
+Iteration:  75
+Best parameters:  [ -6.21147785  -2.81914127  -6.37231209  -9.35033932  -1.92813192
+ -14.04985604  -1.88403317  -2.96245072]
+Best objective:  131.37076092203162
+Mean objective:  211.84982811181638
+Inner objective at best sample:  4333505.414219748
+Gradient objective at best sample:  433.3374043458826
+Time elapsed:  3998.286613702774
+Iteration:  76
+Best parameters:  [ -5.26079522  -3.12606253  -6.03942354  -8.16335089  -1.86923486
+ -14.99647608  -1.97165705  -2.97782496]
+Best objective:  128.29412090605646
+Mean objective:  202.2548757892272
+Inner objective at best sample:  2696645.840611452
+Gradient objective at best sample:  269.65175464905457
+Time elapsed:  4036.2980313301086
+Iteration:  77
+Best parameters:  [ -5.82199983  -2.6776999   -6.37933507  -7.62583073  -2.0515787
+ -13.90661905  -2.10489532  -2.97190915]
+Best objective:  126.88995895966464
+Mean objective:  227.62700795482013
+Inner objective at best sample:  2313604.4480016828
+Gradient objective at best sample:  231.3477558042723
+Time elapsed:  4249.451510667801
+Iteration:  78
+Best parameters:  [ -5.38548477  -3.00065899  -6.13390924  -9.396415    -1.79593466
+ -14.06783806  -1.80114561  -2.95069674]
+Best objective:  121.36124584570494
+Mean objective:  178.27532258816382
+Inner objective at best sample:  6003162.119273394
+Gradient objective at best sample:  600.3040758027549
+Time elapsed:  4500.683883428574
+Iteration:  79
+Best parameters:  [ -5.9461879   -2.67516986  -6.67411589  -7.77210997  -1.55164423
+ -14.38063979  -1.69310949  -2.98864242]
+Best objective:  125.23510780765493
+Mean objective:  216.1901237724853
+Inner objective at best sample:  3893294.765106187
+Gradient objective at best sample:  389.31695299983795
+Time elapsed:  3944.5390808582306
+Iteration:  80
+Best parameters:  [ -5.20674625  -2.96929899  -6.01934028  -7.92004343  -1.74153385
+ -14.5458466   -1.73292347  -2.92366918]
+Best objective:  121.50676956473771
+Mean objective:  194.47441293499148
+Inner objective at best sample:  10382377.51855784
+Gradient objective at best sample:  1038.2256011788274
+Time elapsed:  4442.955477237701
+Iteration:  81
+Best parameters:  [ -5.23684076  -2.87485861  -5.96425801  -8.18786822  -1.77168337
+ -14.2927644   -1.75288018  -2.92930443]
+Best objective:  121.52789778917145
+Mean objective:  159.9237537688198
+Inner objective at best sample:  9193911.16164749
+Gradient objective at best sample:  919.3789633749699
+Time elapsed:  4247.963776350021
+Iteration:  82
+Best parameters:  [ -5.68363177  -2.72329373  -6.30106906  -9.58045482  -1.64772822
+ -15.09152144  -1.77209285  -3.00369996]
+Best objective:  120.0555348841822
+Mean objective:  171.8768682919854
+Inner objective at best sample:  2640427.776693257
+Gradient objective at best sample:  264.0307721158373
+Time elapsed:  4264.193500041962
+Iteration:  83
+Best parameters:  [ -6.19992103  -2.52424024  -6.50768289  -9.33205721  -1.76771065
+ -14.24141423  -1.83951743  -2.96558909]
+Best objective:  121.58980550198706
+Mean objective:  189.6232448302281
+Inner objective at best sample:  4308494.262517018
+Gradient objective at best sample:  430.8372672711516
+Time elapsed:  4422.225048542023
+Iteration:  84
+Best parameters:  [ -5.43177946  -2.74856053  -6.0287201   -8.56441943  -1.58953967
+ -14.3693013   -1.64109162  -2.95862011]
+Best objective:  119.01925746042065
+Mean objective:  175.13370533519569
+Inner objective at best sample:  7202589.348012712
+Gradient objective at best sample:  720.2470328755251
+Time elapsed:  4681.8283360004425
+Iteration:  85
+Best parameters:  [ -5.36001393  -2.87524871  -5.95063412  -8.00865503  -1.57317903
+ -14.8919548   -1.69487287  -3.00116727]
+Best objective:  121.32617862746027
+Mean objective:  186.75541743265805
+Inner objective at best sample:  3215925.186161706
+Gradient objective at best sample:  321.58038599830786
+Time elapsed:  4813.02024269104
+Iteration:  86
+Best parameters:  [ -5.44522853  -2.92082231  -5.98026361  -8.90992922  -1.80520107
+ -14.59287108  -1.88504556  -2.9920146 ]
+Best objective:  119.87884630280647
+Mean objective:  198.7429494117934
+Inner objective at best sample:  2602936.496835976
+Gradient objective at best sample:  260.2816617989673
+Time elapsed:  4585.8304080963135
+Iteration:  87
+Best parameters:  [ -5.27552701  -3.05440346  -5.91751077  -8.50912849  -1.8197898
+ -14.75107142  -1.81255275  -2.96395178]
+Best objective:  120.86484456552107
+Mean objective:  178.76145323472113
+Inner objective at best sample:  4820110.69340191
+Gradient objective at best sample:  481.9989828557345
+Time elapsed:  4626.207952976227
+Iteration:  88
+Best parameters:  [ -5.8285218   -2.63997212  -6.29573051  -7.97640612  -1.7340929
+ -14.41369306  -1.83293437  -2.98083918]
+Best objective:  118.91171215404037
+Mean objective:  166.69102249005923
+Inner objective at best sample:  3402280.4537821077
+Gradient objective at best sample:  340.2161542069954
+Time elapsed:  4557.703354358673
+Iteration:  89
+Best parameters:  [ -5.73694345  -2.76337787  -6.13135598  -9.13586746  -1.78681029
+ -14.54724378  -1.83968192  -2.96414509]
+Best objective:  118.85471845067154
+Mean objective:  163.3233740344652
+Inner objective at best sample:  4439578.780199301
+Gradient objective at best sample:  443.9459925480851
+Time elapsed:  4463.370408773422
+Iteration:  90
+Best parameters:  [ -5.49306467  -2.828358    -6.1490891   -8.45185954  -1.80029493
+ -14.46313284  -1.86158223  -2.95528388]
+Best objective:  119.09176188612264
+Mean objective:  169.70463058838678
+Inner objective at best sample:  4848576.1666398775
+Gradient objective at best sample:  484.84570748779913
+Time elapsed:  4407.989632368088
+Iteration:  91
+Best parameters:  [ -5.54658421  -2.78118776  -6.17433049  -8.73287111  -1.71684249
+ -14.17462759  -1.77028781  -2.95035525]
+Best objective:  119.27906761144953
+Mean objective:  170.55182796183644
+Inner objective at best sample:  6299188.034280713
+Gradient objective at best sample:  629.9068755213101
+Time elapsed:  4355.261771917343
+Iteration:  92
+Best parameters:  [ -5.62448345  -2.76041722  -6.13880177  -8.59788311  -1.78109342
+ -14.51855685  -1.83413528  -2.96529601]
+Best objective:  118.21158326371442
+Mean objective:  163.72926465114944
+Inner objective at best sample:  4410727.184659027
+Gradient objective at best sample:  441.0608973075762
+Time elapsed:  4631.779031276703
+Iteration:  93
+Best parameters:  [ -5.56246064  -2.82754298  -6.00075933  -8.13155051  -1.77886075
+ -14.54563832  -1.82948266  -2.96875298]
+Best objective:  118.52364716363695
+Mean objective:  148.14298688075016
+Inner objective at best sample:  4226466.6980273565
+Gradient objective at best sample:  422.63481743801924
+Time elapsed:  4439.538352251053
+Iteration:  94
+Best parameters:  [ -5.41637706  -2.79677565  -6.06793708  -8.17076395  -1.79985505
+ -14.78930209  -1.87505248  -2.97657581]
+Best objective:  118.54972358089658
+Mean objective:  162.48733640547653
+Inner objective at best sample:  3380222.910450695
+Gradient objective at best sample:  338.0104360727114
+Time elapsed:  6256.551594018936
+Iteration:  95
+Best parameters:  [ -5.4768563   -2.84091639  -5.98109244  -8.80180163  -1.77855546
+ -14.35505475  -1.8414143   -2.97143011]
+Best objective:  118.46016963853509
+Mean objective:  172.31478173652982
+Inner objective at best sample:  3938222.047377739
+Gradient objective at best sample:  393.8103587208101
+Time elapsed:  6166.088548898697
+Iteration:  96
+Best parameters:  [ -5.47527235  -2.84585642  -6.12075002  -8.03804101  -1.76080247
+ -14.98190703  -1.84686846  -2.98152462]
+Best objective:  118.16632343112032
+Mean objective:  176.61067679240642
+Inner objective at best sample:  3294416.480019139
+Gradient objective at best sample:  329.42983136957076
+Time elapsed:  6244.454478263855
+Iteration:  97
+Best parameters:  [ -5.58187085  -2.72883097  -6.08242594  -8.38040994  -1.64365209
+ -14.54494914  -1.71648519  -2.97640686]
+Best objective:  118.11444028135492
+Mean objective:  159.1613393806766
+Inner objective at best sample:  4665409.197332047
+Gradient objective at best sample:  466.5291082891766
+Time elapsed:  7143.338663578033
+Iteration:  98
+Best parameters:  [ -5.62385602  -2.75771753  -6.10232009  -8.74063647  -1.77959801
+ -14.58604642  -1.83626905  -2.97052315]
+Best objective:  118.18148976347035
+Mean objective:  182.90367559447296
+Inner objective at best sample:  4046741.8278113003
+Gradient objective at best sample:  404.6623646321537
+Time elapsed:  7080.039946317673
+Iteration:  99
+Best parameters:  [ -5.52111906  -2.77945326  -6.10440125  -8.61413639  -1.71381914
+ -14.82851116  -1.79760191  -2.98386171]
+Best objective:  118.17955012841475
+Mean objective:  164.74549425470317
+Inner objective at best sample:  3511355.701239018
+Gradient objective at best sample:  351.1237521688889
+Time elapsed:  6951.089703083038
+Iteration:  100
+Best parameters:  [ -5.37810308  -2.83508299  -6.03457935  -8.13252695  -1.68034143
+ -14.86999124  -1.74948183  -2.9765373 ]
+Best objective:  117.98655018632807
+Mean objective:  170.57537365487133
+Inner objective at best sample:  4365076.770413086
+Gradient objective at best sample:  436.4958783862899
+Time elapsed:  5869.7998678684235
+Iteration:  101
+Best parameters:  [ -5.48066235  -2.79736191  -6.05945015  -8.4712025   -1.70525202
+ -14.73705597  -1.77574056  -2.97505766]
+Best objective:  117.85298831497492
+Mean objective:  152.25925142417208
+Inner objective at best sample:  4233930.049385421
+Gradient objective at best sample:  423.3812196397106
+Time elapsed:  6598.274458885193
+Iteration:  102
+Best parameters:  [ -5.50528097  -2.76785127  -6.09838468  -8.36004838  -1.72390227
+ -14.88954815  -1.80892293  -2.97930111]
+Best objective:  117.96029389988509
+Mean objective:  187.84866798106523
+Inner objective at best sample:  3682593.2576165013
+Gradient objective at best sample:  368.24752973226015
+Time elapsed:  6094.541794061661
+Iteration:  103
+Best parameters:  [ -5.469257    -2.78807833  -6.1106496   -7.8284924   -1.75012882
+ -14.79442119  -1.8245511   -2.97130876]
+Best objective:  117.83503993126278
+Mean objective:  163.16166711843923
+Inner objective at best sample:  4059964.855940919
+Gradient objective at best sample:  405.9847020900988
+Time elapsed:  5733.052269458771
+Iteration:  104
+Best parameters:  [ -5.46736012  -2.79099566  -6.0999778   -8.20217356  -1.71818941
+ -14.74943127  -1.78148941  -2.96659348]
+Best objective:  117.90979071450428
+Mean objective:  161.82642264583936
+Inner objective at best sample:  4784303.074781507
+Gradient objective at best sample:  478.4185164990793
+Time elapsed:  6140.462057828903
+Iteration:  105
+Best parameters:  [ -5.43594918  -2.82506784  -6.06565236  -8.06143545  -1.69886717
+ -14.71375936  -1.76748634  -2.97246969]
+Best objective:  117.77394832348772
+Mean objective:  181.01959889215087
+Inner objective at best sample:  4484131.388835303
+Gradient objective at best sample:  448.4013614886979
+Time elapsed:  5130.3637046813965
+Iteration:  106
+Best parameters:  [ -5.28142717  -2.87168302  -6.04872028  -7.88269437  -1.64955291
+ -15.04586537  -1.74258715  -2.98402091]
+Best objective:  117.61240424928094
+Mean objective:  149.43461598015693
+Inner objective at best sample:  3894143.505200985
+Gradient objective at best sample:  389.4025892796736
+Time elapsed:  6253.3644161224365
+Iteration:  107
+Best parameters:  [ -5.20598696  -2.91418115  -5.9997555   -8.1625009   -1.69096053
+ -15.06731539  -1.76086563  -2.97770743]
+Best objective:  117.80854898918375
+Mean objective:  148.4954403181162
+Inner objective at best sample:  4192998.023149063
+Gradient objective at best sample:  419.28802146000737
+Time elapsed:  5743.723518133163
+Iteration:  108
+Best parameters:  [ -5.4643772   -2.78729351  -6.07736974  -8.20777175  -1.68552157
+ -14.88077633  -1.76336342  -2.97595491]
+Best objective:  117.83112786281632
+Mean objective:  176.6958141375125
+Inner objective at best sample:  4265580.539210569
+Gradient objective at best sample:  426.54627080827066
+Time elapsed:  7334.213873624802
+Iteration:  109
+Best parameters:  [ -5.39924274  -2.81265702  -6.07788306  -8.09792002  -1.70012704
+ -14.92984509  -1.79830876  -2.98470351]
+Best objective:  96.61407535767371
+Mean objective:  158.56541088405433
+Inner objective at best sample:  3435861.06334076
+Gradient objective at best sample:  343.5764449265402
+Time elapsed:  6134.746948719025
+Iteration:  110
+Best parameters:  [ -5.39262321  -2.81176998  -6.08298625  -8.00594949  -1.7035387
+ -14.86698349  -1.77314356  -2.97438733]
+Best objective:  106.69027034076053
+Mean objective:  151.49878938979103
+Inner objective at best sample:  4303355.8811123
+Gradient objective at best sample:  430.32491908419587
+Time elapsed:  5705.502938270569
+Iteration:  111
+Best parameters:  [ -5.37068601  -2.85322913  -6.0881533   -8.20144098  -1.72546622
+ -14.89266005  -1.78584471  -2.97055831]
+Best objective:  117.55259046617742
+Mean objective:  170.6190837311287
+Inner objective at best sample:  4470698.013435986
+Gradient objective at best sample:  447.05804608455196
+Time elapsed:  6137.262926340103
+Iteration:  112
+Best parameters:  [ -5.52071106  -2.77494651  -6.1017772   -8.14481275  -1.68397509
+ -14.79380601  -1.75888441  -2.9751469 ]
+Best objective:  117.84064138218
+Mean objective:  193.6228181013431
+Inner objective at best sample:  4364483.128038584
+Gradient objective at best sample:  436.4365287397202
+Time elapsed:  5879.209653139114
+Iteration:  113
+Best parameters:  [ -5.48825691  -2.77708318  -6.08742225  -8.20972634  -1.6866106
+ -14.8040942   -1.7609787   -2.9724163 ]
+Best objective:  117.34307561139211
+Mean objective:  174.92119717718833
+Inner objective at best sample:  4537435.21763731
+Gradient objective at best sample:  453.7317874561698
+Time elapsed:  8061.035746574402
+Iteration:  114
+Best parameters:  [ -5.47745037  -2.792841    -6.09320121  -7.97413625  -1.74809981
+ -14.73591526  -1.82180864  -2.96944712]
+Best objective:  117.78820084610747
+Mean objective:  158.61064972997065
+Inner objective at best sample:  4202698.698978642
+Gradient objective at best sample:  420.2580910777796
+Time elapsed:  5643.7402012348175
+Iteration:  115
+Best parameters:  [ -5.44961496  -2.81757081  -6.07539905  -8.25060416  -1.70887922
+ -14.84075549  -1.78779075  -2.98042131]
+Best objective:  117.47730897447418
+Mean objective:  162.5627688139096
+Inner objective at best sample:  3792470.527268327
+Gradient objective at best sample:  379.2353049959352
+Time elapsed:  6370.247465372086
+Iteration:  116
+Best parameters:  [ -5.39459288  -2.84157182  -6.04673545  -8.05780883  -1.71082844
+ -14.75440698  -1.7834112   -2.97380686]
+Best objective:  117.74536686460297
+Mean objective:  190.2571930873743
+Inner objective at best sample:  4246284.778639535
+Gradient objective at best sample:  424.61670332726703
+Time elapsed:  6923.853296279907
+Iteration:  117
+Best parameters:  [ -5.39404854  -2.83854301  -6.04060291  -8.02150046  -1.72531496
+ -14.8370204   -1.80028045  -2.97466429]
+Best objective:  117.73252588891631
+Mean objective:  172.79300122057614
+Inner objective at best sample:  4046174.8060538424
+Gradient objective at best sample:  404.6057073527954
+Time elapsed:  6959.556746959686
+Iteration:  118
+Best parameters:  [ -5.31271835  -2.86379225  -6.03346373  -8.14984289  -1.6994989
+ -14.97216429  -1.77519958  -2.97491891]
+Best objective:  117.47655601496204
+Mean objective:  157.22661494812812
+Inner objective at best sample:  4243258.496869804
+Gradient objective at best sample:  424.3141020313789
+Time elapsed:  5480.129060745239
+Iteration:  119
+Best parameters:  [ -5.36024611  -2.84302862  -5.99901668  -8.15789434  -1.73511921
+ -14.78401031  -1.79725431  -2.97097614]
+Best objective:  104.65942235428442
+Mean objective:  171.7430037723901
+Inner objective at best sample:  4336854.1192065645
+Gradient objective at best sample:  433.6749459784211
+Time elapsed:  5980.1588797569275
+Iteration:  120
+Best parameters:  [ -5.42634758  -2.81829735  -6.04805626  -7.94099386  -1.74519467
+ -14.80002029  -1.81265565  -2.96978615]
+Best objective:  117.72417007685434
+Mean objective:  151.39388290509436
+Inner objective at best sample:  4270521.2011835985
+Gradient objective at best sample:  427.0403477013522
+Time elapsed:  5992.476375102997
+Iteration:  121
+Best parameters:  [ -5.44033508  -2.80893435  -6.07863683  -7.95224483  -1.71893539
+ -14.81783388  -1.79271691  -2.97033529]
+Best objective:  117.72336466221323
+Mean objective:  165.38983271594287
+Inner objective at best sample:  4394753.537625434
+Gradient objective at best sample:  439.46358142607716
+Time elapsed:  6674.545854091644
+Iteration:  122
+Best parameters:  [ -5.44699669  -2.79552479  -6.06681128  -7.83087564  -1.71369315
+ -14.79585616  -1.78625931  -2.97140042]
+Best objective:  117.67371152734808
+Mean objective:  134.36283876641534
+Inner objective at best sample:  4382049.256609531
+Gradient objective at best sample:  438.1931582898004
+Time elapsed:  5759.591828346252
+Iteration:  123
+Best parameters:  [ -5.44320389  -2.81338296  -6.05231994  -8.00274228  -1.71027941
+ -14.75273104  -1.77654101  -2.96988554]
+Best objective:  98.24665177035388
+Mean objective:  188.66093772137364
+Inner objective at best sample:  4608410.178865993
+Gradient objective at best sample:  460.83119322142227
+Time elapsed:  4605.801185131073
+Iteration:  124
+Best parameters:  [ -5.45065016  -2.80799668  -6.07081874  -7.67812363  -1.74060589
+ -14.7543443   -1.80887446  -2.9691751 ]
+Best objective:  117.63533450445982
+Mean objective:  144.71989052332933
+Inner objective at best sample:  4342199.0195570765
+Gradient objective at best sample:  434.20813842225715
+Time elapsed:  4371.236091375351
+Iteration:  125
+Best parameters:  [ -5.5064233   -2.79195208  -6.08898776  -7.86951097  -1.72866938
+ -14.78473922  -1.79865226  -2.97066211]
+Best objective:  117.68857613261228
+Mean objective:  185.068083231719
+Inner objective at best sample:  4328440.937851879
+Gradient objective at best sample:  432.8323249275746
+Time elapsed:  4030.4812002182007
+Iteration:  126
+Best parameters:  [ -5.46431239  -2.79896138  -6.0593444   -7.69705331  -1.74509756
+ -14.66081965  -1.81232207  -2.96792797]
+Best objective:  117.66451561166335
+Mean objective:  202.4324989802572
+Inner objective at best sample:  4397919.54713243
+Gradient objective at best sample:  439.7801882616818
+Time elapsed:  3848.9189281463623
+Iteration:  127
+Best parameters:  [ -5.4845636   -2.80618003  -6.06699142  -7.73498478  -1.73211004
+ -14.62608434  -1.79807438  -2.96860143]
+Best objective:  117.67006810073075
+Mean objective:  180.11429348015795
+Inner objective at best sample:  4481428.6866290085
+Gradient objective at best sample:  448.1311016560907
+Time elapsed:  5792.967033147812
+Iteration:  128
+Best parameters:  [ -5.53900387  -2.76697834  -6.08925665  -7.6480625   -1.73570571
+ -14.5683128   -1.80516276  -2.96974241]
+Best objective:  117.62778012746621
+Mean objective:  203.33765937791227
+Inner objective at best sample:  4334330.761054197
+Gradient objective at best sample:  433.421313327407
+Time elapsed:  3730.6805033683777
+Iteration:  129
+Best parameters:  [ -5.5642605   -2.73722903  -6.10962509  -7.77367252  -1.70831893
+ -14.65406493  -1.78547471  -2.96845297]
+Best objective:  117.43335444147493
+Mean objective:  148.6612303584692
+Inner objective at best sample:  4586364.338622717
+Gradient objective at best sample:  458.62469052682764
+Time elapsed:  4170.268164157867
+Iteration:  130
+Best parameters:  [ -5.40431527  -2.82356245  -6.02484661  -8.01966367  -1.70582955
+ -14.76486683  -1.78554052  -2.97676331]
+Best objective:  117.39129441415004
+Mean objective:  155.30987483135308
+Inner objective at best sample:  4030320.387642389
+Gradient objective at best sample:  403.0202996347975
+Time elapsed:  3280.4480130672455
+Iteration:  131
+Best parameters:  [ -5.50354784  -2.7938743   -6.06453828  -7.4160718   -1.77283918
+ -14.55878149  -1.82779531  -2.96442232]
+Best objective:  117.21835878772472
+Mean objective:  166.5954863344199
+Inner objective at best sample:  4525220.062545059
+Gradient objective at best sample:  452.5102844186272
+Time elapsed:  4428.923081159592
+Iteration:  132
+Best parameters:  [ -5.53491995  -2.76959208  -6.0854611   -7.23703829  -1.74509113
+ -14.49869142  -1.80578654  -2.96728532]
+Best objective:  117.50714319540201
+Mean objective:  187.66025552738338
+Inner objective at best sample:  4513554.253418861
+Gradient objective at best sample:  451.34367462756654
+Time elapsed:  4550.139845609665
+Iteration:  133
+Best parameters:  [ -5.44602175  -2.81354955  -6.01882742  -6.94356887  -1.75457876
+ -14.47946009  -1.81779535  -2.96897783]
+Best objective:  117.33092768368994
+Mean objective:  153.59588204284267
+Inner objective at best sample:  4287896.5689384965
+Gradient objective at best sample:  428.7779238010813
+Time elapsed:  4676.233156204224
+Iteration:  134
+Best parameters:  [ -5.43954914  -2.8186259   -5.99990097  -6.14845474  -1.81461378
+ -14.07931801  -1.88001526  -2.96152741]
+Best objective:  117.02192737693412
+Mean objective:  155.53113172762014
+Inner objective at best sample:  4239065.941310582
+Gradient objective at best sample:  423.8948919383204
+Time elapsed:  4765.234435081482
+Iteration:  135
+Best parameters:  [ -5.33182356  -2.85984011  -6.0009275   -6.20698004  -1.73784705
+ -14.50316381  -1.82273666  -2.98124499]
+Best objective:  116.4688162265764
+Mean objective:  187.1754079361902
+Inner objective at best sample:  3482119.241830698
+Gradient objective at best sample:  348.20027730144716
+Time elapsed:  4407.357499361038
+Iteration:  136
+Best parameters:  [ -5.41338031  -2.86453724  -6.05366557  -5.68970854  -1.84768923
+ -14.17016514  -1.88675603  -2.95305016]
+Best objective:  115.96147330143677
+Mean objective:  161.36432765261011
+Inner objective at best sample:  4812033.991002031
+Gradient objective at best sample:  481.19180295287293
+Time elapsed:  3714.9219613075256
+Iteration:  137
+Best parameters:  [ -5.40737089  -2.84582172  -6.05350063  -5.73740595  -1.78600216
+ -14.4475242   -1.83664347  -2.96110447]
+Best objective:  115.73316836669889
+Mean objective:  174.1292569230121
+Inner objective at best sample:  4684245.119542126
+Gradient objective at best sample:  468.41293863737593
+Time elapsed:  3966.1460053920746
+Iteration:  138
+Best parameters:  [ -5.33920098  -2.88833011  -6.00099519  -4.84132577  -1.87248009
+ -13.64192933  -1.92064524  -2.96030819]
+Best objective:  113.34009014992505
+Mean objective:  173.0273351981215
+Inner objective at best sample:  4010105.8808370177
+Gradient objective at best sample:  400.99925407468675
+Time elapsed:  3596.4194617271423
+Iteration:  139
+Best parameters:  [ -5.59986767  -2.77640006  -6.04036731  -4.51161559  -1.91418589
+ -13.49735119  -1.9666822   -2.9459954 ]
+Best objective:  111.46641843629384
+Mean objective:  168.76406501868763
+Inner objective at best sample:  4540270.006186554
+Gradient objective at best sample:  454.01585397681174
+Time elapsed:  3473.9724917411804
+Iteration:  140
+Best parameters:  [ -5.60553907  -2.79383895  -6.16230356  -4.43800481  -1.96721942
+ -13.98846993  -2.02299054  -2.95036276]
+Best objective:  108.73081133772762
+Mean objective:  171.03055709686265
+Inner objective at best sample:  3788913.8217805224
+Gradient objective at best sample:  378.88050909691844
+Time elapsed:  3503.1271498203278
+Iteration:  141
+Best parameters:  [ -5.68635817  -2.74416809  -6.168003    -4.65306984  -1.84298381
+ -13.67174036  -1.89115562  -2.95557913]
+Best objective:  109.9683894744934
+Mean objective:  541.1420398053325
+Inner objective at best sample:  4573508.221731475
+Gradient objective at best sample:  457.3398253342
+Time elapsed:  9501.630883455276
+Iteration:  142
+Best parameters:  [ -5.41027925  -2.79836621  -6.14176162  -4.45978038  -1.83910552
+ -14.16244716  -1.93485453  -2.98144236]
+Best objective:  109.55599840151946
+Mean objective:  320.78843308832546
+Inner objective at best sample:  2751092.9737802506
+Gradient objective at best sample:  275.0983417781849
+Time elapsed:  5740.008740663528
+Iteration:  143
+Best parameters:  [ -5.62671413  -2.73718309  -6.1660978   -4.37505561  -1.90048495
+ -14.16373144  -1.94401058  -2.95697708]
+Best objective:  108.93060848285386
+Mean objective:  287.71154946789903
+Inner objective at best sample:  4033961.9317261926
+Gradient objective at best sample:  403.38530011177096
+Time elapsed:  4205.847558498383
+Iteration:  144
+Best parameters:  [ -5.68424455  -2.77560356  -6.15072838  -4.18870782  -2.03660119
+ -13.75429584  -2.06322287  -2.93850195]
+Best objective:  108.83024592481948
+Mean objective:  156.99803052409956
+Inner objective at best sample:  4230591.437773793
+Gradient objective at best sample:  423.0482607527868
+Time elapsed:  4429.505939722061
+Iteration:  145
+Best parameters:  [ -5.37277689  -2.89599405  -6.19494774  -4.22204946  -1.98563331
+ -14.12364108  -2.06894217  -2.96910586]
+Best objective:  106.92916953970398
+Mean objective:  163.98993079091485
+Inner objective at best sample:  2560825.77002004
+Gradient objective at best sample:  256.07188408505004
+Time elapsed:  4332.828464269638
+Iteration:  146
+Best parameters:  [ -5.48193133  -2.78636613  -6.19280436  -4.05794758  -1.91252168
+ -13.68815308  -1.99998713  -2.96276971]
+Best objective:  106.97390775587351
+Mean objective:  142.13227497833188
+Inner objective at best sample:  3237621.64051603
+Gradient objective at best sample:  323.7514666608274
+Time elapsed:  4357.055414676666
+Iteration:  147
+Best parameters:  [ -5.67439349  -2.68493308  -6.21840321  -4.36173597  -1.80045223
+ -14.0724779   -1.85476462  -2.95326349]
+Best objective:  106.91879059926295
+Mean objective:  192.57936933295986
+Inner objective at best sample:  5084841.808327213
+Gradient objective at best sample:  508.4734889536614
+Time elapsed:  4332.940618991852
+Iteration:  148
+Best parameters:  [ -5.72958634  -2.65140371  -6.32215361  -4.17263136  -1.78160558
+ -14.26561575  -1.84209601  -2.95322064]
+Best objective:  103.34058636290031
+Mean objective:  139.4868505072496
+Inner objective at best sample:  5206491.5634351
+Gradient objective at best sample:  520.6388222848736
+Time elapsed:  4219.663426876068
+Iteration:  149
+Best parameters:  [ -5.59695324  -2.76352013  -6.2054059   -4.13511171  -1.95676081
+ -13.75301694  -2.02848654  -2.96158437]
+Best objective:  106.11019286372554
+Mean objective:  284.67154427879143
+Inner objective at best sample:  3135456.680000986
+Gradient objective at best sample:  313.5350569808122
+Time elapsed:  4301.821574926376
+Iteration:  150
+Best parameters:  [ -5.58059053  -2.76174796  -6.28865378  -3.9859263   -1.85899103
+ -14.34658946  -1.93346313  -2.96350385]
+Best objective:  103.4672884706841
+Mean objective:  160.45222495679218
+Inner objective at best sample:  3680010.0928199757
+Gradient objective at best sample:  367.9906625531505
+Time elapsed:  4242.649254798889
+Iteration:  151
+Best parameters:  [ -5.66128874  -2.71163458  -6.31431387  -4.03137317  -1.83030322
+ -14.77975862  -1.87532529  -2.95322296]
+Best objective:  103.4027804046327
+Mean objective:  163.19409965771416
+Inner objective at best sample:  4900374.259463334
+Gradient objective at best sample:  490.027085668293
+Time elapsed:  4286.340040206909
+Iteration:  152
+Best parameters:  [ -5.53569842  -2.74212006  -6.34929325  -3.95119519  -1.75073018
+ -14.68823689  -1.82801487  -2.96687778]
+Best objective:  102.4069389358608
+Mean objective:  161.69958623428226
+Inner objective at best sample:  4312285.902301669
+Gradient objective at best sample:  431.21834953627337
+Time elapsed:  4433.372098207474
+Iteration:  153
+Best parameters:  [ -5.58629591  -2.70997223  -6.34854788  -3.92199112  -1.75354017
+ -14.34433664  -1.86339106  -2.97616295]
+Best objective:  101.42087861097292
+Mean objective:  153.27919378168227
+Inner objective at best sample:  3423922.2391018695
+Gradient objective at best sample:  342.38208182232586
+Time elapsed:  4236.782435894012
+Iteration:  154
+Best parameters:  [ -5.67421967  -2.67457608  -6.359304    -4.13088859  -1.75529859
+ -14.51094601  -1.83954629  -2.9636076 ]
+Best objective:  101.5924212531068
+Mean objective:  231.08490306379562
+Inner objective at best sample:  4417492.374081777
+Gradient objective at best sample:  441.7390781660524
+Time elapsed:  4262.976477146149
+Iteration:  155
+Best parameters:  [ -5.73245723  -2.64379373  -6.42728479  -3.94955756  -1.72900314
+ -14.31930714  -1.82915874  -2.96903994]
+Best objective:  97.87879926098172
+Mean objective:  153.55496410521692
+Inner objective at best sample:  4117046.0738644092
+Gradient objective at best sample:  411.6948195065148
+Time elapsed:  5283.401751756668
+Iteration:  156
+Best parameters:  [ -5.78220311  -2.63827773  -6.45189163  -3.81910563  -1.8511234
+ -14.07501916  -1.94798008  -2.96236386]
+Best objective:  99.0985745092797
+Mean objective:  169.85945448498012
+Inner objective at best sample:  3601619.7540277215
+Gradient objective at best sample:  360.1520655453212
+Time elapsed:  4269.98860168457
+Iteration:  157
+Best parameters:  [ -5.7486943   -2.58757741  -6.57690056  -3.75412423  -1.67733268
+ -14.58848704  -1.80861735  -2.9834571 ]
+Best objective:  96.18375382736151
+Mean objective:  138.94653640359937
+Inner objective at best sample:  3370552.3123177043
+Gradient objective at best sample:  337.04561285638766
+Time elapsed:  4773.7244329452515
+Iteration:  158
+Best parameters:  [ -5.92045593  -2.57013807  -6.61924986  -3.88722942  -1.66637379
+ -14.96446075  -1.7759998   -2.97881555]
+Best objective:  93.84255365210035
+Mean objective:  198.64366911445072
+Inner objective at best sample:  3915697.202791078
+Gradient objective at best sample:  391.5603360237426
+Time elapsed:  4352.691698551178
+Iteration:  159
+Best parameters:  [ -5.88759557  -2.54380481  -6.54305574  -3.9450849   -1.70949003
+ -14.50254069  -1.86602548  -2.9936931 ]
+Best objective:  95.84141118218231
+Mean objective:  210.03295900360342
+Inner objective at best sample:  2515448.9234506404
+Gradient objective at best sample:  251.53530820394582
+Time elapsed:  3974.813202381134
+Iteration:  160
+Best parameters:  [ -5.82381783  -2.5790165   -6.61815283  -3.85648548  -1.64531886
+ -15.273491    -1.79815484  -2.99245772]
+Best objective:  92.84614029352834
+Mean objective:  155.46443494920453
+Inner objective at best sample:  2947093.906375431
+Gradient objective at best sample:  294.70010602351374
+Time elapsed:  4247.506076574326
+Iteration:  161
+Best parameters:  [ -5.95518924  -2.50265658  -6.67912095  -3.73831224  -1.76183841
+ -14.44364017  -1.90548518  -2.98086928]
+Best objective:  92.47138422415219
+Mean objective:  186.06897571051746
+Inner objective at best sample:  2870521.682038923
+Gradient objective at best sample:  287.0429210654699
+Time elapsed:  5035.600207328796
+Iteration:  162
+Best parameters:  [ -5.91276942  -2.52982503  -6.62131059  -3.95992419  -1.64752347
+ -14.83740252  -1.80507581  -2.99170181]
+Best objective:  95.58131285190002
+Mean objective:  158.96976972431665
+Inner objective at best sample:  2933360.444024721
+Gradient objective at best sample:  293.3264862711869
+Time elapsed:  5026.149872303009
+Iteration:  163
+Best parameters:  [ -5.80513392  -2.54043001  -6.62528409  -3.78118521  -1.68130183
+ -14.61207274  -1.84473234  -2.99127286]
+Best objective:  93.6540633614241
+Mean objective:  158.81438422611507
+Inner objective at best sample:  2717649.8902467247
+Gradient objective at best sample:  271.75562361833636
+Time elapsed:  4210.171503782272
+Iteration:  164
+Best parameters:  [ -6.03390112  -2.44043493  -6.62201448  -3.81722963  -1.65812213
+ -14.65508247  -1.79341228  -2.97054882]
+Best objective:  94.83153035866084
+Mean objective:  149.94121889050777
+Inner objective at best sample:  4247351.045777662
+Gradient objective at best sample:  424.7256214247303
+Time elapsed:  5044.916332244873
+Iteration:  165
+Best parameters:  [ -5.85498412  -2.56752     -6.54612071  -3.94485591  -1.65347555
+ -14.68284621  -1.77766638  -2.98558711]
+Best objective:  96.24416472450096
+Mean objective:  126.39688174509799
+Inner objective at best sample:  3481879.0144423256
+Gradient objective at best sample:  348.17827702776015
+Time elapsed:  4621.582939863205
+Iteration:  166
+Best parameters:  [ -5.95035699  -2.51197752  -6.67486912  -3.7699924   -1.63506533
+ -14.88295623  -1.78004383  -2.99089707]
+Best objective:  91.3589946896052
+Mean objective:  141.89200732635695
+Inner objective at best sample:  3148098.7872241875
+Gradient objective at best sample:  314.80074282294976
+Time elapsed:  4434.717675685883
+Iteration:  167
+Best parameters:  [ -6.07694414  -2.43511196  -6.69971113  -3.73151537  -1.59309309
+ -14.58297578  -1.73253342  -2.97669887]
+Best objective:  91.81862760161638
+Mean objective:  107.3615198725078
+Inner objective at best sample:  4349378.84220225
+Gradient objective at best sample:  434.92870235746483
+Time elapsed:  4718.612811803818
+Iteration:  168
+Best parameters:  [ -6.01456523  -2.5013737   -6.665743    -3.74201465  -1.66188373
+ -14.77576735  -1.79065183  -2.98428893]
+Best objective:  91.64313596499879
+Mean objective:  145.5128706739936
+Inner objective at best sample:  3453626.696471857
+Gradient objective at best sample:  345.3535053335892
+Time elapsed:  4535.131424188614
+Iteration:  169
+Best parameters:  [ -6.20077018  -2.38284284  -6.82959026  -3.68246656  -1.60624167
+ -14.86613572  -1.74501532  -2.97630326]
+Best objective:  89.30389133547303
+Mean objective:  139.7810724943104
+Inner objective at best sample:  4269277.951814669
+Gradient objective at best sample:  426.91886479233335
+Time elapsed:  4198.128167629242
+Iteration:  170
+Best parameters:  [ -6.06703678  -2.45505545  -6.74947048  -3.73895651  -1.59541549
+ -14.83697086  -1.72859541  -2.97925117]
+Best objective:  89.7868292057488
+Mean objective:  141.25048303820006
+Inner objective at best sample:  4225034.413710162
+Gradient objective at best sample:  422.4944626880956
+Time elapsed:  4226.9480676651
+Iteration:  171
+Best parameters:  [ -6.23326964  -2.37917944  -6.77258978  -3.73911854  -1.61867368
+ -14.74743332  -1.75493572  -2.97736666]
+Best objective:  90.16871756789624
+Mean objective:  121.32425482891522
+Inner objective at best sample:  4121099.3983082813
+Gradient objective at best sample:  412.10092295907134
+Time elapsed:  4585.628323793411
+Iteration:  172
+Best parameters:  [ -6.16639871  -2.47669022  -6.7172635   -3.74878949  -1.60738942
+ -14.79281188  -1.73028462  -2.98414948]
+Best objective:  89.29580127484637
+Mean objective:  151.10953094322576
+Inner objective at best sample:  3920049.891722628
+Gradient objective at best sample:  391.9960595921353
+Time elapsed:  4353.094295740128
+Iteration:  173
+Best parameters:  [ -6.28355737  -2.39600359  -6.87028955  -3.65520489  -1.58504385
+ -15.00969349  -1.705259    -2.97401583]
+Best objective:  86.38659254427976
+Mean objective:  150.37405296931766
+Inner objective at best sample:  4838937.526707282
+Gradient objective at best sample:  483.8851140114738
+Time elapsed:  4720.621652603149
+Iteration:  174
+Best parameters:  [ -6.40034137  -2.35121224  -6.88318922  -3.63186716  -1.64815943
+ -14.85351552  -1.77014979  -2.974217  ]
+Best objective:  86.71806388413141
+Mean objective:  110.02038925244892
+Inner objective at best sample:  4230484.636827335
+Gradient objective at best sample:  423.039791876345
+Time elapsed:  4818.232530832291
+Iteration:  175
+Best parameters:  [ -6.32520621  -2.41332584  -6.94792856  -3.64032548  -1.60706476
+ -15.120989    -1.73443434  -2.98656728]
+Best objective:  84.07501436208341
+Mean objective:  142.92306924300001
+Inner objective at best sample:  3732824.215195623
+Gradient objective at best sample:  373.27401401812614
+Time elapsed:  4668.233685970306
+Iteration:  176
+Best parameters:  [ -6.31626159  -2.41730774  -6.88497253  -3.68188053  -1.60016565
+ -14.5283342   -1.70509379  -2.96027356]
+Best objective:  85.77513639175973
+Mean objective:  118.06647034519132
+Inner objective at best sample:  6036666.589014632
+Gradient objective at best sample:  603.658081387824
+Time elapsed:  4125.780292510986
+Iteration:  177
+Best parameters:  [ -6.57006856  -2.36963384  -6.99859542  -3.64586996  -1.71353046
+ -14.55461055  -1.84490987  -2.98396487]
+Best objective:  82.04605654278693
+Mean objective:  143.83432947195652
+Inner objective at best sample:  3108302.0122384587
+Gradient objective at best sample:  310.8219966181916
+Time elapsed:  7126.903176546097
+Iteration:  178
+Best parameters:  [ -6.58624715  -2.36175695  -7.10554251  -3.55890745  -1.70443185
+ -14.4219235   -1.83955209  -2.98197745]
+Best objective:  79.56080495229196
+Mean objective:  142.18451386744104
+Inner objective at best sample:  3235336.741965122
+Gradient objective at best sample:  323.52571811601695
+Time elapsed:  7205.201384782791
+Iteration:  179
+Best parameters:  [ -6.67735563  -2.33572133  -7.04927146  -3.60779771  -1.60976486
+ -14.88954209  -1.71441039  -2.95542912]
+Best objective:  81.97032686429804
+Mean objective:  124.41996266868279
+Inner objective at best sample:  6385781.585558865
+Gradient objective at best sample:  638.5699615232
+Time elapsed:  8003.262777805328
+Iteration:  180
+Best parameters:  [ -6.81177302  -2.22395165  -7.38086273  -3.44964193  -1.51460137
+ -15.74392498  -1.67263517  -2.98469541]
+Best objective:  77.81986527947852
+Mean objective:  95.37080428054387
+Inner objective at best sample:  4278599.736380678
+Gradient objective at best sample:  427.8521916515398
+Time elapsed:  7397.678115367889
+Iteration:  181
+Best parameters:  [ -7.1901307   -2.13967164  -7.50570242  -3.37759151  -1.34771703
+ -15.854153    -1.46951574  -2.97647365]
+Best objective:  78.01420346620841
+Mean objective:  116.04135312729036
+Inner objective at best sample:  7469883.750051083
+Gradient objective at best sample:  746.9805735847616
+Time elapsed:  6965.368697881699
+Iteration:  182
+Best parameters:  [ -7.32508499  -2.10999095  -7.71629369  -3.43450628  -1.56515941
+ -16.04456918  -1.69489166  -2.98606733]
+Best objective:  76.5293260587933
+Mean objective:  134.95323493932054
+Inner objective at best sample:  4067973.7764626555
+Gradient objective at best sample:  406.78972471365967
+Time elapsed:  5666.578231334686
+Iteration:  183
+Best parameters:  [ -7.70138482  -2.04232323  -7.61805316  -3.37692313  -1.6663248
+ -14.90843876  -1.69884221  -2.93107629]
+Best objective:  76.13796534528737
+Mean objective:  157.3527035052628
+Inner objective at best sample:  9818248.95804012
+Gradient objective at best sample:  981.8172820074774
+Time elapsed:  6700.297461748123
+Iteration:  184
+Best parameters:  [ -7.2895929   -2.13446674  -7.68292366  -3.34451388  -1.61971839
+ -15.55876936  -1.79019227  -3.01736302]
+Best objective:  75.34800837414318
+Mean objective:  165.3090600495053
+Inner objective at best sample:  1976602.0175631712
+Gradient objective at best sample:  197.6526669554797
+Time elapsed:  7640.868646144867
+Iteration:  185
+Best parameters:  [ -7.27337183  -2.16950274  -7.53519702  -3.43355804  -1.69368647
+ -15.51114788  -1.83063415  -2.99256486]
+Best objective:  73.73101285529415
+Mean objective:  123.92049556549439
+Inner objective at best sample:  2782428.913510098
+Gradient objective at best sample:  278.2355182497243
+Time elapsed:  7445.727943181992
+Iteration:  186
+Best parameters:  [ -7.35168937  -2.18634551  -7.54915543  -3.38188496  -1.65094704
+ -15.19347944  -1.80242813  -3.00057418]
+Best objective:  73.34289900119815
+Mean objective:  132.60403753331494
+Inner objective at best sample:  2567596.1365814717
+Gradient objective at best sample:  256.75227936824706
+Time elapsed:  7500.055602788925
+Iteration:  187
+Best parameters:  [ -7.73172732  -2.07869239  -7.8428695   -3.35447201  -1.51428479
+ -16.09433786  -1.61590259  -2.9837011 ]
+Best objective:  71.56093320115376
+Mean objective:  89.94291322832304
+Inner objective at best sample:  5024214.492547409
+Gradient objective at best sample:  502.4142931614207
+Time elapsed:  6418.385387420654
+Iteration:  188
+Best parameters:  [ -7.86051764  -2.0947508   -7.98900772  -3.25794511  -1.50213948
+ -15.98313493  -1.62712003  -2.9901122 ]
+Best objective:  70.95623682192213
+Mean objective:  126.58917865795542
+Inner objective at best sample:  4393232.913962719
+Gradient objective at best sample:  439.31619577258977
+Time elapsed:  4719.814737319946
+Iteration:  189
+Best parameters:  [ -7.54553623  -2.12483451  -7.70167812  -3.39932354  -1.58495568
+ -15.54928962  -1.73103034  -2.99843824]
+Best objective:  71.66336185591054
+Mean objective:  135.25738187963745
+Inner objective at best sample:  3077564.8633687706
+Gradient objective at best sample:  307.74932000069145
+Time elapsed:  4689.837957620621
+Iteration:  190
+Best parameters:  [ -7.78776997  -2.06422245  -7.83000367  -3.36753361  -1.6591113
+ -15.69802269  -1.78647521  -2.99239342]
+Best objective:  71.51025837352259
+Mean objective:  115.26502680576274
+Inner objective at best sample:  3066109.75315901
+Gradient objective at best sample:  306.60382429006364
+Time elapsed:  5186.931780576706
+Iteration:  191
+Best parameters:  [ -7.57820157  -2.09641015  -7.80464015  -3.37024447  -1.61234685
+ -16.01994162  -1.76631454  -2.99818588]
+Best objective:  70.94670159967298
+Mean objective:  101.6923671241515
+Inner objective at best sample:  2874838.2729672017
+Gradient objective at best sample:  287.4767326265602
+Time elapsed:  5242.30376124382
+Iteration:  192
+Best parameters:  [ -7.83526927  -2.09256602  -7.96271791  -3.28197168  -1.7299604
+ -15.72616383  -1.89806005  -3.00615888]
+Best objective:  69.40122987827648
+Mean objective:  157.56980393119616
+Inner objective at best sample:  1914476.611487683
+Gradient objective at best sample:  191.44072102578048
+Time elapsed:  5260.56872010231
+Iteration:  193
+Best parameters:  [ -7.85762452  -2.0772363   -7.94034541  -3.31138315  -1.57617251
+ -15.55957053  -1.74265643  -3.01066789]
+Best objective:  69.44675003697162
+Mean objective:  108.6247451231273
+Inner objective at best sample:  2433943.2279216927
+Gradient objective at best sample:  243.38737811716558
+Time elapsed:  7056.719329833984
+Iteration:  194
+Best parameters:  [ -7.81608288  -2.07166561  -8.01152074  -3.25990388  -1.63425791
+ -15.54804453  -1.81426219  -3.01458681]
+Best objective:  69.51912315254839
+Mean objective:  91.25591584403013
+Inner objective at best sample:  1957363.2923315037
+Gradient objective at best sample:  195.7293773208351
+Time elapsed:  6521.726582288742
+Iteration:  195
+Best parameters:  [ -8.3248772   -1.98481718  -8.19989086  -3.22548383  -1.62956657
+ -15.569668    -1.76358878  -2.98622715]
+Best objective:  66.68293389920525
+Mean objective:  93.9687949238115
+Inner objective at best sample:  3526132.495560458
+Gradient objective at best sample:  352.6065812626559
+Time elapsed:  6073.270663976669
+Iteration:  196
+Best parameters:  [ -8.05483415  -2.01524288  -8.13925939  -3.24364952  -1.68512227
+ -15.82305972  -1.85878984  -3.00820709]
+Best objective:  68.28163824546245
+Mean objective:  104.7901604509413
+Inner objective at best sample:  1996059.00668266
+Gradient objective at best sample:  199.59907250444144
+Time elapsed:  6463.895802021027
+Iteration:  197
+Best parameters:  [ -8.54000219  -1.94877827  -8.43490044  -3.17086749  -1.70882829
+ -16.08094431  -1.8658375   -3.00913085]
+Best objective:  67.71309445255524
+Mean objective:  97.84033272188096
+Inner objective at best sample:  1961172.46957022
+Gradient objective at best sample:  196.11047564757675
+Time elapsed:  6217.32278585434
+Iteration:  198
+Best parameters:  [ -8.56501043  -1.90485365  -8.41529151  -3.1854925   -1.60796747
+ -15.56614096  -1.78523593  -3.01154946]
+Best objective:  67.0204060507503
+Mean objective:  102.13032224305186
+Inner objective at best sample:  2185457.732979214
+Gradient objective at best sample:  218.53907125731632
+Time elapsed:  5748.509249448776
+Iteration:  199
+Best parameters:  [ -8.44199715  -1.94064765  -8.28374211  -3.22832257  -1.60710765
+ -15.56793766  -1.7421715   -2.98458687]
+Best objective:  66.3849890600165
+Mean objective:  95.87753797559982
+Inner objective at best sample:  3775638.4445290333
+Gradient objective at best sample:  377.5572059539973
+Time elapsed:  5787.57865357399
+Iteration:  200
+Best parameters:  [ -8.8818929   -1.87486564  -8.5275407   -3.1434103   -1.56455568
+ -15.46134415  -1.71702691  -3.0020985 ]
+Best objective:  66.24354555302774
+Mean objective:  104.4764686899609
+Inner objective at best sample:  2972468.755710866
+Gradient objective at best sample:  297.24025121653125
+Time elapsed:  6296.571216106415
+Iteration:  201
+Best parameters:  [ -9.02885633  -1.85599306  -8.68913122  -3.11442952  -1.61763833
+ -15.47733637  -1.80032872  -3.00689908]
+Best objective:  65.73280157811324
+Mean objective:  82.89569184239588
+Inner objective at best sample:  2279001.7138158972
+Gradient objective at best sample:  227.89359810143193
+Time elapsed:  5277.971300601959
+Iteration:  202
+Best parameters:  [ -8.57229021  -1.93211092  -8.2877663   -3.20187115  -1.67622785
+ -15.41707266  -1.81777594  -2.9874853 ]
+Best objective:  66.55359213980442
+Mean objective:  85.79427978608089
+Inner objective at best sample:  3086783.653073209
+Gradient objective at best sample:  308.6717099481069
+Time elapsed:  5652.599974155426
+Iteration:  203
+Best parameters:  [ -9.39312284  -1.82763926  -8.74875078  -3.12074083  -1.71627482
+ -14.95684429  -1.86855876  -2.99868756]
+Best objective:  65.85310919884317
+Mean objective:  98.46823362204871
+Inner objective at best sample:  2316023.7075581723
+Gradient objective at best sample:  231.59578544489736
+Time elapsed:  5795.941081523895
+Iteration:  204
+Best parameters:  [ -9.03286208  -1.83280071  -8.47638603  -3.17543292  -1.60711483
+ -15.19502639  -1.73077105  -2.97753935]
+Best objective:  65.66062963361463
+Mean objective:  117.78755131040124
+Inner objective at best sample:  4342751.945884017
+Gradient objective at best sample:  434.2686285254384
+Time elapsed:  5517.971125364304
+Iteration:  205
+Best parameters:  [ -9.11388349  -1.85618458  -8.59054165  -3.16807538  -1.65673842
+ -15.27023948  -1.79403602  -2.98834209]
+Best objective:  65.84926345946042
+Mean objective:  93.2857979613444
+Inner objective at best sample:  3204779.732409633
+Gradient objective at best sample:  320.4713883146174
+Time elapsed:  6289.829420804977
+Iteration:  206
+Best parameters:  [ -9.07377589  -1.85765139  -8.5339606   -3.16800927  -1.64409546
+ -15.0788897   -1.76366202  -2.97893304]
+Best objective:  65.25771562999955
+Mean objective:  96.57087811372345
+Inner objective at best sample:  3985751.5351352207
+Gradient objective at best sample:  398.56862774195906
+Time elapsed:  5676.18976855278
+Iteration:  207
+Best parameters:  [ -9.51865346  -1.78043713  -8.92170901  -3.08119446  -1.50777246
+ -15.55869891  -1.64065499  -2.98446109]
+Best objective:  64.60573155640745
+Mean objective:  88.19221846435607
+Inner objective at best sample:  4644590.452450929
+Gradient objective at best sample:  464.4525846719373
+Time elapsed:  5856.0875771045685
+Iteration:  208
+Best parameters:  [ -9.5128449   -1.79723032  -8.84495595  -3.10219831  -1.594528
+ -15.29065789  -1.71358908  -2.97752219]
+Best objective:  64.81435114482491
+Mean objective:  100.85831478159578
+Inner objective at best sample:  4507161.783138887
+Gradient objective at best sample:  450.7096968787742
+Time elapsed:  6020.26348567009
+Iteration:  209
+Best parameters:  [ -9.3994275   -1.80501964  -8.85957798  -3.08859773  -1.61924473
+ -15.48270595  -1.76019744  -2.98994596]
+Best objective:  64.58539157498868
+Mean objective:  85.32294605258345
+Inner objective at best sample:  3333752.3901126506
+Gradient objective at best sample:  333.3687804721076
+Time elapsed:  6258.29013133049
+Iteration:  210
+Best parameters:  [ -9.65211236  -1.74621871  -8.87860096  -3.09728486  -1.57302408
+ -15.32484991  -1.69055911  -2.97789398]
+Best objective:  64.58063006967689
+Mean objective:  126.21352691679368
+Inner objective at best sample:  4696861.236276473
+Gradient objective at best sample:  469.67966556464035
+Time elapsed:  5708.245037555695
+Iteration:  211
+Best parameters:  [ -9.6906337   -1.75202585  -8.93427687  -3.07569881  -1.64613696
+ -15.34132509  -1.76664169  -2.97979494]
+Best objective:  64.5134205855569
+Mean objective:  112.94258763009323
+Inner objective at best sample:  3906831.656442713
+Gradient objective at best sample:  390.67671430221276
+Time elapsed:  5673.439924001694
+Iteration:  212
+Best parameters:  [ -9.84622745  -1.72251952  -9.06587913  -3.04267726  -1.58529325
+ -15.40033031  -1.6968323   -2.97451757]
+Best objective:  64.44692298410042
+Mean objective:  78.93256663558347
+Inner objective at best sample:  4904262.107992838
+Gradient objective at best sample:  490.41976610698543
+Time elapsed:  5308.623730659485
+Iteration:  213
+Best parameters:  [ -9.96230036  -1.72249356  -9.06760641  -3.0581214   -1.63797176
+ -15.20988127  -1.75410123  -2.97420694]
+Best objective:  64.3893936255545
+Mean objective:  103.71239166832076
+Inner objective at best sample:  4382522.105613928
+Gradient objective at best sample:  438.24577162203025
+Time elapsed:  5642.820944547653
+Iteration:  214
+Best parameters:  [ -9.98175138  -1.71765752  -9.12492746  -3.04298011  -1.60809339
+ -15.51128819  -1.72580839  -2.97816438]
+Best objective:  64.21407585590858
+Mean objective:  131.2820303852482
+Inner objective at best sample:  4356897.396893871
+Gradient objective at best sample:  435.6833182818015
+Time elapsed:  5090.613764286041
+Iteration:  215
+Best parameters:  [ -9.91334897  -1.7287972   -9.05811099  -3.05820058  -1.59914305
+ -15.32935239  -1.70329572  -2.97441912]
+Best objective:  64.4452851980523
+Mean objective:  138.67128298401042
+Inner objective at best sample:  4866303.357374532
+Gradient objective at best sample:  486.6238912089334
+Time elapsed:  5497.159405231476
+Iteration:  216
+Best parameters:  [ -9.86492895  -1.73089205  -9.04220016  -3.05608442  -1.59356111
+ -15.42427175  -1.71576479  -2.98080184]
+Best objective:  64.21272750730883
+Mean objective:  96.16694763586241
+Inner objective at best sample:  4255542.4562150575
+Gradient objective at best sample:  425.547824348755
+Time elapsed:  5396.138345956802
+Iteration:  217
+Best parameters:  [-10.09634422  -1.69426595  -9.23308716  -3.0216606   -1.51066431
+ -15.49413503  -1.62877916  -2.98020662]
+Best objective:  64.33416699834004
+Mean objective:  105.91204758445416
+Inner objective at best sample:  5126624.404099757
+Gradient objective at best sample:  512.6560069932759
+Time elapsed:  5908.71599817276
+Iteration:  218
+Best parameters:  [-10.25251685  -1.67267733  -9.28636613  -3.00763298  -1.55048118
+ -15.54066331  -1.66196567  -2.97709315]
+Best objective:  64.23568751545005
+Mean objective:  99.13578855847938
+Inner objective at best sample:  5052839.832280005
+Gradient objective at best sample:  505.27755965924894
+Time elapsed:  5073.141925811768
+Iteration:  219
+Best parameters:  [-10.14770822  -1.67376072  -9.19988508  -3.025904    -1.51519572
+ -15.48532348  -1.63573939  -2.97841916]
+Best objective:  64.23611578728317
+Mean objective:  89.1832622841518
+Inner objective at best sample:  5192509.844164845
+Gradient objective at best sample:  519.2445608049057
+Time elapsed:  6019.701692342758
+Iteration:  220
+Best parameters:  [ -9.83673226  -1.71866784  -9.07059539  -3.05297099  -1.53027333
+ -15.44739516  -1.66488027  -2.98272456]
+Best objective:  64.28032278871613
+Mean objective:  116.72672245825576
+Inner objective at best sample:  4542568.405955557
+Gradient objective at best sample:  454.2504125632768
+Time elapsed:  6106.02828001976
+Iteration:  221
+Best parameters:  [ -9.86513732  -1.7305483   -9.08940395  -3.05258857  -1.58043687
+ -15.53590546  -1.69603573  -2.97654317]
+Best objective:  64.24758293371968
+Mean objective:  135.58646029184612
+Inner objective at best sample:  4749395.486055538
+Gradient objective at best sample:  474.93312384726045
+Time elapsed:  5968.213025093079
+Iteration:  222
+Best parameters:  [ -9.8268639   -1.72844666  -9.09185477  -3.04891044  -1.56855048
+ -15.531861    -1.70877998  -2.98835927]
+Best objective:  64.19215245987611
+Mean objective:  103.87686981481953
+Inner objective at best sample:  3792442.086824626
+Gradient objective at best sample:  379.2377894672166
+Time elapsed:  6559.305872678757
+Iteration:  223
+Best parameters:  [-10.51461842  -1.64049275  -9.36497698  -2.99475549  -1.59870684
+ -14.99563127  -1.72424209  -2.97748266]
+Best objective:  64.17652121140708
+Mean objective:  71.15525592889071
+Inner objective at best sample:  4399691.913803793
+Gradient objective at best sample:  439.96277372825807
+Time elapsed:  6747.119864463806
+Iteration:  224
+Best parameters:  [-10.17566351  -1.68411819  -9.241249    -3.01607206  -1.56200431
+ -15.35720254  -1.69656683  -2.98341129]
+Best objective:  64.14240960116584
+Mean objective:  102.74422911389806
+Inner objective at best sample:  4216586.301124901
+Gradient objective at best sample:  421.65221587152996
+Time elapsed:  6850.079446554184
+Iteration:  225
+Best parameters:  [-10.20881039  -1.67143126  -9.26302361  -3.01612277  -1.54286573
+ -15.37033464  -1.66671799  -2.97900329]
+Best objective:  64.10393817053148
+Mean objective:  93.07099551556605
+Inner objective at best sample:  4831246.8572053285
+Gradient objective at best sample:  483.1182753267158
+Time elapsed:  6898.802888870239
+Iteration:  226
+Best parameters:  [-10.22510394  -1.68082372  -9.26278717  -3.01483159  -1.56223081
+ -15.24208914  -1.69355998  -2.98442252]
+Best objective:  64.13172486149945
+Mean objective:  98.78490795687365
+Inner objective at best sample:  4182430.503101859
+Gradient objective at best sample:  418.23663713769974
+Time elapsed:  6262.981337308884
+Iteration:  227
+Best parameters:  [-10.04350002  -1.69723472  -9.14087986  -3.04042852  -1.56283235
+ -15.23402524  -1.68774389  -2.97926439]
+Best objective:  64.13752454977791
+Mean objective:  97.41848341634072
+Inner objective at best sample:  4605346.971256005
+Gradient objective at best sample:  460.5282833731455
+Time elapsed:  6443.630766868591
+Iteration:  228
+Best parameters:  [-10.20478878  -1.67275143  -9.26304813  -3.01377055  -1.54351271
+ -15.36820027  -1.66797892  -2.9802627 ]
+Best objective:  64.11770465350966
+Mean objective:  109.41963561731565
+Inner objective at best sample:  4718440.47881576
+Gradient objective at best sample:  471.8376361111107
+Time elapsed:  5846.485783576965
+Iteration:  229
+Best parameters:  [-10.14526925  -1.68112831  -9.22491684  -3.02105051  -1.56050246
+ -15.35176057  -1.68754366  -2.98125752]
+Best objective:  64.11211428698603
+Mean objective:  97.39091495752206
+Inner objective at best sample:  4460092.228001938
+Gradient objective at best sample:  446.0028115887651
+Time elapsed:  6673.86523771286
+Iteration:  230
+Best parameters:  [-10.21331584  -1.67899185  -9.2398074   -3.01983626  -1.56785226
+ -15.19793233  -1.6995849   -2.98421219]
+Best objective:  64.08885466507559
+Mean objective:  104.35819374669396
+Inner objective at best sample:  4144930.074791829
+Gradient objective at best sample:  414.4865985937164
+Time elapsed:  6807.463001728058
+Iteration:  231
+Best parameters:  [-10.35840602  -1.65788927  -9.34443062  -3.00030357  -1.55528766
+ -15.21624509  -1.6854861   -2.9825668 ]
+Best objective:  64.09136780220841
+Mean objective:  97.68226378849054
+Inner objective at best sample:  4379746.484713348
+Gradient objective at best sample:  437.9682393345545
+Time elapsed:  7206.380673408508
+Iteration:  232
+Best parameters:  [-10.18762098  -1.68122825  -9.23490171  -3.01927449  -1.55642113
+ -15.32889581  -1.68352533  -2.98098102]
+Best objective:  64.09818824991038
+Mean objective:  100.06879374026077
+Inner objective at best sample:  4515680.984375027
+Gradient objective at best sample:  451.5616886186777
+Time elapsed:  6786.779433727264
+Iteration:  233
+Best parameters:  [-10.38829395  -1.6542596   -9.33991639  -3.00020844  -1.56852309
+ -15.2444837   -1.69591338  -2.98189777]
+Best objective:  64.08306476190839
+Mean objective:  122.68812457282398
+Inner objective at best sample:  4340969.532877303
+Gradient objective at best sample:  434.0905449812541
+Time elapsed:  7091.347099542618
+Iteration:  234
+Best parameters:  [-10.24618263  -1.67427319  -9.27916164  -3.01198462  -1.57087514
+ -15.3296439   -1.69103777  -2.97822125]
+Best objective:  64.09670222374895
+Mean objective:  87.88001009559838
+Inner objective at best sample:  4661998.207408693
+Gradient objective at best sample:  466.1934110706469
+Time elapsed:  6869.095530748367
+Iteration:  235
+Best parameters:  [-10.15644133  -1.6859845   -9.21226724  -3.02553349  -1.57918511
+ -15.27666388  -1.70557351  -2.98099734]
+Best objective:  64.09128496010992
+Mean objective:  131.83407209208676
+Inner objective at best sample:  4320592.418006971
+Gradient objective at best sample:  432.052832672201
+Time elapsed:  6318.890864372253
+Iteration:  236
+Best parameters:  [-10.36663833  -1.65534587  -9.34837538  -2.99901355  -1.55934624
+ -15.26518774  -1.68898815  -2.98284186]
+Best objective:  64.08678747520496
+Mean objective:  108.08752130949516
+Inner objective at best sample:  4331544.681520918
+Gradient objective at best sample:  433.1480594733443
+Time elapsed:  6738.043873786926
+Iteration:  237
+Best parameters:  [-10.37841251  -1.65373763  -9.33651093  -3.00249622  -1.56021174
+ -15.2304946   -1.68805577  -2.98191426]
+Best objective:  64.0800843984851
+Mean objective:  91.32239697952012
+Inner objective at best sample:  4407812.076784061
+Gradient objective at best sample:  440.7747996699663
+Time elapsed:  6382.447102546692
+Iteration:  238
+Best parameters:  [-10.34435487  -1.65858423  -9.31247493  -3.00590303  -1.56582039
+ -15.26192918  -1.69260349  -2.98164781]
+Best objective:  64.07812738517121
+Mean objective:  106.48018137736004
+Inner objective at best sample:  4388581.59563656
+Gradient objective at best sample:  438.85175175091746
+Time elapsed:  6321.627136230469
+Iteration:  239
+Best parameters:  [-10.3019413   -1.66358747  -9.31036619  -3.00741221  -1.56145988
+ -15.29730153  -1.68975554  -2.98192385]
+Best objective:  64.08239063351425
+Mean objective:  90.41445123500218
+Inner objective at best sample:  4391048.78849
+Gradient objective at best sample:  439.09847060993667
+Time elapsed:  6853.278623819351
+Iteration:  240
+Best parameters:  [-10.34701839  -1.65781397  -9.32004212  -3.00501246  -1.57019761
+ -15.23277709  -1.69948864  -2.9824097 ]
+Best objective:  64.08136970861801
+Mean objective:  121.6669731625046
+Inner objective at best sample:  4270917.624528626
+Gradient objective at best sample:  427.0853543158918
+Time elapsed:  6451.453017950058
+Iteration:  241
+Best parameters:  [-10.33259968  -1.66149762  -9.3182198   -3.00470835  -1.57005607
+ -15.24207397  -1.69811753  -2.98197972]
+Best objective:  64.08006613814989
+Mean objective:  96.70042892911276
+Inner objective at best sample:  4314658.356073742
+Gradient objective at best sample:  431.45942760076036
+Time elapsed:  5648.846586227417
+Iteration:  242
+Best parameters:  [-10.32170111  -1.66167594  -9.30944414  -3.00645928  -1.57109168
+ -15.23590194  -1.70139901  -2.98290244]
+Best objective:  64.08146429081208
+Mean objective:  141.60421310558104
+Inner objective at best sample:  4219326.912250699
+Gradient objective at best sample:  421.9262830786408
+Time elapsed:  5993.77672624588
+Iteration:  243
+Best parameters:  [-10.36660825  -1.65759566  -9.32579147  -3.00406119  -1.57235195
+ -15.22238457  -1.69990972  -2.98190731]
+Best objective:  64.07885344741665
+Mean objective:  91.689932589107
+Inner objective at best sample:  4305225.509224761
+Gradient objective at best sample:  430.5161430371314
+Time elapsed:  5656.929315805435
+Iteration:  244
+Best parameters:  [-10.35721587  -1.65907467  -9.31823673  -3.00639502  -1.57112775
+ -15.19576975  -1.70342902  -2.98413772]
+Best objective:  64.0329684146983
+Mean objective:  100.37604515024307
+Inner objective at best sample:  4126826.464978922
+Gradient objective at best sample:  412.6762432010508
+Time elapsed:  6365.293168783188
+Iteration:  245
+Best parameters:  [-10.32765876  -1.66294785  -9.30564479  -3.00837799  -1.56937047
+ -15.23010634  -1.69749896  -2.98215599]
+Best objective:  64.07905030524427
+Mean objective:  118.22595419183624
+Inner objective at best sample:  4307898.052522605
+Gradient objective at best sample:  430.78339734723
+Time elapsed:  5712.746567487717
+Iteration:  246
+Best parameters:  [-10.28364626  -1.66808788  -9.28061871  -3.01224831  -1.56922465
+ -15.26717949  -1.69710157  -2.98192866]
+Best objective:  64.07634234803852
+Mean objective:  132.61919500332888
+Inner objective at best sample:  4327378.507264686
+Gradient objective at best sample:  432.7314430922338
+Time elapsed:  5807.238815546036
+Iteration:  247
+Best parameters:  [-10.38986179  -1.65369241  -9.32834946  -3.00304997  -1.56659802
+ -15.19857582  -1.69489326  -2.98200555]
+Best objective:  64.07522008256463
+Mean objective:  110.34909050293997
+Inner objective at best sample:  4340385.4398844475
+Gradient objective at best sample:  434.03213646643644
+Time elapsed:  7045.783940315247
+Iteration:  248
+Best parameters:  [-10.32728917  -1.66138018  -9.30047798  -3.00855838  -1.57236865
+ -15.23133073  -1.70019034  -2.98169777]
+Best objective:  64.07690628041458
+Mean objective:  101.77471082349503
+Inner objective at best sample:  4316396.410699148
+Gradient objective at best sample:  431.6332333792867
+Time elapsed:  6175.429670572281
+Iteration:  249
+Best parameters:  [-10.35664438  -1.6579872   -9.30929929  -3.0073414   -1.5680492
+ -15.19651719  -1.69424296  -2.98079521]
+Best objective:  64.07522609330944
+Mean objective:  89.51549144737034
+Inner objective at best sample:  4434595.063372751
+Gradient objective at best sample:  443.45309881466574
+Time elapsed:  6747.735377073288
+Iteration:  250
+Best parameters:  [-10.38584461  -1.65400212  -9.32299255  -3.00430237  -1.56871942
+ -15.20290999  -1.69547739  -2.98121371]
+Best objective:  64.07464509885152
+Mean objective:  111.47885188084814
+Inner objective at best sample:  4393274.289715398
+Gradient objective at best sample:  439.3210215070299
+Time elapsed:  7104.114213705063
+Iteration:  251
+Best parameters:  [-10.35719878  -1.65706032  -9.30791132  -3.00699587  -1.56440324
+ -15.19774997  -1.6917549   -2.98160995]
+Best objective:  64.07360272102822
+Mean objective:  103.90618236973917
+Inner objective at best sample:  4397347.950269542
+Gradient objective at best sample:  439.72838766668207
+Time elapsed:  5900.343545913696
+Iteration:  252
+Best parameters:  [-10.36935859  -1.65665497  -9.31115943  -3.00675686  -1.56908885
+ -15.20920876  -1.69755174  -2.98232466]
+Best objective:  64.07330618624351
+Mean objective:  108.16088453184716
+Inner objective at best sample:  4295243.076325932
+Gradient objective at best sample:  429.5179003019745
+Time elapsed:  6610.055773019791
+Iteration:  253
+Best parameters:  [-10.35568012  -1.65791389  -9.30454887  -3.00793195  -1.56785748
+ -15.21344086  -1.69399164  -2.98120012]
+Best objective:  64.07373268241776
+Mean objective:  87.62717522339001
+Inner objective at best sample:  4408820.647439082
+Gradient objective at best sample:  440.87565737063994
+Time elapsed:  6479.187770366669
+Iteration:  254
+Best parameters:  [-10.28757415  -1.66630585  -9.2623938   -3.01579138  -1.56838419
+ -15.23040517  -1.69543767  -2.98143231]
+Best objective:  64.07382905382532
+Mean objective:  88.57574393977094
+Inner objective at best sample:  4377850.255198957
+Gradient objective at best sample:  437.77861813699036
+Time elapsed:  5998.320548534393
+Iteration:  255
+Best parameters:  [-10.37651093  -1.65498219  -9.30983973  -3.00687587  -1.56822792
+ -15.20974805  -1.69475503  -2.98121032]
+Best objective:  64.07226569713886
+Mean objective:  87.91798496497151
+Inner objective at best sample:  4400432.623477704
+Gradient objective at best sample:  440.03685512120074
+Time elapsed:  6192.2560567855835
+Iteration:  256
+Best parameters:  [-10.38048267  -1.65469928  -9.30412476  -3.00834521  -1.56573654
+ -15.18899354  -1.69317697  -2.98165208]
+Best objective:  64.07008299605442
+Mean objective:  94.69196198727803
+Inner objective at best sample:  4381689.882019638
+Gradient objective at best sample:  438.1625811936642
+Time elapsed:  6841.05348777771
+Iteration:  257
+Best parameters:  [-10.41711799  -1.65021179  -9.3263515   -3.0044134   -1.57139866
+ -15.15679626  -1.69976219  -2.98219351]
+Best objective:  63.24145713384524
+Mean objective:  104.34038375826965
+Inner objective at best sample:  4296511.223291437
+Gradient objective at best sample:  429.64479818343034
+Time elapsed:  5811.461891174316
+Iteration:  258
+Best parameters:  [-10.41199161  -1.64996231  -9.31219961  -3.00720397  -1.56500583
+ -15.12911726  -1.69188278  -2.98147739]
+Best objective:  64.06989998221185
+Mean objective:  93.17550001271974
+Inner objective at best sample:  4406524.543922053
+Gradient objective at best sample:  440.6460474022071
+Time elapsed:  4800.577307462692
+Iteration:  259
+Best parameters:  [-10.34997749  -1.65835292  -9.27341385  -3.01424911  -1.56707865
+ -15.18256294  -1.69285241  -2.98057469]
+Best objective:  64.06993821004266
+Mean objective:  90.67246110784521
+Inner objective at best sample:  4463440.654493226
+Gradient objective at best sample:  446.3376584555016
+Time elapsed:  4817.923575878143
+Iteration:  260
+Best parameters:  [-10.42420904  -1.64761193  -9.29524973  -3.01038821  -1.56265605
+ -15.12333089  -1.68795744  -2.98074539]
+Best objective:  64.06769727895635
+Mean objective:  103.92415663112129
+Inner objective at best sample:  4496606.768920224
+Gradient objective at best sample:  449.6542701222945
+Time elapsed:  5513.500509262085
+Iteration:  261
+Best parameters:  [-10.54274577  -1.63328751  -9.32402109  -3.00456609  -1.57002992
+ -15.02419295  -1.69403506  -2.97991897]
+Best objective:  64.062118904735
+Mean objective:  100.857060233711
+Inner objective at best sample:  4503189.235534979
+Gradient objective at best sample:  450.3125173416074
+Time elapsed:  5978.916969537735
+Iteration:  262
+Best parameters:  [-10.54254652  -1.63299582  -9.30657967  -3.0090145   -1.56668805
+ -14.98956152  -1.69194742  -2.98089693]
+Best objective:  64.06091770876168
+Mean objective:  128.0754986402298
+Inner objective at best sample:  4450211.523812252
+Gradient objective at best sample:  445.0147462894543
+Time elapsed:  5616.135312080383
+Iteration:  263
+Best parameters:  [-10.54579515  -1.63228227  -9.3215911   -3.00528366  -1.57009193
+ -15.01482637  -1.69547662  -2.98054206]
+Best objective:  64.0614648142564
+Mean objective:  128.8405128822775
+Inner objective at best sample:  4443184.636201211
+Gradient objective at best sample:  444.3120574736397
+Time elapsed:  6448.529570102692
+Iteration:  264
+Best parameters:  [-10.5035969   -1.63718223  -9.30935305  -3.00655179  -1.57272865
+ -15.01061971  -1.70097977  -2.98217328]
+Best objective:  64.0189013059672
+Mean objective:  102.68143224752785
+Inner objective at best sample:  4281081.001800985
+Gradient objective at best sample:  428.1016982899679
+Time elapsed:  6130.708234071732
+Iteration:  265
+Best parameters:  [-10.58418817  -1.62742575  -9.29179564  -3.01102127  -1.57434904
+ -14.88389691  -1.70020377  -2.98055039]
+Best objective:  64.0543103164718
+Mean objective:  138.51613508631135
+Inner objective at best sample:  4399528.303614901
+Gradient objective at best sample:  439.94642493045853
+Time elapsed:  5590.640736818314
+Iteration:  266
+Best parameters:  [-10.60518876  -1.62634659  -9.31707371  -3.00600268  -1.57353455
+ -14.96979539  -1.69601266  -2.97978858]
+Best objective:  64.05916652772618
+Mean objective:  109.75050302102265
+Inner objective at best sample:  4498157.930742209
+Gradient objective at best sample:  449.80938715756815
+Time elapsed:  6186.745976448059
+Iteration:  267
+Best parameters:  [-10.70039589  -1.61425555  -9.33056634  -3.00348836  -1.5735921
+ -14.81869283  -1.69651361  -2.97956518]
+Best objective:  64.05150268122917
+Mean objective:  97.60052697516936
+Inner objective at best sample:  4508377.141731957
+Gradient objective at best sample:  450.83130902292754
+Time elapsed:  5708.160564422607
+Iteration:  268
+Best parameters:  [-10.79454089  -1.60255038  -9.30414215  -3.00887242  -1.5766556
+ -14.65395822  -1.70129116  -2.98095235]
+Best objective:  64.04085853010481
+Mean objective:  98.77352887156067
+Inner objective at best sample:  4365149.359634116
+Gradient objective at best sample:  436.5085318775586
+Time elapsed:  6291.25674533844
+Iteration:  269
+Best parameters:  [-10.79781426  -1.60095583  -9.28325192  -3.0127501   -1.58108614
+ -14.60273739  -1.70189585  -2.97862106]
+Best objective:  64.04845725205294
+Mean objective:  112.578017987765
+Inner objective at best sample:  4531472.399386711
+Gradient objective at best sample:  453.14083509294596
+Time elapsed:  4672.886383056641
+Iteration:  270
+Best parameters:  [-10.89643504  -1.58919954  -9.27514301  -3.01434527  -1.5776232
+ -14.43582955  -1.69905334  -2.97933683]
+Best objective:  64.03449526139441
+Mean objective:  72.79060574373902
+Inner objective at best sample:  4505119.3494268
+Gradient objective at best sample:  450.5055314931539
+Time elapsed:  4999.376337051392
+Iteration:  271
+Best parameters:  [-10.95568712  -1.58338118  -9.31430674  -3.00724602  -1.57652438
+ -14.44230212  -1.70519704  -2.9826431 ]
+Best objective:  64.02994602223826
+Mean objective:  106.25718962629139
+Inner objective at best sample:  4208227.790561527
+Gradient objective at best sample:  420.81637606155044
+Time elapsed:  4356.997875928879
+Iteration:  272
+Best parameters:  [-10.97018715  -1.58281915  -9.26866666  -3.01529262  -1.57984666
+ -14.29133061  -1.71431175  -2.98544409]
+Best objective:  64.03677033433405
+Mean objective:  142.40695979111544
+Inner objective at best sample:  3940689.8025126355
+Gradient objective at best sample:  394.0625765742301
+Time elapsed:  4735.973788022995
+Iteration:  273
+Best parameters:  [-11.11217449  -1.56343964  -9.23277178  -3.02361708  -1.57516976
+ -14.09909336  -1.70039214  -2.98056861]
+Best objective:  64.01534564954758
+Mean objective:  89.1946857188996
+Inner objective at best sample:  4398210.716201905
+Gradient objective at best sample:  439.81467008562555
+Time elapsed:  5391.035451889038
+Iteration:  274
+Best parameters:  [-11.30766802  -1.53993206  -9.24660658  -3.01941746  -1.58197192
+ -13.89430803  -1.70474668  -2.98008477]
+Best objective:  64.00804129930742
+Mean objective:  86.63119278637751
+Inner objective at best sample:  4398923.7205570955
+Gradient objective at best sample:  439.88597125157963
+Time elapsed:  4492.319318532944
+Iteration:  275
+Best parameters:  [-11.41414478  -1.52648629  -9.26233474  -3.01748335  -1.56835347
+ -13.70288335  -1.69794858  -2.98280002]
+Best objective:  63.99520267003293
+Mean objective:  106.82323636202116
+Inner objective at best sample:  4257453.376686028
+Gradient objective at best sample:  425.7389381483358
+Time elapsed:  4604.6437821388245
+Iteration:  276
+Best parameters:  [-11.31540302  -1.540456    -9.22549451  -3.02279898  -1.56779755
+ -13.76065426  -1.69493066  -2.98134279]
+Best objective:  63.98755558632451
+Mean objective:  81.3901797878224
+Inner objective at best sample:  4388547.222700023
+Gradient objective at best sample:  438.8483235144436
+Time elapsed:  4509.893050670624
+Iteration:  277
+Best parameters:  [-11.42587725  -1.52843704  -9.26333457  -3.01665432  -1.57131379
+ -13.79522963  -1.70063083  -2.98302751]
+Best objective:  63.9949830188923
+Mean objective:  107.23112893898262
+Inner objective at best sample:  4220033.8685894655
+Gradient objective at best sample:  421.9969873606446
+Time elapsed:  4545.3290095329285
+Iteration:  278
+Best parameters:  [-11.83563209  -1.48434421  -9.21927669  -3.02282033  -1.58550381
+ -13.07379334  -1.70607904  -2.97848381]
+Best objective:  63.98726344352781
+Mean objective:  113.09034120911207
+Inner objective at best sample:  4504284.714267206
+Gradient objective at best sample:  450.42207270037625
+Time elapsed:  4273.7243320941925
+Iteration:  279
+Best parameters:  [-12.17691218  -1.44143494  -9.25763253  -3.01527538  -1.56467718
+ -12.7439963   -1.68728388  -2.98079352]
+Best objective:  63.97683047900818
+Mean objective:  94.06332839188248
+Inner objective at best sample:  4506574.756800964
+Gradient objective at best sample:  450.6510779970485
+Time elapsed:  4550.2145981788635
+Iteration:  280
+Best parameters:  [-12.06661812  -1.45559477  -9.28510123  -3.00932239  -1.5625746
+ -13.05616475  -1.68141331  -2.97883688]
+Best objective:  63.989474835855795
+Mean objective:  120.10143620310896
+Inner objective at best sample:  4711230.665626423
+Gradient objective at best sample:  471.11666761515875
+Time elapsed:  4270.473832130432
+Iteration:  281
+Best parameters:  [-12.26286988  -1.43291726  -9.10367912  -3.04412115  -1.55866817
+ -12.38749209  -1.6762288   -2.97654876]
+Best objective:  63.9812536551385
+Mean objective:  78.10232687900263
+Inner objective at best sample:  4938085.514367533
+Gradient objective at best sample:  493.8021533113878
+Time elapsed:  3797.9102981090546
+Iteration:  282
+Best parameters:  [-12.04801995  -1.45997571  -9.19185225  -3.02800961  -1.57193237
+ -12.870152    -1.69372296  -2.97922167]
+Best objective:  63.96843553195756
+Mean objective:  104.68416883490589
+Inner objective at best sample:  4561619.785190964
+Gradient objective at best sample:  456.15558167554315
+Time elapsed:  3795.83557844162
+Iteration:  283
+Best parameters:  [-12.05254887  -1.45401631  -9.23421109  -3.02176216  -1.55996775
+ -12.82286016  -1.68058542  -2.9787115 ]
+Best objective:  63.97114063501725
+Mean objective:  108.69400879848382
+Inner objective at best sample:  4724151.118505404
+Gradient objective at best sample:  472.4087147364769
+Time elapsed:  4212.915811777115
+Iteration:  284
+Best parameters:  [-11.89834961  -1.47347973  -9.17634922  -3.03192722  -1.56795469
+ -12.97062077  -1.69146544  -2.97994543]
+Best objective:  63.96160508286989
+Mean objective:  100.57810201005029
+Inner objective at best sample:  4526429.526904747
+Gradient objective at best sample:  452.63655652996636
+Time elapsed:  3939.681536912918
+Iteration:  285
+Best parameters:  [-11.86776483  -1.47677013  -9.17564587  -3.03214447  -1.57099817
+ -13.00254983  -1.69378545  -2.97998689]
+Best objective:  63.96692912958193
+Mean objective:  98.83140678777221
+Inner objective at best sample:  4504151.685461148
+Gradient objective at best sample:  450.4087718532018
+Time elapsed:  4624.636687278748
+Iteration:  286
+Best parameters:  [-12.25844314  -1.43325325  -9.15595673  -3.0363852   -1.56795194
+ -12.49871091  -1.68890594  -2.9786676 ]
+Best objective:  63.962935129642545
+Mean objective:  106.86410462835815
+Inner objective at best sample:  4648560.734731009
+Gradient objective at best sample:  464.849677179588
+Time elapsed:  4476.7545466423035
+Iteration:  287
+Best parameters:  [-11.99990628  -1.46312508  -9.22150517  -3.02469127  -1.57165051
+ -12.88043606  -1.69958184  -2.98172743]
+Best objective:  63.96218832852478
+Mean objective:  126.38528872168041
+Inner objective at best sample:  4320101.3170494335
+Gradient objective at best sample:  432.0037354861105
+Time elapsed:  4286.159056663513
+Iteration:  288
+Best parameters:  [-12.13845633  -1.4494168   -9.16556896  -3.03292     -1.57041781
+ -12.64085453  -1.69587559  -2.98136407]
+Best objective:  63.96120386536781
+Mean objective:  92.23237750266986
+Inner objective at best sample:  4383360.615544992
+Gradient objective at best sample:  438.3296654341126
+Time elapsed:  4111.4870364665985
+Iteration:  289
+Best parameters:  [-12.06573078  -1.45520574  -9.23679379  -3.02081946  -1.56561221
+ -12.86117997  -1.69274107  -2.98147547]
+Best objective:  63.95283980908056
+Mean objective:  86.09947002514386
+Inner objective at best sample:  4399186.806018019
+Gradient objective at best sample:  439.912285317821
+Time elapsed:  3997.326496362686
+Iteration:  290
+Best parameters:  [-12.14362297  -1.44778434  -9.20850111  -3.02481071  -1.57058525
+ -12.64702959  -1.69914539  -2.98226536]
+Best objective:  63.952412304135144
+Mean objective:  83.2666877108105
+Inner objective at best sample:  4286183.450780891
+Gradient objective at best sample:  428.6119498368586
+Time elapsed:  4535.808591604233
+Iteration:  291
+Best parameters:  [-12.03496368  -1.45780135  -9.20734242  -3.02622148  -1.56812792
+ -12.74695572  -1.6944491   -2.9806618 ]
+Best objective:  63.95520926464206
+Mean objective:  98.84386592712873
+Inner objective at best sample:  4442582.752914434
+Gradient objective at best sample:  444.25187977051695
+Time elapsed:  3991.908825159073
+Iteration:  292
+Best parameters:  [-12.15882984  -1.44618502  -9.22183629  -3.02303142  -1.57910645
+ -12.6371515   -1.70344819  -2.98010497]
+Best objective:  63.95487936774751
+Mean objective:  110.62847935900922
+Inner objective at best sample:  4406063.465840928
+Gradient objective at best sample:  440.5999510961561
+Time elapsed:  3671.6464989185333
+Iteration:  293
+Best parameters:  [-12.29666246  -1.43013096  -9.21627446  -3.02369447  -1.56440181
+ -12.42456292  -1.69141269  -2.98081837]
+Best objective:  63.94562887882125
+Mean objective:  86.57543859878582
+Inner objective at best sample:  4457477.793660499
+Gradient objective at best sample:  445.7413848031621
+Time elapsed:  3662.6391172409058
+Iteration:  294
+Best parameters:  [-12.22411989  -1.43897231  -9.21936126  -3.02410333  -1.5647586
+ -12.55522923  -1.68833267  -2.97924301]
+Best objective:  63.95196701555526
+Mean objective:  119.16298871223303
+Inner objective at best sample:  4605720.564229131
+Gradient objective at best sample:  460.5656612262115
+Time elapsed:  4254.535300016403
+Iteration:  295
+Best parameters:  [-12.48054798  -1.40917515  -9.20534326  -3.02532095  -1.55649255
+ -12.1542952   -1.68534372  -2.98231391]
+Best objective:  63.94599924338518
+Mean objective:  97.67540994489187
+Inner objective at best sample:  4403257.4877238665
+Gradient objective at best sample:  440.31935417246234
+Time elapsed:  4750.700826406479
+Iteration:  296
+Best parameters:  [-12.33543079  -1.42602995  -9.22370931  -3.02305792  -1.55788746
+ -12.42394295  -1.68574192  -2.98185101]
+Best objective:  63.94416106403668
+Mean objective:  89.24632139011993
+Inner objective at best sample:  4433907.113256007
+Gradient objective at best sample:  443.3843169094943
+Time elapsed:  4171.0001809597015
+Iteration:  297
+Best parameters:  [-12.38196075  -1.42192334  -9.19395578  -3.02736889  -1.56554936
+ -12.29648656  -1.690865    -2.98137552]
+Best objective:  63.946194895877326
+Mean objective:  86.22829837756505
+Inner objective at best sample:  4427653.179905253
+Gradient objective at best sample:  442.7589233710358
+Time elapsed:  3953.8131337165833
+Iteration:  298
+Best parameters:  [-12.61537677  -1.39576861  -9.25927037  -3.01515314  -1.55974465
+ -12.02774852  -1.68662997  -2.98142104]
+Best objective:  63.943602449775916
+Mean objective:  101.47216104631725
+Inner objective at best sample:  4458972.120924002
+Gradient objective at best sample:  445.89081773215514
+Time elapsed:  4503.220208644867
+Iteration:  299
+Best parameters:  [-12.47090885  -1.41043004  -9.21103911  -3.02331892  -1.55548639
+ -12.2073215   -1.67769859  -2.98011682]
+Best objective:  63.926856372693976
+Mean objective:  95.55087159609825
+Inner objective at best sample:  4649349.110226307
+Gradient objective at best sample:  464.9285183369935
+Time elapsed:  4548.455940723419
+Iteration:  300
+Best parameters:  [-12.67924066  -1.38987748  -9.23593857  -3.01887125  -1.56009352
+ -11.85561767  -1.68985319  -2.983009  ]
+Best objective:  63.94221095465132
+Mean objective:  85.24579626084854
+Inner objective at best sample:  4314472.3075322425
+Gradient objective at best sample:  431.4408365321288
+Time elapsed:  4045.379709482193
+Iteration:  301
+Best parameters:  [-12.62457041  -1.39493397  -9.21536883  -3.02387854  -1.55670929
+ -11.94691292  -1.68249548  -2.98050857]
+Best objective:  63.93906469998312
+Mean objective:  86.83146165880036
+Inner objective at best sample:  4563947.285783491
+Gradient objective at best sample:  456.3883346718791
+Time elapsed:  5091.627063989639
+Iteration:  302
+Best parameters:  [-12.4745686   -1.41206837  -9.21185346  -3.0247245   -1.56414193
+ -12.17718228  -1.69088659  -2.98107843]
+Best objective:  63.9383133927982
+Mean objective:  94.99394784369633
+Inner objective at best sample:  4444965.734764937
+Gradient objective at best sample:  444.49017964515446
+Time elapsed:  4987.35862994194
+Iteration:  303
+Best parameters:  [-12.58686641  -1.39988806  -9.21077615  -3.02439785  -1.55907324
+ -11.99810259  -1.68404311  -2.98066232]
+Best objective:  63.93676057644317
+Mean objective:  95.0300318877496
+Inner objective at best sample:  4540674.06078985
+Gradient objective at best sample:  454.0610124029273
+Time elapsed:  4705.185474872589
+Iteration:  304
+Best parameters:  [-12.64634636  -1.39313403  -9.20545559  -3.02560285  -1.55585427
+ -11.86554636  -1.68350338  -2.98185264]
+Best objective:  63.936232308604396
+Mean objective:  96.69648390427447
+Inner objective at best sample:  4455207.160120793
+Gradient objective at best sample:  445.51432238884837
+Time elapsed:  5637.003600358963
+Iteration:  305
+Best parameters:  [-12.80620853  -1.37711686  -9.2068113   -3.02512876  -1.54789199
+ -11.67139922  -1.67481966  -2.98118832]
+Best objective:  63.937384694213186
+Mean objective:  119.71088281489612
+Inner objective at best sample:  4583475.500892878
+Gradient objective at best sample:  458.3411563508184
+Time elapsed:  4690.204929351807
+Iteration:  306
+Best parameters:  [-12.68657239  -1.39031244  -9.2132119   -3.02392256  -1.55893443
+ -11.83288187  -1.68622347  -2.98121331]
+Best objective:  63.93469911623139
+Mean objective:  105.21156319529959
+Inner objective at best sample:  4476648.0383658605
+Gradient objective at best sample:  447.65841036667445
+Time elapsed:  4511.763994693756
+Iteration:  307
+Best parameters:  [-12.74522754  -1.38429366  -9.20514305  -3.02552944  -1.55805247
+ -11.73415539  -1.68548251  -2.98176194]
+Best objective:  63.93213072760062
+Mean objective:  90.03387829904096
+Inner objective at best sample:  4444696.170168474
+Gradient objective at best sample:  444.46322380377467
+Time elapsed:  4203.28919506073
+Iteration:  308
+Best parameters:  [-12.75444379  -1.38213803  -9.19149122  -3.0282339   -1.55754224
+ -11.69692064  -1.68533104  -2.98161361]
+Best objective:  63.93465409225622
+Mean objective:  120.94794808127659
+Inner objective at best sample:  4455670.482263923
+Gradient objective at best sample:  445.560654760983
+Time elapsed:  4685.405807971954
+Iteration:  309
+Best parameters:  [-12.90946816  -1.36670939  -9.21345821  -3.02389088  -1.55139059
+ -11.47320992  -1.68056063  -2.98230072]
+Best objective:  63.93270149063738
+Mean objective:  89.59224333238492
+Inner objective at best sample:  4447533.343377181
+Gradient objective at best sample:  444.746941067569
+Time elapsed:  3405.6793384552
+Iteration:  310
+Best parameters:  [-12.88303226  -1.36989633  -9.21260557  -3.02371688  -1.55325664
+ -11.54789673  -1.68273768  -2.98268745]
+Best objective:  63.932893585043225
+Mean objective:  113.42734091087648
+Inner objective at best sample:  4400270.554205074
+Gradient objective at best sample:  440.02066213114887
+Time elapsed:  4379.900230646133
+Iteration:  311
+Best parameters:  [-13.07267084  -1.34905319  -9.22231777  -3.02168889  -1.55098817
+ -11.27198319  -1.68149225  -2.983084  ]
+Best objective:  63.91286694635886
+Mean objective:  117.34071756072598
+Inner objective at best sample:  4388696.432553235
+Gradient objective at best sample:  438.8632519686289
+Time elapsed:  4090.084375143051
+Iteration:  312
+Best parameters:  [-12.98075573  -1.35966367  -9.21806013  -3.02287719  -1.55568711
+ -11.41257962  -1.6834633   -2.98182451]
+Best objective:  63.92934256340935
+Mean objective:  107.88108691093211
+Inner objective at best sample:  4458489.461030316
+Gradient objective at best sample:  445.8425531687752
+Time elapsed:  4576.011765241623
+Iteration:  313
+Best parameters:  [-12.99056301  -1.35823608  -9.22515067  -3.02217751  -1.55392776
+ -11.44001273  -1.68205134  -2.9820976 ]
+Best objective:  63.93119588622782
+Mean objective:  106.93680693316703
+Inner objective at best sample:  4451057.627236551
+Gradient objective at best sample:  445.09936960406645
+Time elapsed:  3781.0345363616943
+Iteration:  314
+Best parameters:  [-13.00379459  -1.35715011  -9.21656418  -3.0228514   -1.55851847
+ -11.37631275  -1.68619849  -2.98190697]
+Best objective:  63.93164800692845
+Mean objective:  129.8124703871397
+Inner objective at best sample:  4428667.398856447
+Gradient objective at best sample:  442.86034672084406
+Time elapsed:  4022.2338693141937
+Iteration:  315
+Best parameters:  [-12.96191374  -1.36223755  -9.2276459   -3.02099854  -1.55753141
+ -11.44751959  -1.68698137  -2.98268299]
+Best objective:  63.92938327107959
+Mean objective:  127.4461167628577
+Inner objective at best sample:  4363611.39263077
+Gradient objective at best sample:  436.35474632474984
+Time elapsed:  5504.318299770355
+Iteration:  316
+Best parameters:  [-12.9107309   -1.36655293  -9.2194347   -3.02213392  -1.55500684
+ -11.54529323  -1.68550022  -2.98340237]
+Best objective:  63.89708972957625
+Mean objective:  91.26501489034776
+Inner objective at best sample:  4331140.594337923
+Gradient objective at best sample:  433.10766972481935
+Time elapsed:  5483.631843805313
+Iteration:  317
+Best parameters:  [-13.14977852  -1.34206168  -9.22135504  -3.02184433  -1.5510007
+ -11.15009677  -1.68156721  -2.98303595]
+Best objective:  63.89347009556998
+Mean objective:  110.80665492960134
+Inner objective at best sample:  4390929.342219582
+Gradient objective at best sample:  439.08654487494863
+Time elapsed:  4449.810439109802
+Iteration:  318
+Best parameters:  [-13.15109996  -1.34360697  -9.21934439  -3.02236521  -1.55687165
+ -11.13266438  -1.68667168  -2.98277419]
+Best objective:  63.92586509820436
+Mean objective:  118.68951113976277
+Inner objective at best sample:  4360447.568097539
+Gradient objective at best sample:  436.0383642232441
+Time elapsed:  4074.081577539444
+Iteration:  319
+Best parameters:  [-13.18049983  -1.34012384  -9.20561061  -3.02545423  -1.55257926
+ -11.09470444  -1.67974059  -2.98164387]
+Best objective:  63.92478953632802
+Mean objective:  113.80176924667816
+Inner objective at best sample:  4507526.803559164
+Gradient objective at best sample:  450.7462878769627
+Time elapsed:  4376.798644542694
+Iteration:  320
+Best parameters:  [-13.15691706  -1.34363955  -9.21316028  -3.02419399  -1.55792845
+ -11.0790731   -1.68805934  -2.98280514]
+Best objective:  63.92338700072105
+Mean objective:  102.41630523628676
+Inner objective at best sample:  4345656.105248868
+Gradient objective at best sample:  434.5592181861868
+Time elapsed:  4269.18449306488
+Iteration:  321
+Best parameters:  [-13.21159774  -1.33848841  -9.22077439  -3.02236807  -1.5603521
+ -11.02646946  -1.68918436  -2.98228735]
+Best objective:  63.920663573609865
+Mean objective:  93.13181900455838
+Inner objective at best sample:  4374668.127101088
+Gradient objective at best sample:  437.46042064375143
+Time elapsed:  4410.2361397743225
+Iteration:  322
+Best parameters:  [-13.29981229  -1.33113254  -9.20953982  -3.02426147  -1.56516674
+ -10.93085894  -1.69354011  -2.982671  ]
+Best objective:  63.91990513393078
+Mean objective:  106.34035279574616
+Inner objective at best sample:  4312016.5508269295
+Gradient objective at best sample:  431.1952630921796
+Time elapsed:  4882.230248451233
+Iteration:  323
+Best parameters:  [-13.18944496  -1.34022561  -9.2067674   -3.02502283  -1.55650157
+ -11.09314441  -1.68253856  -2.98118845]
+Best objective:  63.921219053710004
+Mean objective:  80.25195216685658
+Inner objective at best sample:  4517191.5314146355
+Gradient objective at best sample:  451.7127610195582
+Time elapsed:  4484.654438734055
+Iteration:  324
+Best parameters:  [-13.31646981  -1.3275882   -9.18246209  -3.02941837  -1.56416482
+ -10.89120637  -1.68919842  -2.98099163]
+Best objective:  63.908817512809954
+Mean objective:  86.91113536213925
+Inner objective at best sample:  4481495.426652511
+Gradient objective at best sample:  448.1431517834998
+Time elapsed:  4118.615475893021
+Iteration:  325
+Best parameters:  [-13.56426635  -1.30405467  -9.22465711  -3.02239891  -1.55822615
+ -10.5537169   -1.68679274  -2.98242386]
+Best objective:  63.91435506640213
+Mean objective:  110.69733322352684
+Inner objective at best sample:  4389962.330820985
+Gradient objective at best sample:  438.98984164659186
+Time elapsed:  4279.699355125427
+Iteration:  326
+Best parameters:  [-13.20480113  -1.34237565  -9.18006202  -3.03025243  -1.57206339
+ -11.04849742  -1.69734693  -2.98141101]
+Best objective:  63.90877629426643
+Mean objective:  114.6380002462258
+Inner objective at best sample:  4374047.276118264
+Gradient objective at best sample:  437.3983367341969
+Time elapsed:  3911.117175579071
+Iteration:  327
+Best parameters:  [-13.68766079  -1.29444069  -9.21027058  -3.0247984   -1.56515748
+ -10.34665388  -1.69435288  -2.98313059]
+Best objective:  63.90600906187471
+Mean objective:  131.691237883516
+Inner objective at best sample:  4276325.016236309
+Gradient objective at best sample:  427.6261110227247
+Time elapsed:  4160.743361711502
+Iteration:  328
+Best parameters:  [-13.70600266  -1.29277653  -9.21814886  -3.02233158  -1.5623594
+ -10.36375674  -1.68876147  -2.98199891]
+Best objective:  63.90704164710103
+Mean objective:  109.92127589035526
+Inner objective at best sample:  4408765.047396949
+Gradient objective at best sample:  440.8701140355301
+Time elapsed:  4766.2820682525635
+Iteration:  329
+Best parameters:  [-13.90139761  -1.27354642  -9.20839592  -3.02411738  -1.56031321
+  -9.99035364  -1.69171031  -2.98411747]
+Best objective:  63.907854316270004
+Mean objective:  91.70778411639813
+Inner objective at best sample:  4231836.246981502
+Gradient objective at best sample:  423.1772339127186
+Time elapsed:  3381.6180732250214
+Iteration:  330
+Best parameters:  [-13.7747137   -1.28720646  -9.1857759   -3.02911346  -1.56364297
+ -10.12391322  -1.69283373  -2.98288518]
+Best objective:  63.903021872078924
+Mean objective:  89.45360746568119
+Inner objective at best sample:  4308432.816435839
+Gradient objective at best sample:  430.8368913413967
+Time elapsed:  3707.880995988846
+Iteration:  331
+Best parameters:  [-14.07821119  -1.25795727  -9.19605358  -3.02794408  -1.56591214
+  -9.77300859  -1.69263539  -2.98197137]
+Best objective:  63.894499721721715
+Mean objective:  102.80152167219589
+Inner objective at best sample:  4383477.339875629
+Gradient objective at best sample:  438.3413445375907
+Time elapsed:  4649.972275018692
+Iteration:  332
+Best parameters:  [-14.31462276  -1.23610418  -9.22240154  -3.02316199  -1.55297878
+  -9.47508183  -1.6812582   -2.98262742]
+Best objective:  63.89156301083117
+Mean objective:  87.34178747946069
+Inner objective at best sample:  4441251.881218804
+Gradient objective at best sample:  444.11879896557934
+Time elapsed:  4009.9496994018555
+Iteration:  333
+Best parameters:  [-14.12536018  -1.25662028  -9.17035126  -3.03248413  -1.56819723
+  -9.6022335   -1.69786467  -2.98316732]
+Best objective:  63.8928022299692
+Mean objective:  93.47089723719874
+Inner objective at best sample:  4253331.44728463
+Gradient objective at best sample:  425.32675544823996
+Time elapsed:  3813.8191957473755
+Iteration:  334
+Best parameters:  [-14.41764176  -1.22972076  -9.17623292  -3.03278326  -1.56625841
+  -9.30157533  -1.69248801  -2.98202057]
+Best objective:  63.874729006290195
+Mean objective:  113.52130703549031
+Inner objective at best sample:  4392977.875656947
+Gradient objective at best sample:  439.291400092794
+Time elapsed:  3560.9207212924957
+Iteration:  335
+Best parameters:  [-14.26020144  -1.24115211  -9.21121362  -3.02411705  -1.55307927
+  -9.53232305  -1.68186126  -2.98315388]
+Best objective:  63.889517754788415
+Mean objective:  92.18445419659665
+Inner objective at best sample:  4396830.683243221
+Gradient objective at best sample:  439.6766793725465
+Time elapsed:  3523.975852251053
+Iteration:  336
+Best parameters:  [-14.76004686  -1.19862068  -9.2002569   -3.02697196  -1.55491316
+  -8.76148979  -1.6833323   -2.9837375 ]
+Best objective:  63.851664072880766
+Mean objective:  89.40159914303894
+Inner objective at best sample:  4370332.086555834
+Gradient objective at best sample:  437.0268234891761
+Time elapsed:  4042.7833585739136
+Iteration:  337
+Best parameters:  [-14.78500113  -1.19773347  -9.18312685  -3.03014026  -1.56104446
+  -8.73059645  -1.68429089  -2.98149592]
+Best objective:  63.841321733068675
+Mean objective:  93.68214154937951
+Inner objective at best sample:  4531614.156445005
+Gradient objective at best sample:  453.15503151232724
+Time elapsed:  3391.1859953403473
+Iteration:  338
+Best parameters:  [-14.89132524  -1.18671868  -9.13208632  -3.03906056  -1.56016841
+  -8.49818304  -1.6864706   -2.98299232]
+Best objective:  63.86367562382962
+Mean objective:  79.47683306403039
+Inner objective at best sample:  4413130.5608197
+Gradient objective at best sample:  441.30666971440763
+Time elapsed:  3723.773107290268
+Iteration:  339
+Best parameters:  [-14.85552212  -1.19442069  -9.13016045  -3.04167282  -1.5592838
+  -8.53089115  -1.68471717  -2.98216982]
+Best objective:  63.87601730818124
+Mean objective:  96.35393254208843
+Inner objective at best sample:  4486056.701016852
+Gradient objective at best sample:  448.59928249995437
+Time elapsed:  7257.818839073181
+Iteration:  340
+Best parameters:  [-14.68077873  -1.2074224   -9.09216531  -3.046742    -1.55902566
+  -8.723461    -1.68171961  -2.98157878]
+Best objective:  63.85756525945139
+Mean objective:  95.75290938420774
+Inner objective at best sample:  4550855.459252073
+Gradient objective at best sample:  455.07916016868137
+Time elapsed:  11116.419226884842
+Iteration:  341
+Best parameters:  [-14.8585249   -1.19188133  -9.08391347  -3.04889511  -1.5764209
+  -8.39046319  -1.70048957  -2.98252923]
+Best objective:  63.84274098102532
+Mean objective:  113.07344777680315
+Inner objective at best sample:  4333658.335516052
+Gradient objective at best sample:  433.35944927750717
+Time elapsed:  10401.251926898956
+Iteration:  342
+Best parameters:  [-14.78700246  -1.19778799  -9.17994735  -3.03006111  -1.56330879
+  -8.67624513  -1.68585364  -2.98075749]
+Best objective:  63.79778645187128
+Mean objective:  89.75040249662071
+Inner objective at best sample:  4579295.763553033
+Gradient objective at best sample:  457.9231965766581
+Time elapsed:  11406.889022827148
+Iteration:  343
+Best parameters:  [-14.74440768  -1.20093785  -9.15371237  -3.0354387   -1.57619655
+  -8.68904962  -1.70277004  -2.98346145]
+Best objective:  63.8473469486788
+Mean objective:  94.49248253115505
+Inner objective at best sample:  4228798.816837866
+Gradient objective at best sample:  422.87349694909176
+Time elapsed:  9952.83467078209
+Iteration:  344
+Best parameters:  [-14.82813656  -1.19385735  -9.16994697  -3.03318983  -1.55932852
+  -8.65699348  -1.68849507  -2.98425249]
+Best objective:  63.84344328429713
+Mean objective:  81.41855946377333
+Inner objective at best sample:  4293894.7070288975
+Gradient objective at best sample:  429.3830863585613
+Time elapsed:  10243.501298904419
+Iteration:  345
+Best parameters:  [-14.84919995  -1.19463052  -9.1856481   -3.02911445  -1.56343966
+  -8.62234463  -1.69467933  -2.98592303]
+Best objective:  63.835664791034525
+Mean objective:  92.65542436092477
+Inner objective at best sample:  4128319.570746101
+Gradient objective at best sample:  412.825573508131
+Time elapsed:  10062.503463983536
+Iteration:  346
+Best parameters:  [-14.95152854  -1.18423581  -9.07312595  -3.05065237  -1.56866581
+  -8.36849577  -1.68549161  -2.9798593 ]
+Best objective:  63.8421263669166
+Mean objective:  110.91096153978724
+Inner objective at best sample:  4674922.226210904
+Gradient objective at best sample:  467.4858384084538
+Time elapsed:  8665.826129198074
+Iteration:  347
+Best parameters:  [-15.18121745  -1.16666911  -9.11277094  -3.0428728   -1.58538636
+  -8.07430577  -1.71545983  -2.98703664]
+Best objective:  63.79387997684502
+Mean objective:  122.04383632435474
+Inner objective at best sample:  3929570.794779523
+Gradient objective at best sample:  392.9507000899546
+Time elapsed:  10759.11260843277
+Iteration:  348
+Best parameters:  [-14.796333    -1.1997383   -9.1640983   -3.03378347  -1.57980496
+  -8.6954504   -1.70607972  -2.98420428]
+Best objective:  63.834094317558595
+Mean objective:  119.79316020062822
+Inner objective at best sample:  4152524.453395695
+Gradient objective at best sample:  415.2460619301377
+Time elapsed:  9621.185825109482
+Iteration:  349
+Best parameters:  [-14.95003661  -1.18553716  -9.12589647  -3.03828665  -1.56805756
+  -8.35924222  -1.69707272  -2.98617324]
+Best objective:  63.8159895603118
+Mean objective:  87.7895041034564
+Inner objective at best sample:  4113006.170892757
+Gradient objective at best sample:  411.29423549031964
+Time elapsed:  11290.874407291412
+Iteration:  350
+Best parameters:  [-15.10156549  -1.17206665  -9.1384665   -3.03613695  -1.56767631
+  -8.16422104  -1.69599863  -2.98618001]
+Best objective:  63.79237094947237
+Mean objective:  105.30945931309934
+Inner objective at best sample:  4137521.194474551
+Gradient objective at best sample:  413.74574021036017
+Time elapsed:  10595.463515520096
+Iteration:  351
+Best parameters:  [-15.09512105  -1.17267317  -9.14186502  -3.03714983  -1.57955731
+  -8.16475914  -1.70925499  -2.9856487 ]
+Best objective:  63.81851868208651
+Mean objective:  86.54374729982196
+Inner objective at best sample:  4059381.118269847
+Gradient objective at best sample:  405.93172997511647
+Time elapsed:  8005.511434078217
+Iteration:  352
+Best parameters:  [-15.11638073  -1.17380713  -9.14895418  -3.03489969  -1.58201365
+  -8.18399185  -1.70816824  -2.98511099]
+Best objective:  63.79380758261915
+Mean objective:  125.96736011499351
+Inner objective at best sample:  4108784.546950956
+Gradient objective at best sample:  410.87207531433734
+Time elapsed:  10636.285759449005
+Iteration:  353
+Best parameters:  [-15.39142955  -1.14953661  -9.12632699  -3.03744746  -1.57071923
+  -7.80557526  -1.69731002  -2.98715936]
+Best objective:  63.752490052124536
+Mean objective:  109.08452243681566
+Inner objective at best sample:  4102419.0546341683
+Gradient objective at best sample:  410.23553021441165
+Time elapsed:  11199.123924255371
+Iteration:  354
+Best parameters:  [-15.40223459  -1.14893458  -9.07277057  -3.04657056  -1.57637541
+  -7.67184983  -1.69921668  -2.9857188 ]
+Best objective:  63.77901687436186
+Mean objective:  99.48801541396568
+Inner objective at best sample:  4204103.662079905
+Gradient objective at best sample:  420.40398830630306
+Time elapsed:  9675.011400222778
+Iteration:  355
+Best parameters:  [-15.18087142  -1.16654508  -9.10985035  -3.04220272  -1.57915074
+  -8.0464428   -1.70706882  -2.98709037]
+Best objective:  63.77084873029507
+Mean objective:  132.15234884793327
+Inner objective at best sample:  4000087.3725757673
+Gradient objective at best sample:  400.00236017270373
+Time elapsed:  14451.78552532196
+Iteration:  356
+Best parameters:  [-15.33198166  -1.15439823  -9.06950042  -3.04817421  -1.58861653
+  -7.81724571  -1.71356624  -2.98763586]
+Best objective:  63.759014469864574
+Mean objective:  83.76439728117978
+Inner objective at best sample:  3943383.9239901816
+Gradient objective at best sample:  394.33201649757115
+Time elapsed:  16622.398436546326
+Iteration:  357
+Best parameters:  [-15.56679038  -1.13799941  -9.11902677  -3.03775327  -1.59498862
+  -7.55646348  -1.72396363  -2.98991678]
+Best objective:  63.751866909491405
+Mean objective:  111.56271831430384
+Inner objective at best sample:  3754543.0914865723
+Gradient objective at best sample:  375.44793396196627
+Time elapsed:  15653.608666658401
+Iteration:  358
+Best parameters:  [-15.36863757  -1.15122392  -9.16439064  -3.03124044  -1.57122853
+  -7.88228375  -1.69883661  -2.98700268]
+Best objective:  63.752241637463925
+Mean objective:  105.01288161081364
+Inner objective at best sample:  4089180.274506109
+Gradient objective at best sample:  408.91165222644713
+Time elapsed:  11620.807480812073
+Iteration:  359
+Best parameters:  [-15.50339633  -1.14075372  -9.12637853  -3.03860989  -1.58824418
+  -7.69128706  -1.71748171  -2.98904272]
+Best objective:  63.73277291681782
+Mean objective:  112.59702012408164
+Inner objective at best sample:  3833220.3466839176
+Gradient objective at best sample:  383.31566139110004
+Time elapsed:  9828.002319812775
+Iteration:  360
+Best parameters:  [-15.62857433  -1.13023701  -9.17725788  -3.02885003  -1.58682326
+  -7.53000279  -1.71882396  -2.99094836]
+Best objective:  63.72635457183685
+Mean objective:  86.5702243583144
+Inner objective at best sample:  3726231.5334549565
+Gradient objective at best sample:  372.6167807100384
+Time elapsed:  10364.683758974075
+Iteration:  361
+Best parameters:  [-15.60922919  -1.13165438  -9.02752206  -3.05473669  -1.58778992
+  -7.38869083  -1.71317844  -2.98968595]
+Best objective:  63.740006957730266
+Mean objective:  103.89533255293382
+Inner objective at best sample:  3878491.266994103
+Gradient objective at best sample:  387.8427526987145
+Time elapsed:  8044.008274078369
+Iteration:  362
+Best parameters:  [-15.65626825  -1.128902    -9.08091867  -3.04407557  -1.58202526
+  -7.40835916  -1.7090309   -2.99053973]
+Best objective:  63.717367865354106
+Mean objective:  116.38006471140477
+Inner objective at best sample:  3853078.950588763
+Gradient objective at best sample:  385.3015233220898
+Time elapsed:  10247.164029836655
+Iteration:  363
+Best parameters:  [-15.64726827  -1.13009227  -9.10412118  -3.04059739  -1.58628993
+  -7.48820152  -1.71171694  -2.98967637]
+Best objective:  63.69341590608455
+Mean objective:  95.24727920715162
+Inner objective at best sample:  3874923.152349715
+Gradient objective at best sample:  387.48594589338086
+Time elapsed:  10239.532845258713
+Iteration:  364
+Best parameters:  [-15.79873461  -1.116629    -9.16766112  -3.02804536  -1.57403426
+  -7.35246619  -1.70289642  -2.99169293]
+Best objective:  63.69347078006291
+Mean objective:  80.01909232382488
+Inner objective at best sample:  3837084.9807259142
+Gradient objective at best sample:  383.7021287255134
+Time elapsed:  9467.725447416306
+Iteration:  365
+Best parameters:  [-15.56153105  -1.13702427  -9.08878214  -3.04569901  -1.59282023
+  -7.51674461  -1.72524013  -2.99184132]
+Best objective:  63.721691435007095
+Mean objective:  110.34577371048834
+Inner objective at best sample:  3628690.2149952333
+Gradient objective at best sample:  362.86264933037984
+Time elapsed:  5617.552196979523
+Iteration:  366
+Best parameters:  [-15.91128684  -1.11065204  -9.1477417   -3.03064506  -1.58387806
+  -7.27726036  -1.71077599  -2.99297246]
+Best objective:  63.63642334346986
+Mean objective:  83.26532301860468
+Inner objective at best sample:  3722200.096398119
+Gradient objective at best sample:  372.21364599747756
+Time elapsed:  5618.7656490802765
+Iteration:  367
+Best parameters:  [-15.95210159  -1.10865673  -9.19627823  -3.02245334  -1.57752088
+  -7.33158384  -1.70496797  -2.99299714]
+Best objective:  63.666185002369176
+Mean objective:  99.88201449207625
+Inner objective at best sample:  3750905.058559957
+Gradient objective at best sample:  375.0841392374955
+Time elapsed:  4798.333211660385
+Iteration:  368
+Best parameters:  [-15.90079692  -1.10928056  -9.15525244  -3.02938292  -1.56894671
+  -7.26796429  -1.69680023  -2.99341482]
+Best objective:  63.652450085344995
+Mean objective:  119.9098720476414
+Inner objective at best sample:  3798791.180066903
+Gradient objective at best sample:  379.8727527616818
+Time elapsed:  5230.41539478302
+Iteration:  369
+Best parameters:  [-15.93805073  -1.10707163  -9.13055201  -3.03588943  -1.59183056
+  -7.17783352  -1.7220499   -2.9947188 ]
+Best objective:  63.62633755681007
+Mean objective:  83.1728917280471
+Inner objective at best sample:  3550331.628664145
+Gradient objective at best sample:  355.02680023265884
+Time elapsed:  3368.9136102199554
+Iteration:  370
+Best parameters:  [-16.05909779  -1.09967571  -9.16031593  -3.02962964  -1.59003934
+  -7.13877111  -1.71563731  -2.99327054]
+Best objective:  63.614698217854915
+Mean objective:  110.76194405767032
+Inner objective at best sample:  3694496.5892367996
+Gradient objective at best sample:  369.4432974538582
+Time elapsed:  2783.1700472831726
+Iteration:  371
+Best parameters:  [-15.97197549  -1.10537538  -9.22504434  -3.0199045   -1.58557716
+  -7.31827498  -1.70981905  -2.98994201]
+Best objective:  63.64074892661985
+Mean objective:  95.41518186960947
+Inner objective at best sample:  3903492.905501008
+Gradient objective at best sample:  390.3429264752082
+Time elapsed:  2876.518931388855
+Iteration:  372
+Best parameters:  [-15.81935783  -1.1190361   -9.17665337  -3.02933196  -1.58308746
+  -7.48619858  -1.70582612  -2.98970438]
+Best objective:  63.65020419178339
+Mean objective:  126.85710231924696
+Inner objective at best sample:  3925174.9518520273
+Gradient objective at best sample:  392.51113016478354
+Time elapsed:  2922.966976881027
+Iteration:  373
+Best parameters:  [-15.98485344  -1.10652578  -9.19299272  -3.02595453  -1.58826743
+  -7.29107225  -1.71377517  -2.99264247]
+Best objective:  63.60316879384991
+Mean objective:  87.410145630165
+Inner objective at best sample:  3716182.6998186735
+Gradient objective at best sample:  371.61190966498793
+Time elapsed:  2645.3382489681244
+Iteration:  374
+Best parameters:  [-16.10412647  -1.09712857  -9.26740485  -3.01193128  -1.5946247
+  -7.3350693   -1.71352605  -2.98941642]
+Best objective:  63.613065844758744
+Mean objective:  124.68357360618906
+Inner objective at best sample:  3914012.705406245
+Gradient objective at best sample:  391.39490923404
+Time elapsed:  2944.111529827118
+Iteration:  375
+Best parameters:  [-16.09860463  -1.09789825  -9.2380624   -3.01601879  -1.59050225
+  -7.26290448  -1.71594129  -2.99421231]
+Best objective:  63.598568047771806
+Mean objective:  74.37609221641435
+Inner objective at best sample:  3616104.46805802
+Gradient objective at best sample:  361.6040869489972
+Time elapsed:  2245.256945371628
+Iteration:  376
+Best parameters:  [-15.99323634  -1.10315768  -9.1820658   -3.02671384  -1.58711388
+  -7.30295259  -1.7114926   -2.99219936]
+Best objective:  63.5942598486594
+Mean objective:  76.45727135140339
+Inner objective at best sample:  3759139.4032679247
+Gradient objective at best sample:  375.9075809008076
+Time elapsed:  1767.9941544532776
+Iteration:  377
+Best parameters:  [-16.06611167  -1.0963703   -9.2239264   -3.0199641   -1.56929225
+  -7.34938491  -1.68627185  -2.98808602]
+Best objective:  63.612539552231745
+Mean objective:  121.01388546039163
+Inner objective at best sample:  4221624.749733726
+Gradient objective at best sample:  422.15611371941736
+Time elapsed:  2454.7505791187286
+Iteration:  378
+Best parameters:  [-16.02954895  -1.09837461  -9.21034881  -3.02262466  -1.57047122
+  -7.28257979  -1.69590816  -2.99236449]
+Best objective:  63.58834092963656
+Mean objective:  79.69586400444852
+Inner objective at best sample:  3870294.996809989
+Gradient objective at best sample:  387.02314084690596
+Time elapsed:  2175.089254140854
+Iteration:  379
+Best parameters:  [-16.03514437  -1.10134278  -9.25021471  -3.01748962  -1.57847106
+  -7.35558195  -1.70328285  -2.99171413]
+Best objective:  63.59449481289032
+Mean objective:  92.42931261836286
+Inner objective at best sample:  3840524.141254331
+Gradient objective at best sample:  384.0460546759518
+Time elapsed:  2601.979125738144
+Iteration:  380
+Best parameters:  [-16.08279712  -1.09684169  -9.21894254  -3.02118163  -1.597491
+  -7.15212641  -1.72692117  -2.99526965]
+Best objective:  63.5690054959535
+Mean objective:  115.98632112182194
+Inner objective at best sample:  3492157.5585495518
+Gradient objective at best sample:  349.2093989544056
+Time elapsed:  3103.110285758972
+Iteration:  381
+Best parameters:  [-16.11636101  -1.09354367  -9.19012704  -3.02597741  -1.58674072
+  -7.19714081  -1.70941126  -2.9920505 ]
+Best objective:  63.562080748811304
+Mean objective:  75.62593130643684
+Inner objective at best sample:  3806351.804456706
+Gradient objective at best sample:  380.6288242375957
+Time elapsed:  2254.4186248779297
+Iteration:  382
+Best parameters:  [-16.10616518  -1.09722948  -9.20889385  -3.0233742   -1.59486464
+  -7.17348935  -1.72544014  -2.99747045]
+Best objective:  63.5515029854019
+Mean objective:  108.82324245623826
+Inner objective at best sample:  3379086.2834351216
+Gradient objective at best sample:  337.9022731932136
+Time elapsed:  2986.480286836624
+Iteration:  383
+Best parameters:  [-16.02032412  -1.09871292  -9.21694157  -3.02319599  -1.57932596
+  -7.29049289  -1.70581352  -2.99390747]
+Best objective:  63.57398149923577
+Mean objective:  133.95274245418793
+Inner objective at best sample:  3700948.8685391997
+Gradient objective at best sample:  370.08852945577
+Time elapsed:  1850.6833817958832
+Iteration:  384
+Best parameters:  [-16.10418897  -1.09510217  -9.2174992   -3.02329314  -1.58323521
+  -7.18492049  -1.71103336  -2.99577751]
+Best objective:  63.52250568056808
+Mean objective:  96.4150720241382
+Inner objective at best sample:  3574008.3100348664
+Gradient objective at best sample:  357.3944787529186
+Time elapsed:  2237.812970638275
+Iteration:  385
+Best parameters:  [-16.09481686  -1.09629006  -9.14248843  -3.03573206  -1.58464944
+  -7.06494857  -1.70729579  -2.99329066]
+Best objective:  63.53976404223581
+Mean objective:  110.23771153893942
+Inner objective at best sample:  3776969.395047901
+Gradient objective at best sample:  377.6905855283859
+Time elapsed:  2271.4787373542786
+Iteration:  386
+Best parameters:  [-15.99765631  -1.10255054  -9.08234613  -3.04435768  -1.59465098
+  -6.97284655  -1.72487196  -2.99890378]
+Best objective:  63.536097625075854
+Mean objective:  91.34985406897451
+Inner objective at best sample:  3349089.898132173
+Gradient objective at best sample:  334.90263620345473
+Time elapsed:  2046.6420302391052
+Iteration:  387
+Best parameters:  [-16.0892946   -1.09603636  -9.16642055  -3.03016741  -1.58806606
+  -7.02867066  -1.72122158  -2.99917324]
+Best objective:  63.52905298778459
+Mean objective:  107.49864825372919
+Inner objective at best sample:  3342465.7489794567
+Gradient objective at best sample:  334.2402219926469
+Time elapsed:  2179.907709121704
+Iteration:  388
+Best parameters:  [-16.07665781  -1.09599744  -9.17478034  -3.02946807  -1.58774726
+  -7.13616139  -1.71374534  -2.99619471]
+Best objective:  63.51185023987761
+Mean objective:  102.79593644836001
+Inner objective at best sample:  3544413.1952460906
+Gradient objective at best sample:  354.4349683395851
+Time elapsed:  1942.7007958889008
+Iteration:  389
+Best parameters:  [-16.08351205  -1.09898756  -9.11361458  -3.03955223  -1.59027641
+  -7.05715207  -1.71601636  -2.99709937]
+Best objective:  63.53091968082238
+Mean objective:  123.28215563017916
+Inner objective at best sample:  3495543.311490843
+Gradient objective at best sample:  349.5479780571162
+Time elapsed:  1869.1368329524994
+Iteration:  390
+Best parameters:  [-16.00598972  -1.10321985  -9.1387317   -3.03629992  -1.59666353
+  -7.13289104  -1.72181003  -2.99520447]
+Best objective:  63.52373908211769
+Mean objective:  107.07635588707713
+Inner objective at best sample:  3543513.859985359
+Gradient objective at best sample:  354.34503362462766
+Time elapsed:  1710.953064918518
+Iteration:  391
+Best parameters:  [-16.0600831   -1.09906193  -9.16650848  -3.0322572   -1.60479623
+  -7.11804782  -1.73240668  -2.99730441]
+Best objective:  63.51320274889968
+Mean objective:  108.74905308404028
+Inner objective at best sample:  3356359.894993861
+Gradient objective at best sample:  335.6296381791112
+Time elapsed:  2315.866509914398
+Iteration:  392
+Best parameters:  [-16.0903901   -1.09718948  -9.12093555  -3.03821758  -1.6149806
+  -6.9487103   -1.74108889  -2.99798912]
+Best objective:  63.49316279592763
+Mean objective:  89.58140808551939
+Inner objective at best sample:  3300223.8018165473
+Gradient objective at best sample:  330.0160308653751
+Time elapsed:  2521.1303613185883
+Iteration:  393
+Best parameters:  [-16.06062304  -1.09788589  -9.06395666  -3.04777911  -1.60747245
+  -6.87108888  -1.7377412   -3.00053622]
+Best objective:  63.514754105578966
+Mean objective:  105.40709671683572
+Inner objective at best sample:  3204640.4828558085
+Gradient objective at best sample:  320.4576968101703
+Time elapsed:  2092.0776307582855
+Iteration:  394
+Best parameters:  [-16.0575686   -1.10061308  -9.10201171  -3.04326174  -1.60375935
+  -7.02153153  -1.73317818  -3.00001841]
+Best objective:  63.49813925653848
+Mean objective:  131.99075613394226
+Inner objective at best sample:  3228705.147205908
+Gradient objective at best sample:  322.8641649066651
+Time elapsed:  2432.375487089157
+Iteration:  395
+Best parameters:  [-16.10711703  -1.09634006  -9.11287718  -3.04069982  -1.6089661
+  -6.9893773   -1.7380522   -2.99865843]
+Best objective:  63.50317970431326
+Mean objective:  98.03354358545162
+Inner objective at best sample:  3272450.810381555
+Gradient objective at best sample:  327.23873072018506
+Time elapsed:  2650.336954832077
+Iteration:  396
+Best parameters:  [-16.07869251  -1.09806186  -9.12200913  -3.03874709  -1.60820393
+  -7.02588039  -1.73511531  -2.99799415]
+Best objective:  63.497834406153515
+Mean objective:  88.96811930017101
+Inner objective at best sample:  3322006.745262976
+Gradient objective at best sample:  332.19432474285696
+Time elapsed:  2603.148499250412
+Iteration:  397
+Best parameters:  [-16.08465327  -1.09625929  -9.12270286  -3.03883609  -1.60073564
+  -6.96116078  -1.7318126   -3.0007447 ]
+Best objective:  63.4681643455041
+Mean objective:  141.36421499807855
+Inner objective at best sample:  3211073.4456704888
+Gradient objective at best sample:  321.1009977506143
+Time elapsed:  2256.3174896240234
+Iteration:  398
+Best parameters:  [-16.07414825  -1.09662183  -9.14743213  -3.0353313   -1.59600837
+  -7.00864611  -1.72440007  -2.99917198]
+Best objective:  63.46248875087743
+Mean objective:  127.565703121123
+Inner objective at best sample:  3334010.5263127433
+Gradient objective at best sample:  333.39470638239925
+Time elapsed:  2366.4615836143494
+Iteration:  399
+Best parameters:  [-16.11655271  -1.09429067  -9.12301171  -3.03718727  -1.60039746
+  -6.90693053  -1.73133602  -3.00206955]
+Best objective:  63.45504004261181
+Mean objective:  83.58711602651596
+Inner objective at best sample:  3161002.881782272
+Gradient objective at best sample:  316.0939426742229
+Time elapsed:  2265.9760921001434
+Iteration:  400
+Best parameters:  [-16.1089028   -1.09507762  -9.08859742  -3.04561706  -1.601545
+  -6.85849091  -1.73208285  -3.00267994]
+Best objective:  63.418207262397914
+Mean objective:  107.9682630739543
+Inner objective at best sample:  3138314.804981192
+Gradient objective at best sample:  313.825138677393
+Time elapsed:  2306.8335926532745
+Iteration:  401
+Best parameters:  [-16.06079621  -1.09687618  -9.11522991  -3.04030288  -1.59233418
+  -6.90350724  -1.7255152   -3.00337034]
+Best objective:  63.436438591456785
+Mean objective:  82.14589486425352
+Inner objective at best sample:  3131436.6438812073
+Gradient objective at best sample:  313.13732074426156
+Time elapsed:  2114.707706928253
+Iteration:  402
+Best parameters:  [-16.10625231  -1.09370214  -9.08817458  -3.0450392   -1.59690878
+  -6.81930443  -1.72654594  -3.00159077]
+Best objective:  63.43261379589821
+Mean objective:  88.11402152289267
+Inner objective at best sample:  3238179.8580898857
+Gradient objective at best sample:  323.811642547609
+Time elapsed:  2105.790858268738
+Iteration:  403
+Best parameters:  [-16.02987923  -1.09860608  -9.06604401  -3.04896188  -1.59668906
+  -6.85035698  -1.72047747  -2.99899958]
+Best objective:  63.43974642911465
+Mean objective:  106.23001642327431
+Inner objective at best sample:  3413851.185533706
+Gradient objective at best sample:  341.3787745787277
+Time elapsed:  2186.766039133072
+Iteration:  404
+Best parameters:  [-16.1042853   -1.09448483  -9.06947371  -3.04935022  -1.60664337
+  -6.74785384  -1.73429119  -3.00163091]
+Best objective:  63.41457650229701
+Mean objective:  117.64183247850575
+Inner objective at best sample:  3207411.2109925617
+Gradient objective at best sample:  320.73477964160594
+Time elapsed:  2474.247487306595
+Iteration:  405
+Best parameters:  [-16.0504783   -1.09837588  -9.11490217  -3.04185252  -1.5948545
+  -6.79321559  -1.71998645  -3.00139123]
+Best objective:  63.355637921798085
+Mean objective:  106.65737528759165
+Inner objective at best sample:  3305672.53444529
+Gradient objective at best sample:  330.5609178807368
+Time elapsed:  2173.410947561264
+Iteration:  406
+Best parameters:  [-16.09469583  -1.09392508  -9.10253507  -3.04293648  -1.59550464
+  -6.73454718  -1.72637897  -3.00500519]
+Best objective:  63.35206385806662
+Mean objective:  91.39045522422428
+Inner objective at best sample:  3092215.2558607124
+Gradient objective at best sample:  309.21519037968545
+Time elapsed:  2386.1028163433075
+Iteration:  407
+Best parameters:  [-16.09052994  -1.09449094  -9.09621555  -3.04510556  -1.60237162
+  -6.61139436  -1.73719508  -3.00971757]
+Best objective:  63.29011333961294
+Mean objective:  88.14992366752847
+Inner objective at best sample:  2839381.738825288
+Gradient objective at best sample:  283.93184487119487
+Time elapsed:  2297.3961942195892
+Iteration:  408
+Best parameters:  [-16.04321435  -1.09820878  -9.10401321  -3.04322423  -1.60292182
+  -6.61207581  -1.73980085  -3.01172715]
+Best objective:  63.28044988121202
+Mean objective:  97.04690602328455
+Inner objective at best sample:  2735287.0620954963
+Gradient objective at best sample:  273.52237816456153
+Time elapsed:  2118.005336999893
+Iteration:  409
+Best parameters:  [-16.10696572  -1.09303847  -9.16072577  -3.03289501  -1.59638628
+  -6.54662074  -1.73306141  -3.01190596]
+Best objective:  63.24939164794433
+Mean objective:  105.82524169591157
+Inner objective at best sample:  2783469.3537083357
+Gradient objective at best sample:  278.3406104316688
+Time elapsed:  2109.9430861473083
+Iteration:  410
+Best parameters:  [-16.11251454  -1.09414067  -9.00354889  -3.06240009  -1.59628662
+  -6.36822905  -1.72789965  -3.01413708]
+Best objective:  63.21173016542021
+Mean objective:  98.44940509609405
+Inner objective at best sample:  2780204.3506638203
+Gradient objective at best sample:  278.0141138933655
+Time elapsed:  2454.246518135071
+Iteration:  411
+Best parameters:  [-15.95424729  -1.1044674   -9.07630959  -3.05143653  -1.58751897
+  -6.42037334  -1.71403351  -3.01371631]
+Best objective:  63.10533102795619
+Mean objective:  101.20879501507832
+Inner objective at best sample:  2867511.532855592
+Gradient objective at best sample:  286.7448427524564
+Time elapsed:  2158.5594272613525
+Iteration:  412
+Best parameters:  [-15.98230578  -1.10132921  -8.96222613  -3.07382301  -1.60504883
+  -6.26017394  -1.7406129   -3.02148524]
+Best objective:  63.08527024563741
+Mean objective:  97.64786870953833
+Inner objective at best sample:  2452067.1962003
+Gradient objective at best sample:  245.20041109300544
+Time elapsed:  2315.5890052318573
+Iteration:  413
+Best parameters:  [-16.0879595   -1.09351778  -9.2771203   -3.01400682  -1.61226132
+  -6.28460741  -1.74826946  -3.02368153]
+Best objective:  63.002524846216126
+Mean objective:  96.50798509820113
+Inner objective at best sample:  2326882.010828519
+Gradient objective at best sample:  232.68190083036725
+Time elapsed:  2129.432489156723
+Iteration:  414
+Best parameters:  [-15.87313363  -1.11237831  -9.05441351  -3.05131662  -1.6592113
+  -6.06294134  -1.80305552  -3.03115127]
+Best objective:  63.086703635291116
+Mean objective:  99.51289197681392
+Inner objective at best sample:  1916443.5879185896
+Gradient objective at best sample:  191.63805012149544
+Time elapsed:  2149.508259534836
+Iteration:  415
+Best parameters:  [-16.03704365  -1.09967726  -9.25061324  -3.01990191  -1.61910954
+  -6.22491681  -1.7552998   -3.02742048]
+Best objective:  62.971725983166195
+Mean objective:  101.47554255340589
+Inner objective at best sample:  2185366.175374493
+Gradient objective at best sample:  218.53032036485098
+Time elapsed:  2254.000286102295
+Iteration:  416
+Best parameters:  [-15.89981606  -1.10715017  -9.34683066  -3.00037387  -1.64866767
+  -6.02718236  -1.80113935  -3.0415242 ]
+Best objective:  62.966469003955375
+Mean objective:  99.04841465031413
+Inner objective at best sample:  1646109.4308686117
+Gradient objective at best sample:  164.60464643996076
+Time elapsed:  2370.817420244217
+Iteration:  417
+Best parameters:  [-15.89776873  -1.11210175  -8.94905753  -3.07504797  -1.62138327
+  -6.2258791   -1.74968437  -3.02335256]
+Best objective:  63.047432395688475
+Mean objective:  81.5266614801898
+Inner objective at best sample:  2361105.7477525678
+Gradient objective at best sample:  236.1042700320172
+Time elapsed:  2256.908979654312
+Iteration:  418
+Best parameters:  [-15.8218612   -1.11561875  -9.19227681  -3.03228383  -1.64664526
+  -6.0275108   -1.79201609  -3.03858429]
+Best objective:  62.859619540749655
+Mean objective:  77.46385069852691
+Inner objective at best sample:  1760416.7442895663
+Gradient objective at best sample:  176.03538846700255
+Time elapsed:  1986.4593234062195
+Iteration:  419
+Best parameters:  [-15.93265843  -1.10762573  -9.12110534  -3.04779258  -1.63151085
+  -6.13960936  -1.76979453  -3.02749651]
+Best objective:  62.996059269522355
+Mean objective:  85.71447825542273
+Inner objective at best sample:  2145182.6765703396
+Gradient objective at best sample:  214.511968051107
+Time elapsed:  2492.0852558612823
+Iteration:  420
+Best parameters:  [-15.73901643  -1.12428706  -9.07364405  -3.05182363  -1.66652303
+  -6.08395804  -1.80488408  -3.03146489]
+Best objective:  62.936505653500305
+Mean objective:  104.96021059753039
+Inner objective at best sample:  1899544.4830142586
+Gradient objective at best sample:  189.94815465086052
+Time elapsed:  2392.3012506961823
+Iteration:  421
+Best parameters:  [-15.89483986  -1.10939563  -9.21323128  -3.02778097  -1.62779187
+  -5.963812    -1.765078    -3.03322692]
+Best objective:  62.82387856831014
+Mean objective:  96.48957277564867
+Inner objective at best sample:  2047483.6170283696
+Gradient objective at best sample:  204.74207931498012
+Time elapsed:  2477.743983745575
+Iteration:  422
+Best parameters:  [-15.81245944  -1.11115796  -9.41443965  -2.99112732  -1.63033694
+  -5.99068867  -1.77693476  -3.03913078]
+Best objective:  62.904936715208535
+Mean objective:  88.55938356680622
+Inner objective at best sample:  1810695.7006169353
+Gradient objective at best sample:  181.063279568022
+Time elapsed:  2763.4245643615723
+Iteration:  423
+Best parameters:  [-15.86385397  -1.11189392  -9.32742592  -3.00419872  -1.62794782
+  -6.09026089  -1.76471666  -3.03105726]
+Best objective:  62.81741979544064
+Mean objective:  87.00292874263513
+Inner objective at best sample:  2071608.241535551
+Gradient objective at best sample:  207.15454241157553
+Time elapsed:  2207.812426805496
+Iteration:  424
+Best parameters:  [-15.80993653  -1.11720051  -9.26265011  -3.01896856  -1.6282365
+  -6.00463822  -1.76064627  -3.03219917]
+Best objective:  62.73050022647684
+Mean objective:  103.00667517026305
+Inner objective at best sample:  2088186.2595363436
+Gradient objective at best sample:  208.81235290361172
+Time elapsed:  2338.043313026428
+Iteration:  425
+Best parameters:  [-15.86323829  -1.11390505  -9.1951868   -3.02834754  -1.63971933
+  -5.98068049  -1.76061274  -3.02711274]
+Best objective:  62.68309311245023
+Mean objective:  83.31883709785204
+Inner objective at best sample:  2276512.592275297
+Gradient objective at best sample:  227.64499091821844
+Time elapsed:  2341.4863250255585
+Iteration:  426
+Best parameters:  [-15.78846325  -1.11950391  -9.2240311   -3.02514284  -1.63422468
+  -5.90749231  -1.76347206  -3.03514732]
+Best objective:  62.61818277681798
+Mean objective:  98.6290953659507
+Inner objective at best sample:  2025807.7466119104
+Gradient objective at best sample:  202.57451284291338
+Time elapsed:  2281.983467578888
+Iteration:  427
+Best parameters:  [-15.73730545  -1.12114731  -9.16022441  -3.04011266  -1.60830846
+  -5.89495945  -1.74055805  -3.03650695]
+Best objective:  62.68694113034124
+Mean objective:  98.01438286279085
+Inner objective at best sample:  2080323.4636430345
+Gradient objective at best sample:  208.0260776701904
+Time elapsed:  2366.346410751343
+Iteration:  428
+Best parameters:  [-15.77997331  -1.11705257  -9.30828259  -3.01213648  -1.64424521
+  -5.83278207  -1.77924983  -3.04142064]
+Best objective:  62.5931228183735
+Mean objective:  101.27050841294376
+Inner objective at best sample:  1808746.528253313
+Gradient objective at best sample:  180.86839351304945
+Time elapsed:  2267.0511512756348
+Iteration:  429
+Best parameters:  [-15.69316743  -1.12369314  -9.26348336  -3.01837115  -1.63190915
+  -5.80049988  -1.77324887  -3.04661781]
+Best objective:  62.53590204100077
+Mean objective:  91.14616955735131
+Inner objective at best sample:  1700220.7088835624
+Gradient objective at best sample:  170.01581729815214
+Time elapsed:  2544.653475999832
+Iteration:  430
+Best parameters:  [-15.67125544  -1.12398925  -9.41540745  -2.99197979  -1.62591868
+  -5.80983232  -1.76297553  -3.04625018]
+Best objective:  62.517205172348596
+Mean objective:  103.72182563840356
+Inner objective at best sample:  1745828.7374002198
+Gradient objective at best sample:  174.57662201950473
+Time elapsed:  2419.083228111267
+Iteration:  431
+Best parameters:  [-15.54344444  -1.1294679   -9.61878714  -2.95511725  -1.63604648
+  -5.57266078  -1.76511823  -3.05367391]
+Best objective:  62.499885914744
+Mean objective:  97.00501747025136
+Inner objective at best sample:  1656257.6830842982
+Gradient objective at best sample:  165.61951831983833
+Time elapsed:  2506.758960723877
+Iteration:  432
+Best parameters:  [-15.38747891  -1.14937692  -9.35016514  -3.00328865  -1.6510407
+  -5.64794287  -1.78553573  -3.05466872]
+Best objective:  62.28758829509708
+Mean objective:  79.29253946348743
+Inner objective at best sample:  1532514.6406233585
+Gradient objective at best sample:  153.24523530350635
+Time elapsed:  2185.7012615203857
+Iteration:  433
+Best parameters:  [-15.48356744  -1.13946538  -9.29137182  -3.01220442  -1.6415787
+  -5.69531993  -1.7647057   -3.04617252]
+Best objective:  62.25373764832989
+Mean objective:  137.00747336804844
+Inner objective at best sample:  1800618.5600513392
+Gradient objective at best sample:  180.0556306313691
+Time elapsed:  2622.1003618240356
+Iteration:  434
+Best parameters:  [-15.36502094  -1.14815495  -9.47047621  -2.97932308  -1.66266616
+  -5.60231574  -1.78857738  -3.05483366]
+Best objective:  62.179377805491406
+Mean objective:  99.65619134926456
+Inner objective at best sample:  1544378.267016449
+Gradient objective at best sample:  154.43160876386435
+Time elapsed:  2365.911327600479
+Iteration:  435
+Best parameters:  [-15.39845549  -1.15048919  -9.12972586  -3.0371275   -1.68384721
+  -5.63091099  -1.80185334  -3.04698998]
+Best objective:  62.26825756062214
+Mean objective:  81.53052934654896
+Inner objective at best sample:  1680742.1052121301
+Gradient objective at best sample:  168.06798369545695
+Time elapsed:  2091.7697570323944
+Iteration:  436
+Best parameters:  [-15.36324974  -1.15024214  -9.35894449  -3.00317123  -1.67030719
+  -5.61897224  -1.79693191  -3.05212132]
+Best objective:  62.26750492156026
+Mean objective:  78.45922843569555
+Inner objective at best sample:  1572739.2351526595
+Gradient objective at best sample:  157.26769676477377
+Time elapsed:  2364.9426794052124
+Iteration:  437
+Best parameters:  [-15.34211518  -1.14564467  -9.45533289  -2.9854      -1.63293234
+  -5.56212782  -1.76120117  -3.05797822]
+Best objective:  62.17531569283866
+Mean objective:  154.43802430856078
+Inner objective at best sample:  1573101.555048679
+Gradient objective at best sample:  157.30393797329862
+Time elapsed:  2195.851784467697
+Iteration:  438
+Best parameters:  [-15.51823189  -1.14062491  -9.43324674  -2.98382084  -1.661553
+  -5.63332742  -1.77543245  -3.04751466]
+Best objective:  62.246307039832836
+Mean objective:  109.75921763726602
+Inner objective at best sample:  1761545.2115718164
+Gradient objective at best sample:  176.14829652647765
+Time elapsed:  2398.301633119583
+Iteration:  439
+Best parameters:  [-15.36687543  -1.15262583  -9.42150463  -2.98689634  -1.66979772
+  -5.47754193  -1.7880209   -3.05902791]
+Best objective:  62.06146383281806
+Mean objective:  82.88285804996012
+Inner objective at best sample:  1510099.6259087787
+Gradient objective at best sample:  151.0037564444946
+Time elapsed:  2475.6176404953003
+Iteration:  440
+Best parameters:  [-15.28581475  -1.15828792  -9.47559628  -2.97601018  -1.68655792
+  -5.38317707  -1.79972971  -3.06218482]
+Best objective:  62.0996906128519
+Mean objective:  98.49404437664604
+Inner objective at best sample:  1451798.8426797832
+Gradient objective at best sample:  145.17367429891704
+Time elapsed:  2248.645444869995
+Iteration:  441
+Best parameters:  [-15.0545455   -1.17359677  -9.53932848  -2.96431806  -1.67523949
+  -5.30233352  -1.77356554  -3.0660061 ]
+Best objective:  61.82098327022402
+Mean objective:  97.18723893994837
+Inner objective at best sample:  1495397.137816553
+Gradient objective at best sample:  149.53353168332828
+Time elapsed:  2323.803390264511
+Iteration:  442
+Best parameters:  [-15.35512592  -1.14572892  -9.55141177  -2.96857609  -1.66129426
+  -5.54131383  -1.78294967  -3.05871703]
+Best objective:  62.18269025885026
+Mean objective:  105.95989039404071
+Inner objective at best sample:  1503398.685679668
+Gradient objective at best sample:  150.33365029894094
+Time elapsed:  2161.743239402771
+Iteration:  443
+Best parameters:  [-15.29610612  -1.15492005  -9.3685612   -2.99610685  -1.65226342
+  -5.48409675  -1.75882618  -3.05286864]
+Best objective:  62.02172228102979
+Mean objective:  105.04217985431946
+Inner objective at best sample:  1755951.5790756643
+Gradient objective at best sample:  175.58895573533832
+Time elapsed:  2250.226045846939
+Iteration:  444
+Best parameters:  [-15.02961201  -1.17440583  -9.5442865   -2.9640117   -1.65050347
+  -5.34040953  -1.74315005  -3.06156303]
+Best objective:  61.899926701114445
+Mean objective:  85.78886645485659
+Inner objective at best sample:  1677216.2438708786
+Gradient objective at best sample:  167.71543439441774
+Time elapsed:  2223.6461429595947
+Iteration:  445
+Best parameters:  [-15.06254361  -1.17296109  -9.38955473  -2.9917869   -1.68085504
+  -5.35706359  -1.78442793  -3.06149083]
+Best objective:  61.87110382415487
+Mean objective:  77.49316242460297
+Inner objective at best sample:  1530278.87569736
+Gradient objective at best sample:  153.02170045935358
+Time elapsed:  2528.6027150154114
+Iteration:  446
+Best parameters:  [-14.83930758  -1.18895561  -9.44056904  -2.9873069   -1.66757504
+  -5.3420102   -1.77266698  -3.06912012]
+Best objective:  61.70442019692887
+Mean objective:  86.1388632504323
+Inner objective at best sample:  1412306.758555475
+Gradient objective at best sample:  141.22450541352782
+Time elapsed:  2414.545681476593
+Iteration:  447
+Best parameters:  [-14.61038037  -1.20939164  -9.2000384   -3.0304425   -1.68186832
+  -5.33360716  -1.8175381   -3.08346988]
+Best objective:  61.654748331407205
+Mean objective:  92.2433240273701
+Inner objective at best sample:  1038998.9601595914
+Gradient objective at best sample:  103.893730541126
+Time elapsed:  2199.339658975601
+Iteration:  448
+Best parameters:  [-14.78120044  -1.19574994  -9.27936122  -3.01168452  -1.66475709
+  -5.25332816  -1.77290541  -3.07525418]
+Best objective:  61.60642624545033
+Mean objective:  83.46029044160795
+Inner objective at best sample:  1330033.4735882771
+Gradient objective at best sample:  132.99718671620315
+Time elapsed:  2151.3512127399445
+Iteration:  449
+Best parameters:  [-14.33076699  -1.23208694  -9.16621078  -3.03332368  -1.72714089
+  -5.09575796  -1.83177377  -3.09056107]
+Best objective:  61.343535921163195
+Mean objective:  97.61639858587044
+Inner objective at best sample:  1012480.9469247349
+Gradient objective at best sample:  101.24196033888137
+Time elapsed:  2385.0022678375244
+Iteration:  450
+Best parameters:  [-14.6330655   -1.21287016  -9.26533245  -3.02335947  -1.71908242
+  -5.29566893  -1.83596914  -3.07522248]
+Best objective:  61.86925525480536
+Mean objective:  97.11648314084549
+Inner objective at best sample:  1151369.172201213
+Gradient objective at best sample:  115.13073029459582
+Time elapsed:  2650.6960020065308
+Iteration:  451
+Best parameters:  [-14.28272361  -1.23192746  -9.30482964  -3.00553952  -1.67891933
+  -5.16415952  -1.78228682  -3.08729647]
+Best objective:  61.23795505985342
+Mean objective:  111.46448282102052
+Inner objective at best sample:  1141193.4915859217
+Gradient objective at best sample:  114.11322536308619
+Time elapsed:  2343.941141605377
+Iteration:  452
+Best parameters:  [-14.00869948  -1.25454116  -9.14574626  -3.03641606  -1.71939535
+  -5.14061896  -1.82619425  -3.09345882]
+Best objective:  61.232973772163376
+Mean objective:  83.71601022169466
+Inner objective at best sample:  966559.6664833529
+Gradient objective at best sample:  96.64984335095807
+Time elapsed:  2327.377861738205
+Iteration:  453
+Best parameters:  [-14.06204678  -1.24855526  -9.00171847  -3.06255695  -1.7054386
+  -5.12745061  -1.82461425  -3.09829798]
+Best objective:  61.241425115628964
+Mean objective:  75.48077752832893
+Inner objective at best sample:  905949.7457224824
+Gradient objective at best sample:  90.58885042973668
+Time elapsed:  2339.6306235790253
+Iteration:  454
+Best parameters:  [-14.42250838  -1.2182293   -9.22313494  -3.02253136  -1.68912683
+  -5.13945438  -1.80145052  -3.09543153]
+Best objective:  61.131987514701166
+Mean objective:  100.04342356627828
+Inner objective at best sample:  986175.6245965012
+Gradient objective at best sample:  98.61144926089865
+Time elapsed:  2213.391808271408
+Iteration:  455
+Best parameters:  [-14.21692164  -1.23956162  -9.35936631  -2.99320207  -1.71022053
+  -5.10189749  -1.81115138  -3.09409634]
+Best objective:  61.14936613161207
+Mean objective:  90.05756119709888
+Inner objective at best sample:  1004900.4625840476
+Gradient objective at best sample:  100.4839313217916
+Time elapsed:  2480.0227456092834
+Iteration:  456
+Best parameters:  [-13.95824018  -1.25962905  -9.23447381  -3.02423694  -1.7137679
+  -5.09840964  -1.83408655  -3.10187632]
+Best objective:  61.105129941203856
+Mean objective:  100.76189671596852
+Inner objective at best sample:  856474.5223780326
+Gradient objective at best sample:  85.64134172480914
+Time elapsed:  2304.379831314087
+Iteration:  457
+Best parameters:  [-14.15311982  -1.24220457  -9.21736412  -3.03042945  -1.69468624
+  -5.14786542  -1.81129775  -3.09787753]
+Best objective:  61.23211014982889
+Mean objective:  137.46383509123467
+Inner objective at best sample:  929628.4078529764
+Gradient objective at best sample:  92.95671757428265
+Time elapsed:  2313.524703979492
+Iteration:  458
+Best parameters:  [-14.09513478  -1.25038294  -9.14957499  -3.03660096  -1.71713496
+  -5.10628544  -1.82389871  -3.09349737]
+Best objective:  61.14627868960959
+Mean objective:  76.80987552595828
+Inner objective at best sample:  983212.385386389
+Gradient objective at best sample:  98.31512391076994
+Time elapsed:  2467.7902958393097
+Iteration:  459
+Best parameters:  [-13.79829668  -1.2730366   -9.15904203  -3.03234919  -1.7291738
+  -5.07852274  -1.83095065  -3.09579189]
+Best objective:  61.136490483799705
+Mean objective:  104.51047258847392
+Inner objective at best sample:  951760.6307533223
+Gradient objective at best sample:  95.16994942628385
+Time elapsed:  2259.8148198127747
+Iteration:  460
+Best parameters:  [-13.9956966   -1.2557917   -9.25277804  -3.01540527  -1.67555714
+  -5.10052622  -1.77967207  -3.09603474]
+Best objective:  61.06134198725061
+Mean objective:  94.79392006986151
+Inner objective at best sample:  1041327.3515539382
+Gradient objective at best sample:  104.1266290211951
+Time elapsed:  2173.120147705078
+Iteration:  461
+Best parameters:  [-13.90190847  -1.26499326  -9.05638057  -3.05221521  -1.68709356
+  -5.04582607  -1.79215448  -3.1010347 ]
+Best objective:  61.019028477330124
+Mean objective:  107.12048264416012
+Inner objective at best sample:  968812.2365698959
+Gradient objective at best sample:  96.87512175414184
+Time elapsed:  2557.4248716831207
+Iteration:  462
+Best parameters:  [-14.0470509   -1.25220983  -9.24351947  -3.019049    -1.68147087
+  -5.05621654  -1.79392715  -3.10419072]
+Best objective:  60.95378818787561
+Mean objective:  88.98735892158437
+Inner objective at best sample:  917589.7570767112
+Gradient objective at best sample:  91.75288032885233
+Time elapsed:  2631.946888446808
+Iteration:  463
+Best parameters:  [-13.58719717  -1.28411004  -9.02893279  -3.05919567  -1.69401041
+  -4.97123982  -1.80712616  -3.11734377]
+Best objective:  60.90228550201651
+Mean objective:  98.25384744077603
+Inner objective at best sample:  775339.6835474435
+Gradient objective at best sample:  77.52787812619414
+Time elapsed:  2169.8617091178894
+Iteration:  464
+Best parameters:  [-13.87995156  -1.26449889  -9.12474868  -3.03950156  -1.68927709
+  -4.97692399  -1.79417143  -3.10948368]
+Best objective:  60.914983091181554
+Mean objective:  82.83919251491038
+Inner objective at best sample:  885755.2898195528
+Gradient objective at best sample:  88.56943748364615
+Time elapsed:  2159.627304315567
+Iteration:  465
+Best parameters:  [-13.69968964  -1.27597992  -9.06208176  -3.0542289   -1.692143
+  -4.98818384  -1.81665477  -3.12312845]
+Best objective:  60.82066077035086
+Mean objective:  117.82969384643691
+Inner objective at best sample:  693885.7797345143
+Gradient objective at best sample:  69.38249590737439
+Time elapsed:  1948.0958063602448
+Iteration:  466
+Best parameters:  [-13.67379589  -1.27598513  -9.27982453  -3.01576349  -1.67462418
+  -4.93282442  -1.7894589   -3.12318262]
+Best objective:  60.80847766444825
+Mean objective:  94.10974774287648
+Inner objective at best sample:  755276.6442587808
+Gradient objective at best sample:  75.52158357811163
+Time elapsed:  2391.9457716941833
+Iteration:  467
+Best parameters:  [-13.72979708  -1.27583892  -9.19689868  -3.02621603  -1.70288867
+  -4.97151807  -1.81549699  -3.11641182]
+Best objective:  60.76928869977524
+Mean objective:  80.28968093691988
+Inner objective at best sample:  772165.0623369262
+Gradient objective at best sample:  77.21042930482265
+Time elapsed:  2093.410155057907
+Iteration:  468
+Best parameters:  [-13.47498944  -1.29562955  -9.20125049  -3.02855428  -1.70124311
+  -4.93808929  -1.81326549  -3.12354381]
+Best objective:  60.683179470757516
+Mean objective:  90.22385149386908
+Inner objective at best sample:  715875.0890362087
+Gradient objective at best sample:  71.5814405856738
+Time elapsed:  2160.086624622345
+Iteration:  469
+Best parameters:  [-13.38441774  -1.30373704  -9.12868901  -3.04038515  -1.72378447
+  -4.90446457  -1.83862106  -3.12822553]
+Best objective:  60.68721559114195
+Mean objective:  113.41251404240012
+Inner objective at best sample:  648587.721024734
+Gradient objective at best sample:  64.85270338091428
+Time elapsed:  2290.3747618198395
+Iteration:  470
+Best parameters:  [-13.71256423  -1.27738811  -9.19876251  -3.02871279  -1.70769444
+  -4.9558517   -1.81898111  -3.1190203 ]
+Best objective:  60.69859263680185
+Mean objective:  103.54280888332411
+Inner objective at best sample:  746111.3323157105
+Gradient objective at best sample:  74.60506337230737
+Time elapsed:  2509.4451344013214
+Iteration:  471
+Best parameters:  [-13.67786909  -1.2831443   -9.24417933  -3.01993227  -1.70451869
+  -4.97536812  -1.82134747  -3.12178211]
+Best objective:  60.65502119820057
+Mean objective:  82.64932619901101
+Inner objective at best sample:  707104.4133587196
+Gradient objective at best sample:  70.70437583375214
+Time elapsed:  2099.4980905056
+Iteration:  472
+Best parameters:  [-13.23447569  -1.31796309  -9.04521568  -3.05568559  -1.7318546
+  -4.84649159  -1.83978338  -3.13422947]
+Best objective:  60.53232349083608
+Mean objective:  90.83471277814996
+Inner objective at best sample:  616959.4287829815
+Gradient objective at best sample:  61.689889645949066
+Time elapsed:  2641.9515204429626
+Iteration:  473
+Best parameters:  [-13.34503633  -1.30859932  -9.38659979  -2.99304085  -1.71872878
+  -4.85246253  -1.82554156  -3.13295505]
+Best objective:  60.50939411641572
+Mean objective:  117.42324961420712
+Inner objective at best sample:  643962.3505803993
+Gradient objective at best sample:  64.39018411862828
+Time elapsed:  2469.8389785289764
+Iteration:  474
+Best parameters:  [-13.11658872  -1.32370208  -8.99987897  -3.06409954  -1.71313908
+  -4.78416841  -1.81294527  -3.13982817]
+Best objective:  60.60071471861404
+Mean objective:  100.07694157877427
+Inner objective at best sample:  626693.1519378623
+Gradient objective at best sample:  62.66325512231437
+Time elapsed:  2499.1957156658173
+Iteration:  475
+Best parameters:  [-13.56314072  -1.29284563  -9.37135808  -3.00087459  -1.7554955
+  -4.8473296   -1.85652746  -3.13275362]
+Best objective:  60.49651670677069
+Mean objective:  103.26283662336103
+Inner objective at best sample:  610054.841830571
+Gradient objective at best sample:  60.99943453138642
+Time elapsed:  2476.6316192150116
+Iteration:  476
+Best parameters:  [-13.35245703  -1.30655423  -9.37167522  -2.99506459  -1.70911387
+  -4.81594807  -1.81884398  -3.14559453]
+Best objective:  60.28468402442767
+Mean objective:  83.32028343924827
+Inner objective at best sample:  562535.5839394955
+Gradient objective at best sample:  56.24752992554711
+Time elapsed:  2675.8688127994537
+Iteration:  477
+Best parameters:  [-13.47845283  -1.29753069  -9.5789141   -2.95944002  -1.75741937
+  -4.80882153  -1.86753174  -3.14668564]
+Best objective:  60.45023588056178
+Mean objective:  84.38846808260149
+Inner objective at best sample:  504951.19868420134
+Gradient objective at best sample:  50.489074844832075
+Time elapsed:  2530.397142648697
+Iteration:  478
+Best parameters:  [-13.411582    -1.30332027  -9.59091359  -2.95651333  -1.73912646
+  -4.77379754  -1.86194536  -3.15443012]
+Best objective:  60.47140709235377
+Mean objective:  115.73512148081744
+Inner objective at best sample:  467535.3189287387
+Gradient objective at best sample:  46.74748475216464
+Time elapsed:  2449.4284687042236
+Iteration:  479
+Best parameters:  [-13.08670972  -1.32926271  -9.43764574  -2.98104117  -1.73861337
+  -4.7416326   -1.8306034   -3.14529622]
+Best objective:  60.40085643171332
+Mean objective:  104.06263904670617
+Inner objective at best sample:  578199.1614166234
+Gradient objective at best sample:  57.81387605601917
+Time elapsed:  2479.71577501297
+Iteration:  480
+Best parameters:  [-13.03538447  -1.33473618  -9.43368711  -2.98629192  -1.72113288
+  -4.72341295  -1.82139097  -3.15395904]
+Best objective:  60.19481853267782
+Mean objective:  103.35270124118945
+Inner objective at best sample:  530286.8467847618
+Gradient objective at best sample:  53.02266519662291
+Time elapsed:  2605.950407743454
+Iteration:  481
+Best parameters:  [-13.19909538  -1.32024537  -9.08902088  -3.04594528  -1.72257801
+  -4.77107071  -1.82305397  -3.14868877]
+Best objective:  60.14298182437826
+Mean objective:  90.24256561728485
+Inner objective at best sample:  552860.3316979829
+Gradient objective at best sample:  55.28001887161585
+Time elapsed:  2461.8578474521637
+Iteration:  482
+Best parameters:  [-13.40901397  -1.30466577  -9.52464599  -2.96350497  -1.74188908
+  -4.76310623  -1.85407805  -3.15480145]
+Best objective:  60.24680510501436
+Mean objective:  82.12982024923859
+Inner objective at best sample:  478057.4648912057
+Gradient objective at best sample:  47.79972180861007
+Time elapsed:  2248.811418533325
+Iteration:  483
+Best parameters:  [-13.45718561  -1.2991977   -9.42086945  -2.98782114  -1.69095445
+  -4.8026552   -1.81916128  -3.15802868]
+Best objective:  60.22768259285518
+Mean objective:  87.436056106651
+Inner objective at best sample:  476523.31005409954
+Gradient objective at best sample:  47.64630823715066
+Time elapsed:  2314.102128267288
+Iteration:  484
+Best parameters:  [-13.06473793  -1.33240146  -9.53944953  -2.96362174  -1.71080391
+  -4.73561515  -1.8225597   -3.16140809]
+Best objective:  60.13800268374953
+Mean objective:  78.4132831215776
+Inner objective at best sample:  474958.09354586946
+Gradient objective at best sample:  47.48979555431857
+Time elapsed:  2430.4350764751434
+Iteration:  485
+Best parameters:  [-13.39841905  -1.30188196  -9.2739228   -3.0159357   -1.71929569
+  -4.77076528  -1.83119048  -3.15402291]
+Best objective:  60.12727071412854
+Mean objective:  76.53102748088762
+Inner objective at best sample:  503998.01407476526
+Gradient objective at best sample:  50.39378868040511
+Time elapsed:  2509.506593465805
+Iteration:  486
+Best parameters:  [-13.00373446  -1.34132     -9.30457921  -3.01074375  -1.750035
+  -4.67335284  -1.84083438  -3.15882039]
+Best objective:  60.023929308948674
+Mean objective:  77.80292959835991
+Inner objective at best sample:  494937.89872068644
+Gradient objective at best sample:  49.48778747913775
+Time elapsed:  2311.26273560524
+Iteration:  487
+Best parameters:  [-13.47715633  -1.29591053  -9.4291408   -2.98779347  -1.70450303
+  -4.74573121  -1.81978327  -3.16428916]
+Best objective:  60.06303745072895
+Mean objective:  95.18238128943179
+Inner objective at best sample:  456659.0292230592
+Gradient objective at best sample:  45.65989661856085
+Time elapsed:  2683.936544895172
+Iteration:  488
+Best parameters:  [-13.09749531  -1.32811697  -9.14688928  -3.03457773  -1.71771756
+  -4.6876943   -1.83574085  -3.17037101]
+Best objective:  60.01787116917119
+Mean objective:  71.47873129489663
+Inner objective at best sample:  422975.5357959561
+Gradient objective at best sample:  42.29155179247869
+Time elapsed:  2256.140478849411
+Iteration:  489
+Best parameters:  [-13.28707444  -1.31317729  -9.16100758  -3.03393698  -1.73499672
+  -4.72291711  -1.8469807   -3.16315487]
+Best objective:  59.93437385651799
+Mean objective:  116.96246407379651
+Inner objective at best sample:  445532.3365686326
+Gradient objective at best sample:  44.54724021947761
+Time elapsed:  2518.967677593231
+Iteration:  490
+Best parameters:  [-13.14644582  -1.32754721  -9.13043985  -3.03822534  -1.70315648
+  -4.68375985  -1.82232428  -3.1763661 ]
+Best objective:  59.82169641131446
+Mean objective:  99.35312053655913
+Inner objective at best sample:  403245.6578747174
+Gradient objective at best sample:  40.318583617830605
+Time elapsed:  2211.013779401779
+Iteration:  491
+Best parameters:  [-12.93632401  -1.34062133  -9.44610881  -2.98192596  -1.71204123
+  -4.60631146  -1.82502988  -3.18734299]
+Best objective:  59.799379666928054
+Mean objective:  102.87571602901792
+Inner objective at best sample:  368046.77425729844
+Gradient objective at best sample:  36.79869748776315
+Time elapsed:  2437.562155485153
+Iteration:  492
+Best parameters:  [-12.8639356   -1.34829086  -9.34314494  -3.00022057  -1.75108951
+  -4.60530656  -1.868565    -3.18907958]
+Best objective:  59.77677568297825
+Mean objective:  94.0654801429199
+Inner objective at best sample:  329763.49276839173
+Gradient objective at best sample:  32.97037159927088
+Time elapsed:  2606.0150003433228
+Iteration:  493
+Best parameters:  [-12.82970234  -1.35730641  -9.28409217  -3.01150872  -1.71610405
+  -4.61608817  -1.82594941  -3.18459461]
+Best objective:  59.665704442034134
+Mean objective:  96.65735073648439
+Inner objective at best sample:  378389.9102651002
+Gradient objective at best sample:  37.833024456065814
+Time elapsed:  2314.420208454132
+Iteration:  494
+Best parameters:  [-13.01576435  -1.3409307   -9.48592692  -2.97867893  -1.75976103
+  -4.64492244  -1.8749032   -3.18253413]
+Best objective:  59.75765204640901
+Mean objective:  133.75692049167114
+Inner objective at best sample:  344912.6152626232
+Gradient objective at best sample:  34.48528576105768
+Time elapsed:  2576.539870262146
+Iteration:  495
+Best parameters:  [-12.7006071   -1.36685304  -9.35159414  -3.00020752  -1.72877959
+  -4.62509011  -1.85411547  -3.19342599]
+Best objective:  59.63579078274024
+Mean objective:  75.02793021434805
+Inner objective at best sample:  315918.86198186455
+Gradient objective at best sample:  31.58592261910818
+Time elapsed:  2447.4288856983185
+Iteration:  496
+Best parameters:  [-12.55557439  -1.37483883  -9.10802039  -3.05231329  -1.72034387
+  -4.54877438  -1.84122192  -3.21268217]
+Best objective:  59.575820362878126
+Mean objective:  95.86664081955256
+Inner objective at best sample:  269950.7822923486
+Gradient objective at best sample:  26.989120647198572
+Time elapsed:  2252.562318086624
+Iteration:  497
+Best parameters:  [-12.522797    -1.38462697  -9.20924584  -3.03145981  -1.71864653
+  -4.54155792  -1.84985257  -3.21543139]
+Best objective:  59.54270947441027
+Mean objective:  81.06169381201451
+Inner objective at best sample:  256519.03203162138
+Gradient objective at best sample:  25.645948932214694
+Time elapsed:  2176.378381252289
+Iteration:  498
+Best parameters:  [-12.64292375  -1.36775293  -9.31725029  -3.00919935  -1.70711888
+  -4.52153936  -1.83196503  -3.21923748]
+Best objective:  59.40429342369387
+Mean objective:  85.44322343124651
+Inner objective at best sample:  258401.5622205636
+Gradient objective at best sample:  25.83421579271399
+Time elapsed:  2275.1239573955536
+/home/sbzak6/ionch_clean/two_states_kemp.py:1032: UserWarning: The figure layout has changed to tight
+  plt.tight_layout(pad=0.3)
+Iteration:  499
+Best parameters:  [-12.48823023  -1.38631557  -9.42613966  -2.99455447  -1.77774312
+  -4.44892941  -1.90517344  -3.24388411]
+Best objective:  59.21125211267213
+Mean objective:  74.20249614897473
+Inner objective at best sample:  175854.46993502008
+Gradient objective at best sample:  17.57952586829074
+Time elapsed:  2372.341736793518
+Total time taken:  2260552.692051649
+============================================================================================================
