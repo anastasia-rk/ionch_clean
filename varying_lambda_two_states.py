@@ -596,8 +596,9 @@ if __name__ == '__main__':
             return data_fit_cost
     ####################################################################################################################
     ## Create objects for the optimisation
-    lambd = 100 # 0.3 # 0 # 1 ## - found out that with multiple states a cost with lambda 1 does not cope for segments where a is almost flat
-    lambdas = [100000, 10000, 1000, 100, 1]
+    # lambd = 100 # 0.3 # 0 # 1 ## - found out that with multiple states a cost with lambda 1 does not cope for segments where a is almost flat
+    lambdas = [1000000, 500000, 100000, 50000, 10000]
+    nIterations = 500
     # set initial values and boundaries
     if inLogScale:
         # theta in log scale
@@ -650,8 +651,8 @@ if __name__ == '__main__':
                                                                                            OuterCost_given_true_theta,
                                                                                            GradCost_given_true_theta))
         ####################################################################################################################
-        # take 1: loosely based on ask-tell example from  pints
-        convergence_threshold = 1e-9
+        # full estimation of parameters using parameter cascading
+        convergence_threshold = 1e-8
         iter_for_convergence = 20
         # Create an outer optimisation object
         big_tic = tm.time()
@@ -679,13 +680,13 @@ if __name__ == '__main__':
                         'Gradient Cost']
         # parallelisation settings
         ncpu = mp.cpu_count()
-        ncores = 10
+        ncores = 14
         # open the file to write to
         with open(csv_file_name, mode='w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(column_names)
             # run the outer optimisation
-            for i in range(200):
+            for i in range(nIterations):
                 # get the next points (multiple locations)
                 thetas = optimiser_outer.ask()
                 # create the placeholder for cost functions

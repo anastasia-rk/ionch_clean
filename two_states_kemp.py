@@ -397,7 +397,7 @@ if __name__ == '__main__':
     # interpolate with smaller time step (milliseconds)
     volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
     # define the weight on the gradienet matching cost
-    lambd = 10000  # 0.3 # 0 # 1 ## - found out that with multiple states a cost with lambda 1 does not cope for segments where a is almost flat
+    lambd = 1000000  # 0.3 # 0 # 1 ## - found out that with multiple states a cost with lambda 1 does not cope for segments where a is almost flat
     ## define the time interval on which the fitting will be done
     tlim = [300, 14899]
     times = np.linspace(*tlim, tlim[-1]-tlim[0],endpoint=False)
@@ -718,9 +718,9 @@ if __name__ == '__main__':
                                                                                        GradCost_given_true_theta))
     ####################################################################################################################
     # take 1: loosely based on ask-tell example from  pints
-    convergence_threshold = 1e-8
+    convergence_threshold = 1e-7
     iter_for_convergence = 20
-    max_iter = 500
+    max_iter = 1000
     # Create an outer optimisation object
     big_tic = tm.time()
     # optimiser_outer = pints.CMAES(x0=init_thetas,sigma0=sigma0_thetas, boundaries=boundaries_thetas) # with simple rectangular boundaries
@@ -991,8 +991,8 @@ if __name__ == '__main__':
     axes['a)'].plot(times, current_ODE_output, '--m', label=r'Current from optimised HH ODE output')
     # axes['b)'].plot(times, state_hidden_true[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
     axes['b)'].plot(times, state_fitted_roi[state_names[0]], '--c', label=r'B-spline approximation given best theta')
-    # axes['b)'].plot(times, states_optimised_ODE[0, :], '--m', label=r'HH ODE solution given best theta')
-    axes['c)'].plot(times, state_hidden_true[1, :], '-k', label=r'r true', linewidth=2, alpha=0.7)
+    axes['b)'].plot(times, states_optimised_ODE[0, :], '--m', label=r'HH ODE solution given best theta')
+    # axes['c)'].plot(times, state_hidden_true[1, :], '-k', label=r'r true', linewidth=2, alpha=0.7)
     axes['c)'].plot(times, state_fitted_roi[state_names[1]], '--c', label=r'B-spline approximation given best theta')
     axes['c)'].plot(times, states_optimised_ODE[1,:], '--m', label=r'HH ODE solution given best theta')
     iAx = 0
