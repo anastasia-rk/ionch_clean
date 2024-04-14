@@ -19,10 +19,11 @@ plt.rcParams['figure.dpi'] = 400
 plt.rcParams['axes.facecolor']='white'
 plt.rcParams['savefig.facecolor']='white'
 plt.style.use("ggplot")
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Helvetica"]})
+# plt.rcParams.update({
+#     "text.usetex": True
+# #     "font.family": "sans-serif",
+# #     "font.sans-serif": ["Helvetica"]
+#         })
 
 ## Definitions
 def collocm(splinelist, tau):
@@ -121,12 +122,28 @@ if __name__ == '__main__':
     ## Generate data
     ## parameter values for the model
     EK = -80
+    # All parameters are given in 1/ms, 1/mV, and muS for conductance
     p_true = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
+    thetas_hh_base = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
+    # From Chon's paper on temperature dependence of HH model
+    # thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 3.1e-2]
+    # theta_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 3.33e-2]
+    # Changed conductances
+    thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 8.471005e-02]
+    theta_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 8.471005e-02]
     # initialise and solve ODE
     x0 = [0, 1]
     solution = sp.integrate.solve_ivp(hh_model, [0,tlim[-1]], x0, args=[p_true], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
     x_ar = solution.sol(times)
     current = observation(times, x_ar, p_true)
+    solution = sp.integrate.solve_ivp(hh_model, [0, tlim[-1]], x0, args=[thetas_hh_25], dense_output=True,
+                                      method='LSODA', rtol=1e-8, atol=1e-8)
+    state_hidden_25 = solution.sol(times)
+    current_HH_at_25 = observation(times, state_hidden_25, thetas_hh_25)
+    solution = sp.integrate.solve_ivp(hh_model, [0, tlim[-1]], x0, args=[theta_hh_37], dense_output=True,
+                                      method='LSODA', rtol=1e-8, atol=1e-8)
+    state_hidden_37 = solution.sol(times)
+    current_HH_at_37 = observation(times, state_hidden_37, theta_hh_37)
 
 
     #  Kemp model
@@ -142,19 +159,19 @@ if __name__ == '__main__':
     print('Steady state at V=-80mv: ', ss)
     new_solution =  sp.integrate.solve_ivp(kemp_model_ss, [0,t_end], ss, args=[p_kemp], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
 
-    # plot the the steady states at -80mV
-    fig, ax = plt.subplots(3,1)
-    ax[0].plot(solution_ss.t, solution_ss.y[0], label='op')
-    ax[0].plot(new_solution.t, new_solution.y[0], label='op from SS')
-    ax[1].plot(solution_ss.t, solution_ss.y[1], label='c1')
-    ax[1].plot(new_solution.t, new_solution.y[1], label='c1 from SS')
-    ax[2].plot(solution_ss.t, solution_ss.y[2], label='h')
-    ax[2].plot(new_solution.t, new_solution.y[2], label='h from SS')
-    ax[0].legend()
-    ax[1].legend()
-    ax[2].legend()
-    plt.tight_layout()
-    plt.show()
+    # plot the steady states at -80mV
+    # fig, ax = plt.subplots(3,1)
+    # ax[0].plot(solution_ss.t, solution_ss.y[0], label='op')
+    # ax[0].plot(new_solution.t, new_solution.y[0], label='op from SS')
+    # ax[1].plot(solution_ss.t, solution_ss.y[1], label='c1')
+    # ax[1].plot(new_solution.t, new_solution.y[1], label='c1 from SS')
+    # ax[2].plot(solution_ss.t, solution_ss.y[2], label='h')
+    # ax[2].plot(new_solution.t, new_solution.y[2], label='h from SS')
+    # ax[0].legend()
+    # ax[1].legend()
+    # ax[2].legend()
+    # plt.tight_layout()
+    # # plt.show()
 
     x0_kemp = ss
     solution_kemp = sp.integrate.solve_ivp(kemp_model, [0, tlim[-1]], x0_kemp, args=[p_kemp], dense_output=True,
@@ -218,32 +235,35 @@ if __name__ == '__main__':
 
     ## plot three states and the output
     fig, axes = plt.subplots(2, 2)
-    axes[0, 0].plot(times, x_ar[0,:], 'b',label='HH')
-    # axes[0, 0].plot(times, x_kemp[0, :], 'r',label='Kemp')
-    # axes[0, 0].plot(times[2:][switchpoints_roi], x_ar[0,2:][switchpoints_roi], 'r.')
+    # axes[0, 0].plot(times, x_ar[0,:], 'b',label='HH')
+    axes[0,0].plot(times,state_hidden_25[0,:],'--m',label='HH a at 25')
+    axes[0,0].plot(times,state_hidden_37[0,:],'--c',label='HH a at 37')
+    axes[0, 0].plot(times, x_kemp[0, :], '--y',label='Kemp O')
     axes[0, 0].set_xlabel('times, ms')
-    axes[0, 0].set_ylabel('a gating variable')
+    axes[0, 0].set_ylabel('a/O gating variable')
     axes[0, 0].set_xlim(tlim)
-    axes[0, 1].plot(times, x_ar[1,:], 'b',label='HH')
-    # axes[0, 1].plot(times, x_kemp[2, :], 'r',label='Kemp')
-    # axes[0, 1].plot(times[2:][switchpoints_roi], x_ar[1,2:][switchpoints_roi], 'r.')
+    axes[0, 1].plot(times,state_hidden_25[1,:],'--m',label='HH r at 25')
+    axes[0, 1].plot(times,state_hidden_37[1,:],'--c',label='HH r at 37')
+    axes[0, 1].plot(times, x_kemp[2, :], '--y', label='Kemp h')
     axes[0, 1].set_xlabel('times, ms')
-    axes[0, 1].set_ylabel('r gating variable')
+    axes[0, 1].set_ylabel('r/h gating variable')
     axes[0, 1].set_xlim(tlim)
-    axes[1, 0].plot(times, volts_new, 'b',label='Input voltage')
-    axes[1, 0].plot(times[jump_indeces], volts_new[jump_indeces], 'r.')
+    axes[1, 0].plot(times, volts_new, 'k--',label='Input voltage')
+    axes[1, 0].plot(times[jump_indeces], volts_new[jump_indeces], 'm.')
     axes[1, 0].set_xlabel('times, ms')
     axes[1, 0].set_ylabel('voltage, mV')
     axes[1, 0].set_xlim(tlim)
-    axes[1, 1].plot(times, current, 'b',label='HH')
-    # axes[1, 1].plot(times, current_kemp, 'r',label='Kemp')
-    # axes[1, 1].plot(times[2:][switchpoints_roi], current[2:][switchpoints_roi], 'r.')
+    axes[1,1].plot(times,current_HH_at_25,'--m',label='HH at 25')
+    axes[1,1].plot(times,current_HH_at_37,'--c',label='HH at 37')
+    axes[1, 1].plot(times, current_kemp, '--y',label='Kemp')
     axes[1, 1].set_xlabel('times, ms')
     axes[1, 1].set_ylabel('Current, A')
     axes[1, 1].set_xlim(tlim)
-    axes[1, 1].legend(fontsize=14, loc='best')
+    axs = axes.ravel()
+    for ax in axs:
+        ax.legend(fontsize=14, loc='best')
     plt.tight_layout()
-    plt.savefig('Figures/generated_data_HH.png')
+    plt.savefig('Figures/generated_data_HH_vs_Kemp.png')
 
     # create a figure with 2x2 axes that plots three states of kemp solution and the output
     fig, axes = plt.subplots(2, 2)
@@ -313,7 +333,7 @@ if __name__ == '__main__':
 
     # make a list of states
     stateNames = ['a','r','V, mV']
-    states = [x_ar[0], x_ar[1], volts_roi]
+    states = [x_ar[0], x_ar[1], volts_new]
     nStates = len(states)
     fig, axes = plt.subplots(nStates,1, sharex=True)
     for iState in range(nStates):
@@ -354,6 +374,7 @@ if __name__ == '__main__':
     ## uncomment this to plot the grid of splines with coeff 1 each
     ax.plot(times_roi,np.ones_like(coeffs) @ collocation, '--r', lw=0.5, alpha=0.7, label='B-spline curve')
     # draw lines indicating the jumps
+    jump_times = times_roi[knots_boolean]
     for _, jump in enumerate(jump_times):
         ax.axvline(x=jump, ls='--', color='k', linewidth=0.5, alpha=0.7,)
     ax.grid(True)
@@ -421,7 +442,7 @@ if __name__ == '__main__':
     axes[0, 0].plot(fun_a, '--r', label='B-splines')
     axes[1, 0].plot(x_ar[1], '-k', label='true')
     axes[1, 0].plot(fun_r, '--r', label='B-splines')
-    axes[2, 0].plot(volts_roi, '-k', label='true')
+    axes[2, 0].plot(volts_new, '-k', label='true')
     axes[2, 0].plot(fun_v, '--r', label='B-splines')
     axes[0, 1].plot(rhs_theta[0,:], '-k', label='RHS')
     axes[0, 1].plot(dot_a, '--r', label='B-spline derivative')
