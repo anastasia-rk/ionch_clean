@@ -19,10 +19,11 @@ plt.rcParams['figure.dpi'] = 400
 plt.rcParams['axes.facecolor']='white'
 plt.rcParams['savefig.facecolor']='white'
 plt.style.use("ggplot")
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Helvetica"]})
+# plt.rcParams.update({
+#     "text.usetex": True
+# #     "font.family": "sans-serif",
+# #     "font.sans-serif": ["Helvetica"]
+#         })
 
 ## Definitions
 def collocm(splinelist, tau):

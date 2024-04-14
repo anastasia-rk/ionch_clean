@@ -938,7 +938,7 @@ if __name__ == '__main__':
         # plot model outputs given best theta
         fig, axes = plt.subplot_mosaic([['a)'], ['b)'], ['c)']], layout='constrained', sharex=True)
         y_labels = ['I', 'a', 'r']
-        axes['a)'].plot(times, current_true, '-k', label=r'Current true (Kemp model)', linewidth=2, alpha=0.7)
+        axes['a)'].plot(times, current_true, '-k', label=r'Current true (HH model)', linewidth=2, alpha=0.7)
         axes['a)'].plot(times, current_model, '--c', label=r'Current from B-spline approximation')
         axes['a)'].plot(times, current_ODE_output, '--m', label=r'Current from optimised HH ODE output')
         axes['b)'].plot(times, state_hidden_true[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
