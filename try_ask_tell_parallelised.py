@@ -32,7 +32,7 @@ def observation(t, x, theta):
     return g * a * r * (V(t) - EK)
 # get Voltage for time in ms
 def V(t):
-    return volts_intepolated((t)/ 1000)
+    return volts_intepolated(t/ 1000)
 
 ### Only consider a -- all params in log scale
 def ode_a_only(t, x, theta):
@@ -364,7 +364,7 @@ if __name__ == '__main__':
     state_hidden_true = x_ar[state_names.index(state_name), :]
     ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables
     theta_lower_boundary = [np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5)), np.log(10 ** (-5))]
-    theta_upper_boundary = [np.log(10 ** (3)), np.log(0.4), np.log(10 ** (3)), np.log(0.4)]
+    theta_upper_boundary = [np.log(10 ** 3), np.log(0.4), np.log(10 ** 3), np.log(0.4)]
     ################################################################################################################
     ## B-spline representation setup
     # set times of jumps and a B-spline knot sequence

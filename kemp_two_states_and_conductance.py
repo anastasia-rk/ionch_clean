@@ -11,10 +11,6 @@ plt.ioff()
 
 # definitions
 
-# get Voltage for time in ms
-def V(t):
-    return volts_intepolated(t/ 1000)
-
 def hh_model(t, x, theta):
     a, r = x[:2]
     *p, g = theta[:9]

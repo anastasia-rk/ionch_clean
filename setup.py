@@ -19,11 +19,11 @@ plt.rcParams['figure.dpi'] = 400
 plt.rcParams['axes.facecolor']='white'
 plt.rcParams['savefig.facecolor']='white'
 plt.style.use("ggplot")
-# plt.rcParams.update({
-#     "text.usetex": True
-# #     "font.family": "sans-serif",
-# #     "font.sans-serif": ["Helvetica"]
-#         })
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"]
+        })
 
 ## Definitions
 def collocm(splinelist, tau):
@@ -51,12 +51,6 @@ def hh_model(t, x, theta):
     da = (a_inf - a) / tau_a
     dr = (r_inf - r) / tau_r
     return [da,dr]
-
-def observation(t, x, theta):
-    # I
-    a, r = x[:2]
-    *ps, g = theta[:9]
-    return g * a * r * (V(t) - EK)
 
 def kemp_model(t, x, theta):
     op, c1, h = x[:3]
@@ -96,32 +90,137 @@ def kemp_model_ss(t, x, theta):
     dh = (h_inf - h)/tau_h
     return [dop,dc1,dh]
 
-def kemp_observation(t, x, theta):
+def two_state_model(t, x, theta):
+    a, r = x[:2]
+    p = theta[:8]
+    v = V(t)
+    k1 = np.exp(p[0] + np.exp(p[1]) * v)
+    k2 = np.exp(p[2]-np.exp(p[3]) * v)
+    k3 = np.exp(p[4] + np.exp(p[5]) * v)
+    k4 = np.exp(p[6] -np.exp(p[7]) * v)
+    a_inf = k1 / (k1 + k2)
+    tau_a = 1 / (k1 + k2)
+    r_inf = k4 / (k3 + k4)
+    tau_r = 1 / (k3 + k4)
+    da = (a_inf - a) / tau_a
+    dr = (r_inf - r) / tau_r
+    return [da,dr]
+
+def kemp_observation(t, ode_solution, theta):
+    x = ode_solution.sol(t)
     op, c1, h = x[:3]
     *p, g = theta[:13]
     return g * op * h * (V(t) - EK)
 
+def observation(t, ode_solution, theta):
+    x = ode_solution.sol(t)
+    a, r = x[:2]
+    *ps, g = theta[:9]
+    return g * a * r * (V(t) - EK)
 # get Voltage for time in ms
 def V(t):
-    return volts_intepolated(t/ 1000)
+    return volts_interpolated(t/ 1000)
 
+def generate_synthetic_data(model_name):
+    if model_name == 'HH':
+        # parameter values for the model
+        p_true = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
+        thetas_hh_base = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
+        # From Chon's paper on temperature dependence of HH model
+        # thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 3.1e-2]
+        # theta_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 3.33e-2]
+        # Changed conductances
+        thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 8.471005e-02]
+        theta_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 8.471005e-02]
+        # initialise and solve ODE
+        x0 = [0, 1]
+        solution = sp.integrate.solve_ivp(hh_model, [0, tlim[-1]], x0, args=[p_true], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+        current = observation(times, solution, p_true)
+        solution = sp.integrate.solve_ivp(hh_model, [0, tlim[-1]], x0, args=[thetas_hh_25], dense_output=True,
+                                            method='LSODA', rtol=1e-8, atol=1e-8)
+        current_HH_at_25 = observation(times, solution, thetas_hh_25)
+        solution = sp.integrate.solve_ivp(hh_model, [0, tlim[-1]], x0, args=[theta_hh_37], dense_output=True,
+                                            method='LSODA', rtol=1e-8, atol=1e-8)
+        current_HH_at_37 = observation(times, solution, theta_hh_37)
+        return solution, current_HH_at_37
+    elif model_name == 'Kemp':
+        p_kemp = [8.5318e-03, 8.3176e-02, 1.2628e-02, 1.03628e-07, 2.702763e-01, 1.580004e-02, 7.6669948e-02,
+                  2.2457500e-02,
+                  1.490338e-01, 2.431569e-02, 5.58072e-04, 4.06619e-02, 8.471005e-02]
+        # find steady state at -80mV to use as initial condition
+        x0_init = [0.5, 0.5, 0]
+        # run for a long time for the slow rate states to settle
+        t_end = 10e5
+        solution_ss = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], x0_init, args=[p_kemp], dense_output=True,
+                                             method='LSODA', rtol=1e-8, atol=1e-8)
+        ss = solution_ss.sol(t_end)
+        print('Steady state at V=-80mv: ', ss)
+        solution_kemp = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], ss, args=[p_kemp], dense_output=True,
+                                              method='LSODA', rtol=1e-8, atol=1e-8)
+        current_kemp = kemp_observation(times, solution_kemp, p_kemp)
+        return solution_kemp, current_kemp
 
+####################################################################################################################
+# Load the training protocol - globall for all!!!
+#  load the voltage data:
+volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',')
+#  check when the voltage jumps
+# read the times and valued of voltage clamp
+volt_times, volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',').T
+# interpolate with smaller time step (milliseconds)
+volts_interpolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
+# set resting potential
+EK = -80
+####################################################################################################################
 # main
 if __name__ == '__main__':
+    # check the AP voltage protocol for validation
+    ap_protocol_data = np.genfromtxt('ap_protocol/ap.csv', delimiter=',', skip_header=1)
+    # get the time and voltage
+    time_ap, voltage_ap = ap_protocol_data.T
+    time_ap = time_ap * 1000  # convert to s to match the other protocol and the V function
+    # pllot voltage against time andd save into figures directory
+    fig, ax = plt.subplots()
+    ax.plot(time_ap, voltage_ap, 'b')
+    ax.set_xlabel('Time, ms')
+    ax.set_ylabel('Voltage, mV')
+    plt.tight_layout()
+    plt.savefig('Figures/ap_protocol.png')
+    print('pause here')
+    # if we want to use the AP protocol, we can use the following function to interpolate the voltage
+    volts_intepolated = sp.interpolate.interp1d(time_ap, voltage_ap, kind='previous')
+    ####################################################################################################################
+    # check the AP voltage protocol for validation
+    ap_protocol_data = np.genfromtxt('ap_protocol/ap.csv', delimiter=',', skip_header=1)
+    # get the time and voltage
+    time_ap, voltage_ap = ap_protocol_data.T
+    time_ap = time_ap * 1000  # convert to s to match the other protocol and the V function
+    # pllot voltage against time andd save into figures directory
+    fig, ax = plt.subplots()
+    ax.plot(time_ap, voltage_ap, 'b')
+    ax.set_xlabel('Time, ms')
+    ax.set_ylabel('Voltage, mV')
+    plt.tight_layout()
+    plt.savefig('Figures/ap_protocol.png')
+    print('pause here')
+    # if we want to use the AP protocol, we can use the following function to interpolate the voltage
+    volts_intepolated = sp.interpolate.interp1d(time_ap, voltage_ap, kind='previous')
+
+    ####################################################################################################################
+    # check the staircase voltage clamp protocol for training
     #  load the voltage data:
     volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',')
     #  check when the voltage jumps
     # read the times and valued of voltage clamp
     volt_times, volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',').T
     # interpolate with smaller time step (milliseconds)
-    volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
+    volts_interpolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
 
     tlim = [0, 14899]
     times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
     ###################################################################################################################
     ## Generate data
     ## parameter values for the model
-    EK = -80
     # All parameters are given in 1/ms, 1/mV, and muS for conductance
     p_true = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
     thetas_hh_base = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
@@ -384,15 +483,15 @@ if __name__ == '__main__':
     plt.tight_layout()
     plt.savefig('Figures/Bspline_grid.png')
 
-    # fit the B-splines coeff using direct LS
-    fig, axes = plt.subplots(3,1,sharex=True)
-    all_coeffs = []
-    for iState in range(nStates):
-        ax = axes.flatten()[iState]
-        state = states[iState]
-        coeffs_ls = np.dot((np.dot(np.linalg.pinv(np.dot(collocation, collocation.T)), collocation)), state)
-        all_coeffs.append(coeffs_ls)
-        coeffs = np.zeros_like(coeffs_ls)
+    # # fit the B-splines coeff using direct LS
+    # fig, axes = plt.subplots(3,1,sharex=True)
+    # all_coeffs = []
+    # for iState in range(nStates):
+    #     ax = axes.flatten()[iState]
+    #     state = states[iState]
+    #     coeffs_ls = np.dot((np.dot(np.linalg.pinv(np.dot(collocation, collocation.T)), collocation)), state)
+    #     all_coeffs.append(coeffs_ls)
+    #     coeffs = np.zeros_like(coeffs_ls)
     ####################################################################################################################
     #     ## uncomment this to test formation of the fitted spline surface and its derivatives
     #     tck_a = tuple([knots, coeffs_ls, degree])
@@ -407,54 +506,54 @@ if __name__ == '__main__':
     # figName = 'Figures/check_derivatives.png'
     # plt.savefig(figName)
     ####################################################################################################################
-    ## Uncomment this to plot the B-spline functions and approximations
-        for i in range(len(coeffs)):
-            tau_current = np.arange(knots[i], knots[i + 4])
-            coeffs[i] = coeffs_ls[i]
-            splinest[i] = BSpline(knots, coeffs, degree,
-                                  extrapolate=False)  # create a spline that only has one non-zero coeff
-            ax.plot(tau_current, splinest[i](tau_current), lw=0.5, alpha=0.7)
-            coeffs[i] = 0
-        ax.plot(times_roi, state, '-k', lw=0.5, alpha=0.7, label='true')
-        ax.plot(times_roi,coeffs_ls @ collocation, '--r', lw=1, alpha=0.7, label='B-spline curve')
-        ax.set_ylabel(stateNames[iState])
-    ax.legend(fontsize=14, loc='best')  # only put legend into last axes
-    ax.set_xlabel('time, ms')
-    figName = 'Figures/example_bspl_fit_cropped.png'
-    plt.savefig(figName)
+    # ## Uncomment this to plot the B-spline functions and approximations
+    #     for i in range(len(coeffs)):
+    #         tau_current = np.arange(knots[i], knots[i + 4])
+    #         coeffs[i] = coeffs_ls[i]
+    #         splinest[i] = BSpline(knots, coeffs, degree,
+    #                               extrapolate=False)  # create a spline that only has one non-zero coeff
+    #         ax.plot(tau_current, splinest[i](tau_current), lw=0.5, alpha=0.7)
+    #         coeffs[i] = 0
+    #     ax.plot(times_roi, state, '-k', lw=0.5, alpha=0.7, label='true')
+    #     ax.plot(times_roi,coeffs_ls @ collocation, '--r', lw=1, alpha=0.7, label='B-spline curve')
+    #     ax.set_ylabel(stateNames[iState])
+    # ax.legend(fontsize=14, loc='best')  # only put legend into last axes
+    # ax.set_xlabel('time, ms')
+    # figName = 'Figures/example_bspl_fit_cropped.png'
+    # plt.savefig(figName)
     ####################################################################################################################
-    ##  check the derivatives
-    coeffs_a, coeffs_r, coeffs_v = all_coeffs
-    tck_a = (knots, coeffs_a, degree)
-    tck_r = (knots, coeffs_r, degree)
-    tck_v = (knots, coeffs_v, degree)
-    dot_a = sp.interpolate.splev(times_roi, tck_a, der=1)
-    dot_r = sp.interpolate.splev(times_roi, tck_r, der=1)
-    dot_v = sp.interpolate.splev(times_roi, tck_v, der=1)
-    fun_a = sp.interpolate.splev(times_roi, tck_a, der=0)
-    fun_r = sp.interpolate.splev(times_roi, tck_r, der=0)
-    fun_v = sp.interpolate.splev(times_roi, tck_v, der=0)
-    dadr_all_times = hh_model(times_roi, [fun_a, fun_r], p_true)
-    rhs_theta = np.array(dadr_all_times)
-    fig, axes = plt.subplots(3, 2, sharex=True)
-    y_labels = ['a','$\dot{a}$','r','$\dot{r}$','v','$\dot{v}$']
-    axes[0, 0].plot(x_ar[0], '-k', label='true')
-    axes[0, 0].plot(fun_a, '--r', label='B-splines')
-    axes[1, 0].plot(x_ar[1], '-k', label='true')
-    axes[1, 0].plot(fun_r, '--r', label='B-splines')
-    axes[2, 0].plot(volts_new, '-k', label='true')
-    axes[2, 0].plot(fun_v, '--r', label='B-splines')
-    axes[0, 1].plot(rhs_theta[0,:], '-k', label='RHS')
-    axes[0, 1].plot(dot_a, '--r', label='B-spline derivative')
-    axes[1, 1].plot(rhs_theta[1,:], '-k', label='RHS')
-    axes[1, 1].plot(dot_r, '--r', label='B-spline derivative')
-    axes[2, 1].plot(dot_v, '--r', label='B-spline derivative')
-    for iAx, ax in enumerate(axes.flatten()):
-        ax.legend(fontsize=14, loc='upper right')
-        ax.set_ylabel(y_labels[iAx])
-    plt.tight_layout()
-    plt.savefig('Figures/LS_b_spline_grid.png')
-    ##
+    # ##  check the derivatives
+    # coeffs_a, coeffs_r, coeffs_v = all_coeffs
+    # tck_a = (knots, coeffs_a, degree)
+    # tck_r = (knots, coeffs_r, degree)
+    # tck_v = (knots, coeffs_v, degree)
+    # dot_a = sp.interpolate.splev(times_roi, tck_a, der=1)
+    # dot_r = sp.interpolate.splev(times_roi, tck_r, der=1)
+    # dot_v = sp.interpolate.splev(times_roi, tck_v, der=1)
+    # fun_a = sp.interpolate.splev(times_roi, tck_a, der=0)
+    # fun_r = sp.interpolate.splev(times_roi, tck_r, der=0)
+    # fun_v = sp.interpolate.splev(times_roi, tck_v, der=0)
+    # dadr_all_times = hh_model(times_roi, [fun_a, fun_r], p_true)
+    # rhs_theta = np.array(dadr_all_times)
+    # fig, axes = plt.subplots(3, 2, sharex=True)
+    # y_labels = ['a','$\dot{a}$','r','$\dot{r}$','v','$\dot{v}$']
+    # axes[0, 0].plot(x_ar[0], '-k', label='true')
+    # axes[0, 0].plot(fun_a, '--r', label='B-splines')
+    # axes[1, 0].plot(x_ar[1], '-k', label='true')
+    # axes[1, 0].plot(fun_r, '--r', label='B-splines')
+    # axes[2, 0].plot(volts_new, '-k', label='true')
+    # axes[2, 0].plot(fun_v, '--r', label='B-splines')
+    # axes[0, 1].plot(rhs_theta[0,:], '-k', label='RHS')
+    # axes[0, 1].plot(dot_a, '--r', label='B-spline derivative')
+    # axes[1, 1].plot(rhs_theta[1,:], '-k', label='RHS')
+    # axes[1, 1].plot(dot_r, '--r', label='B-spline derivative')
+    # axes[2, 1].plot(dot_v, '--r', label='B-spline derivative')
+    # for iAx, ax in enumerate(axes.flatten()):
+    #     ax.legend(fontsize=14, loc='upper right')
+    #     ax.set_ylabel(y_labels[iAx])
+    # plt.tight_layout()
+    # plt.savefig('Figures/LS_b_spline_grid.png')
+    # ##
     print('pause here')
     # ####################################################################################################################
     # ## optimisation accroding to Ramsey&Hooker cost: standard python minimizer with Broyden-Fletcher-Goldfarb-Shanno gradient descent

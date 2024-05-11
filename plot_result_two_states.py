@@ -47,7 +47,7 @@ def observation(t, x, theta):
     return g * a * r * (V(t) - EK)
 # get Voltage for time in ms
 def V(t):
-    return volts_intepolated((t)/ 1000)
+    return volts_interpolated((t)/ 1000)
 
 
 if __name__ == '__main__':
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # read the times and valued of voltage clamp
     volt_times, volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',').T
     # interpolate with smaller time step (milliseconds)
-    volts_intepolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
+    volts_interpolated = sp.interpolate.interp1d(volt_times, volts, kind='previous')
     ## define the time interval on which the fitting will be done
     tlim = [300, 14899]
     times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     current_true = observation(times, state_hidden_true, thetas_true)
     voltage = V(times)
     ################################################################################################################
-    lambd = 100000  # 0.3 # 0 # 1
+    lambd = 1000000  # 0.3 # 0 # 1
     folderName = 'Results_two_state_lambda_' + str(int(lambd))
     folderForOutput = 'Test_plot_output'
     with open(folderName + '/model_output_two_states.pkl', 'rb') as f:
@@ -159,6 +159,9 @@ if __name__ == '__main__':
     plt.plot(f_inner_best, '-b', linewidth=1.5,
              label='Best cost:J(C / Theta_{best}, Y) = ' + "{:.5e}".format(
                  f_inner_best[-1]))
+    ax = plt.gca()
+    ax.set_facecolor('white')
+    ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
     # plt.plot(range(len(f_inner_best)), np.ones(len(f_inner_best)) * InnerCost_given_true_theta, '--m',
     #          linewidth=2.5, alpha=.5,
     #          label='Collocation solution: J(C / Theta_{true}, Y) = ' + "{:.5e}".format(InnerCost_given_true_theta))
@@ -184,7 +187,13 @@ if __name__ == '__main__':
     #         OuterCost_given_true_theta))
     plt.plot(f_outer_best, '-b', linewidth=1.5,
              label='Best cost:H(Theta_{best} / C, Y) = ' + "{:.5e}".format(f_outer_best[-1]))
+    ax = plt.gca()
+    ax.set_facecolor('white')
+    ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
     plt.legend(loc='best')
+    ax = plt.gca()
+    ax.set_facecolor('white')
+    ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
     plt.tight_layout()
     plt.savefig(folderForOutput + '/outer_cost_ask_tell_two_states.png', dpi=400)
 
@@ -206,6 +215,9 @@ if __name__ == '__main__':
     plt.plot(f_gradient_best, '-b', linewidth=1.5,
              label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
     plt.legend(loc='best')
+    ax = plt.gca()
+    ax.set_facecolor('white')
+    ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
     plt.tight_layout()
     plt.savefig(folderForOutput + '/gradient_cost_ask_tell_two_states.png', dpi=400)
 
@@ -223,6 +235,8 @@ if __name__ == '__main__':
                 label=r"best: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_best[-1, iAx]))
         ax.set_ylabel('log(' + param_names[iAx] + ')')
         ax.legend(loc='best')
+        ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
     plt.tight_layout()
     plt.savefig(folderForOutput + '/ODE_params_log_scale_two_states.png', dpi=400)
 
@@ -241,11 +255,14 @@ if __name__ == '__main__':
         ax.set_ylabel(param_names[iAx])
         ax.set_yscale('log')
         ax.legend(loc='best')
+        ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
     ax.set_xlabel('Iteration')
     plt.tight_layout()
     plt.savefig(folderForOutput + '/ODE_params_two_states.png', dpi=400)
     ####################################################################################################################
-    # plot model outputs given best theta
+    ## plot model outputs given best theta
+    # ge the best theta value
     Thetas_ODE = theta_best[-1]
     # get initial values from the B-spline fit
     x0_optimised_ODE = state_all_segments[:, 0]
@@ -279,6 +296,7 @@ if __name__ == '__main__':
         ax.set_ylabel(y_labels[iAx], fontsize=12)
         ax.legend(fontsize=12, loc='upper left')
         ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
         ax.set_xlim(times[jump_indeces[0]],times[jump_indeces[-1]])
         iAx += 1
     # plt.tight_layout(pad=0.3)
@@ -319,8 +337,87 @@ if __name__ == '__main__':
         ax.set_ylabel(y_labels[iAx], fontsize=12)
         ax.legend(fontsize=12, loc='upper left')
         ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
         ax.set_xlim(times[jump_indeces[0]],times[jump_indeces[-1]])
         iAx += 1
     plt.tight_layout(pad=0.3)
     plt.savefig(folderForOutput + '/erros_ask_tell_two_states.png', dpi=400)
+
+    # run the validation protocols on the models
+    # check the AP voltage protocol for validation
+    ap_protocol_data = np.genfromtxt('ap_protocol/ap.csv', delimiter=',', skip_header=1)
+    # get the time and voltage
+    time_ap, voltage_ap = ap_protocol_data.T
+    # these voltage values will now be interpolated
+    time_ap_sec = time_ap/1000
+    volts_interpolated = sp.interpolate.interp1d(time_ap_sec, voltage_ap, kind='previous')
+    # part 1: rerun the model for the new voltage protocol
+    Thetas_ODE = theta_best[-1]
+    # get initial values from the B-spline fit
+    x0_optimised_ODE = state_all_segments[:, 0]
+    # solve ODE with best theta
+    solution_optimised_ODE = sp.integrate.solve_ivp(two_state_model, [0, time_ap[-1]], x0_optimised_ODE,
+                                                    args=[Thetas_ODE], dense_output=True, method='LSODA', rtol=1e-8,
+                                                    atol=1e-8)
+    states_optimised_ODE = solution_optimised_ODE.sol(time_ap)
+    RHS_optimised_ODE = two_state_model(time_ap, states_optimised_ODE, Thetas_ODE)
+    current_ODE_output = observation(time_ap, states_optimised_ODE, Thetas_ODE)
+
+    #part 2: rerun the model with true values on the new protocol
+    Thetas_ODE = theta_true
+    solution_true_ODE = sp.integrate.solve_ivp(two_state_model, [0, time_ap[-1]], x0,
+                                                    args=[Thetas_ODE], dense_output=True, method='LSODA', rtol=1e-8,
+                                                    atol=1e-8)
+    states_true_ODE = solution_optimised_ODE.sol(time_ap)
+    RHS_true_ODE = two_state_model(time_ap, states_true_ODE, Thetas_ODE)
+    current_true = observation(time_ap, states_true_ODE, Thetas_ODE)
+
+    # plot outputs to compare
+    fig, axes = plt.subplot_mosaic([['a)'], ['b)'], ['c)']], layout='constrained', sharex=True)
+    y_labels = ['I', 'a', 'r']
+    # # add segment shading to all axes
+    # for _, ax in axes.items():
+    #     for iSegment, SegmentStart in enumerate(jumps_odd):
+    #         ax.axvspan(time_ap[SegmentStart], time_ap[jumps_even[iSegment]], facecolor='0.2', alpha=0.2)
+    axes['a)'].plot(time_ap, current_true, '-k', label=r'Current true (HH model)', linewidth=2, alpha=0.7)
+    axes['a)'].plot(time_ap, current_ODE_output, '--m', label=r'Current from optimised HH ODE output')
+    axes['b)'].plot(time_ap, states_true_ODE[0, :], '-k', label=r'a true', linewidth=2, alpha=0.7)
+    axes['b)'].plot(time_ap, states_optimised_ODE[0, :], '--m', label=r'HH ODE solution given best theta')
+    axes['c)'].plot(time_ap, states_true_ODE[1, :], '-k', label=r'r true', linewidth=2, alpha=0.7)
+    axes['c)'].plot(time_ap, states_optimised_ODE[1, :], '--m', label=r'HH ODE solution given best theta')
+    iAx = 0
+    for _, ax in axes.items():
+        ax.set_ylabel(y_labels[iAx], fontsize=12)
+        ax.legend(fontsize=12, loc='upper left')
+        ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
+        # ax.set_xlim(times[jump_indeces[0]],times[jump_indeces[-1]])
+        iAx += 1
+    # plt.tight_layout(pad=0.3)
+    plt.savefig(folderForOutput + '/validation_output_two_states.png', dpi=400)
+
+    # plot errors
+    fig, axes = plt.subplot_mosaic([['a)', 'a)'], ['b)', 'c)'], ['d)', 'e)']], layout='constrained')
+    y_labels = ['I_{true} - I_{model}', 'true RHS - model RHS', 'true RHS - model RHS',
+                'true a - model a', 'true r - model r']
+    axes['a)'].plot(time_ap, current_true - current_ODE_output, '--k', label='Data error of HH ODE solution')
+    axes['b)'].plot(time_ap, RHS_true_ODE[0] - RHS_optimised_ODE[0], '--k',
+                    label='RHS true - RHS of HH ODE.')
+    axes['c)'].plot(time_ap, RHS_true_ODE[1] - RHS_optimised_ODE[1], '--k',
+                    label='RHS true - RHS of HH ODE.')
+    axes['d)'].plot(time_ap, states_true_ODE[0, :] - states_optimised_ODE[0, :], '--k',
+                    label='HH ODE solution error')
+    axes['e)'].plot(time_ap, states_true_ODE[1, :] - states_optimised_ODE[1, :], '--k',
+                    label='HH ODE solution error')
+    iAx = 0
+    for _, ax in axes.items():
+        ax.set_ylabel(y_labels[iAx], fontsize=12)
+        ax.legend(fontsize=12, loc='upper left')
+        ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
+        # ax.set_xlim(times[jump_indeces[0]],times[jump_indeces[-1]])
+        iAx += 1
+    # plt.tight_layout(pad=0.3)
+    plt.savefig(folderForOutput + '/validation_errors_two_states.png', dpi=400)
+
 ## end of loop over lambda values
