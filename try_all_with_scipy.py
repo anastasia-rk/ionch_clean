@@ -28,7 +28,7 @@ lambd = 10e5  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-8
 iter_for_convergence = 20
-max_iter_outer = 200
+max_iter_outer = 100
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(110e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]
@@ -271,14 +271,11 @@ if __name__ == '__main__':
     test_output = inner_optimisation(Thetas_ODE, lambd, times_roi, voltage_roi, current_roi, knots_roi,
                                      collocation_roi)
     betas_sample, inner_cost_sample, data_cost_sample, grad_cost_sample, state_fitted_at_sample = test_output
-    current_all_segments = observation_direct_input(state_all_segments, V(times), Thetas_ODE)
+    current_all_segments = observation_direct_input(state_fitted_at_sample, voltage, Thetas_ODE)
     # get the derivative and the RHS
     rhs_of_roi = {key: [] for key in state_names}
     deriv_of_roi = {key: [] for key in state_names}
     for iSegment in range(nSegments):
-        # segment = times_roi[iSegment]
-        # support_segment = knots_roi[iSegment]
-        # betas = betas_sample[iSegment]
         model_output_fit = simulate_segment(betas_sample[iSegment], times_roi[iSegment], knots_roi[iSegment],
                                             first_spline_coeffs=None)
         state_at_sample, state_deriv_at_sample, rhs_at_sample = np.split(model_output_fit, 3, axis=1)
@@ -291,9 +288,9 @@ if __name__ == '__main__':
             rhs_of_roi[stateName] += list(rhs_at_sample[index_start:, iState])
     ## end of loop over segments
     ## simulate the model using the best thetas and the ODE model used
-    x0_optimised_ODE = state_all_segments[:,0]
+    x0_optimised_ODE = state_fitted_at_sample[:, 0]
     solution_optimised = sp.integrate.solve_ivp(fitted_model, [0, times[-1]], x0_optimised_ODE, args=[Thetas_ODE],
-                                                dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+                                                dense_output=True, method='LSODA', rtol=1e-8, atol=1e-8)
     states_optimised_ODE = solution_optimised.sol(times)
     current_optimised_ODE = observation_direct_input(states_optimised_ODE, voltage, Thetas_ODE)
     ####################################################################################################################
@@ -315,11 +312,13 @@ if __name__ == '__main__':
                     label=r'Current from B-spline approx.', linewidth=1, alpha=0.7)
     axes['a)'].plot(times, current_optimised_ODE, ':m',
                     label=r'Current from ODE solution', linewidth=1, alpha=0.7)
-    axes['a)'].set_xlim(times_of_segments[0], times_of_segments[-1])
+    # axes['a)'].set_xlim(times_of_segments[0], times_of_segments[-1])
     # axes['a)'].set_xlim(1890, 1920)
-    axes['b)'].plot(times, state_all_segments[0, :], '-c', label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
+    axes['b)'].plot(times, state_fitted_at_sample[0, :], '-c',
+                    label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
                     linewidth=1, alpha=0.7)
-    axes['c)'].plot(times, state_all_segments[1, :], '-c', label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
+    axes['c)'].plot(times, state_fitted_at_sample[1, :], '-c',
+                    label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
                     linewidth=1, alpha=0.7)
     axes['b)'].plot(times, states_optimised_ODE[0, :], ':m',
                     label=r'Fitted ODE solution at $\lambda$ = ' + str(int(weight)),
@@ -330,19 +329,15 @@ if __name__ == '__main__':
     axes1['a)'].plot(times, current_all_segments - current_true, '--c', label=r'Current from B-spline approx.',
                      linewidth=1, alpha=0.7)
     axes1['a)'].plot(times, current_optimised_ODE - current_true, ':m',
-                     label=r'Current from ODE solution',linewidth=1, alpha=0.7)
-    # axes1['a)'].plot(times, current_all_segments - current_optimised_ODE, '--k',
-    #                  label=r'B-spline approx. - ODE solution',
-    #                  linewidth=1, alpha=0.7)
+                     label=r'Current from ODE solution', linewidth=1, alpha=0.7)
     axes1['b)'].plot(times, np.array(rhs_of_roi[state_names[0]]) - np.array(deriv_of_roi[state_names[0]]),
                      '--k', label=r'Gradient matching error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
     axes1['c)'].plot(times, np.array(rhs_of_roi[state_names[1]]) - np.array(deriv_of_roi[state_names[1]]),
                      '--k', label=r'Gradient matching at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-    axes1['d)'].plot(times, state_all_segments[0, :] - states_optimised_ODE[0, :], '--k',
+    axes1['d)'].plot(times, state_fitted_at_sample[0, :] - states_optimised_ODE[0, :], '--k',
                      label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-    axes1['e)'].plot(times, state_all_segments[1, :] - states_optimised_ODE[1, :], '--k',
+    axes1['e)'].plot(times, state_fitted_at_sample[1, :] - states_optimised_ODE[1, :], '--k',
                      label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-    ## save the figures
     ## save the figures
     iAx = 0
     for _, ax in axes.items():
@@ -352,7 +347,7 @@ if __name__ == '__main__':
         ax.legend(fontsize=12, loc='best')
         iAx += 1
     # plt.tight_layout(pad=0.3)
-    fig.savefig(folderName+'/states_model_output.png', dpi=400)
+    fig.savefig(folderName + '/states_model_output.png', dpi=400)
     iAx = 0
     for _, ax in axes1.items():
         ax.set_ylabel(y_labels1[iAx], fontsize=12)
@@ -361,7 +356,7 @@ if __name__ == '__main__':
         ax.legend(fontsize=12, loc='best')
         iAx += 1
     # plt.tight_layout(pad=0.3)
-    fig1.savefig(folderName+'/errors_model_output.png', dpi=400)
+    fig1.savefig(folderName + '/errors_model_output.png', dpi=400)
     ####################################################################################################################
     # plot evolution of inner costs
     plt.figure(figsize=(10, 6))
@@ -379,7 +374,7 @@ if __name__ == '__main__':
                  f_inner_best[-1]))
     plt.legend(loc='best')
     plt.tight_layout()
-    plt.savefig(folderName + '/inner_cost_ask_tell_two_states.png', dpi=400)
+    plt.savefig(folderName + '/inner_cost_evolution.png', dpi=400)
 
     # plot evolution of outer costs
     plt.figure(figsize=(10, 6))
@@ -396,7 +391,7 @@ if __name__ == '__main__':
              label='Best cost:H(Theta_{best} / C, Y) = ' + "{:.5e}".format(f_outer_best[-1]))
     plt.legend(loc='best')
     plt.tight_layout()
-    plt.savefig(folderName + '/outer_cost_ask_tell_two_states.png', dpi=400)
+    plt.savefig(folderName + '/outer_cost_evolution.png', dpi=400)
 
     # plot evolution of outer costs
     plt.figure(figsize=(10, 6))
@@ -415,7 +410,7 @@ if __name__ == '__main__':
              label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
     plt.legend(loc='best')
     plt.tight_layout()
-    plt.savefig(folderName + '/gradient_cost_ask_tell_two_states.png', dpi=400)
+    plt.savefig(folderName + '/gradient_cost_evolution.png', dpi=400)
 
     # plot parameter values after search was done on decimal scale
     fig, axes = plt.subplots(len(Thetas_ODE), 1, figsize=(3 * len(Thetas_ODE), 16), sharex=True)
@@ -430,7 +425,7 @@ if __name__ == '__main__':
         ax.set_ylabel('log(' + param_names[iAx] + ')')
         ax.legend(loc='best')
     plt.tight_layout()
-    plt.savefig(folderName + '/ODE_params_log_scale_two_states.png', dpi=400)
+    plt.savefig(folderName + '/ODE_params_log_scale.png', dpi=400)
 
     # plot parameter values converting from log scale to decimal
     fig, axes = plt.subplots(len(Thetas_ODE), 1, figsize=(3 * len(Thetas_ODE), 16), sharex=True)
@@ -448,4 +443,4 @@ if __name__ == '__main__':
         ax.legend(loc='best')
     ax.set_xlabel('Iteration')
     plt.tight_layout()
-    plt.savefig(folderName + '/ODE_params_two_states.png', dpi=400)
+    plt.savefig(folderName + '/ODE_params.png', dpi=400)
