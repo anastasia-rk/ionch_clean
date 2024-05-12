@@ -271,7 +271,8 @@ if __name__ == '__main__':
     test_output = inner_optimisation(Thetas_ODE, lambd, times_roi, voltage_roi, current_roi, knots_roi,
                                      collocation_roi)
     betas_sample, inner_cost_sample, data_cost_sample, grad_cost_sample, state_fitted_at_sample = test_output
-    current_all_segments = observation_direct_input(state_fitted_at_sample, voltage, Thetas_ODE)
+    state_all_segments = np.array(state_fitted_at_sample)
+    current_all_segments = observation_direct_input(state_all_segments, voltage, Thetas_ODE)
     # get the derivative and the RHS
     rhs_of_roi = {key: [] for key in state_names}
     deriv_of_roi = {key: [] for key in state_names}
@@ -288,7 +289,7 @@ if __name__ == '__main__':
             rhs_of_roi[stateName] += list(rhs_at_sample[index_start:, iState])
     ## end of loop over segments
     ## simulate the model using the best thetas and the ODE model used
-    x0_optimised_ODE = state_fitted_at_sample[:, 0]
+    x0_optimised_ODE = state_all_segments[:, 0]
     solution_optimised = sp.integrate.solve_ivp(fitted_model, [0, times[-1]], x0_optimised_ODE, args=[Thetas_ODE],
                                                 dense_output=True, method='LSODA', rtol=1e-8, atol=1e-8)
     states_optimised_ODE = solution_optimised.sol(times)
@@ -314,10 +315,10 @@ if __name__ == '__main__':
                     label=r'Current from ODE solution', linewidth=1, alpha=0.7)
     # axes['a)'].set_xlim(times_of_segments[0], times_of_segments[-1])
     # axes['a)'].set_xlim(1890, 1920)
-    axes['b)'].plot(times, state_fitted_at_sample[0, :], '-c',
+    axes['b)'].plot(times, state_all_segments[0, :], '-c',
                     label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
                     linewidth=1, alpha=0.7)
-    axes['c)'].plot(times, state_fitted_at_sample[1, :], '-c',
+    axes['c)'].plot(times, state_all_segments[1, :], '-c',
                     label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
                     linewidth=1, alpha=0.7)
     axes['b)'].plot(times, states_optimised_ODE[0, :], ':m',
@@ -334,9 +335,9 @@ if __name__ == '__main__':
                      '--k', label=r'Gradient matching error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
     axes1['c)'].plot(times, np.array(rhs_of_roi[state_names[1]]) - np.array(deriv_of_roi[state_names[1]]),
                      '--k', label=r'Gradient matching at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-    axes1['d)'].plot(times, state_fitted_at_sample[0, :] - states_optimised_ODE[0, :], '--k',
+    axes1['d)'].plot(times, state_all_segments[0, :] - states_optimised_ODE[0, :], '--k',
                      label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-    axes1['e)'].plot(times, state_fitted_at_sample[1, :] - states_optimised_ODE[1, :], '--k',
+    axes1['e)'].plot(times, state_all_segments[1, :] - states_optimised_ODE[1, :], '--k',
                      label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
     ## save the figures
     iAx = 0

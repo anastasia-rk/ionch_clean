@@ -274,7 +274,8 @@ if __name__ == '__main__':
         test_output = inner_optimisation(Thetas_ODE, lambd, times_roi, voltage_roi, current_roi, knots_roi,
                                          collocation_roi)
         betas_sample, inner_cost_sample, data_cost_sample, grad_cost_sample, state_fitted_at_sample = test_output
-        current_all_segments = observation_direct_input(state_fitted_at_sample, voltage, Thetas_ODE)
+        state_all_segments = np.array(state_fitted_at_sample)
+        current_all_segments = observation_direct_input(state_all_segments, voltage, Thetas_ODE)
         # get the derivative and the RHS
         rhs_of_roi = {key: [] for key in state_names}
         deriv_of_roi = {key: [] for key in state_names}
@@ -291,9 +292,9 @@ if __name__ == '__main__':
                 rhs_of_roi[stateName] += list(rhs_at_sample[index_start:, iState])
         ## end of loop over segments
         ## simulate the model using the best thetas and the ODE model used
-        x0_optimised_ODE = state_fitted_at_sample[:,0]
+        x0_optimised_ODE = state_all_segments[:, 0]
         solution_optimised = sp.integrate.solve_ivp(fitted_model, [0, times[-1]], x0_optimised_ODE, args=[Thetas_ODE],
-                                                    dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+                                                    dense_output=True, method='LSODA', rtol=1e-8, atol=1e-8)
         states_optimised_ODE = solution_optimised.sol(times)
         current_optimised_ODE = observation_direct_input(states_optimised_ODE, voltage, Thetas_ODE)
         ####################################################################################################################
@@ -317,9 +318,11 @@ if __name__ == '__main__':
                         label=r'Current from ODE solution', linewidth=1, alpha=0.7)
         # axes['a)'].set_xlim(times_of_segments[0], times_of_segments[-1])
         # axes['a)'].set_xlim(1890, 1920)
-        axes['b)'].plot(times, state_fitted_at_sample[0, :], '-c', label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
+        axes['b)'].plot(times, state_all_segments[0, :], '-c',
+                        label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
                         linewidth=1, alpha=0.7)
-        axes['c)'].plot(times, state_fitted_at_sample[1, :], '-c', label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
+        axes['c)'].plot(times, state_all_segments[1, :], '-c',
+                        label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
                         linewidth=1, alpha=0.7)
         axes['b)'].plot(times, states_optimised_ODE[0, :], ':m',
                         label=r'Fitted ODE solution at $\lambda$ = ' + str(int(weight)),
@@ -330,14 +333,15 @@ if __name__ == '__main__':
         axes1['a)'].plot(times, current_all_segments - current_true, '--c', label=r'Current from B-spline approx.',
                          linewidth=1, alpha=0.7)
         axes1['a)'].plot(times, current_optimised_ODE - current_true, ':m',
-                         label=r'Current from ODE solution',linewidth=1, alpha=0.7)
+                         label=r'Current from ODE solution', linewidth=1, alpha=0.7)
         axes1['b)'].plot(times, np.array(rhs_of_roi[state_names[0]]) - np.array(deriv_of_roi[state_names[0]]),
-                         '--k', label=r'Gradient matching error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
+                         '--k', label=r'Gradient matching error at $\lambda$ = ' + str(int(weight)), linewidth=1,
+                         alpha=0.7)
         axes1['c)'].plot(times, np.array(rhs_of_roi[state_names[1]]) - np.array(deriv_of_roi[state_names[1]]),
                          '--k', label=r'Gradient matching at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-        axes1['d)'].plot(times, state_fitted_at_sample[0, :] - states_optimised_ODE[0, :], '--k',
+        axes1['d)'].plot(times, state_all_segments[0, :] - states_optimised_ODE[0, :], '--k',
                          label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
-        axes1['e)'].plot(times, state_fitted_at_sample[1, :] - states_optimised_ODE[1, :], '--k',
+        axes1['e)'].plot(times, state_all_segments[1, :] - states_optimised_ODE[1, :], '--k',
                          label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
         ## save the figures
         iAx = 0
@@ -348,7 +352,7 @@ if __name__ == '__main__':
             ax.legend(fontsize=12, loc='best')
             iAx += 1
         # plt.tight_layout(pad=0.3)
-        fig.savefig(folderName+'/states_model_output.png', dpi=400)
+        fig.savefig(folderName + '/states_model_output.png', dpi=400)
         iAx = 0
         for _, ax in axes1.items():
             ax.set_ylabel(y_labels1[iAx], fontsize=12)
@@ -357,7 +361,7 @@ if __name__ == '__main__':
             ax.legend(fontsize=12, loc='best')
             iAx += 1
         # plt.tight_layout(pad=0.3)
-        fig1.savefig(folderName+'/errors_model_output.png', dpi=400)
+        fig1.savefig(folderName + '/errors_model_output.png', dpi=400)
         ####################################################################################################################
         # plot evolution of inner costs
         plt.figure(figsize=(10, 6))
@@ -369,7 +373,8 @@ if __name__ == '__main__':
                         linewidths=0)
         iIter += 1
         plt.scatter(iIter * np.ones(len(InnerCosts_all[iIter])), InnerCosts_all[iIter], c='k', marker='.', alpha=.5,
-                    linewidths=0, label='Sample cost min: J(C / Theta, Y) = ' + "{:.5e}".format(min(InnerCosts_all[iIter])))
+                    linewidths=0,
+                    label='Sample cost min: J(C / Theta, Y) = ' + "{:.5e}".format(min(InnerCosts_all[iIter])))
         plt.plot(f_inner_best, '-b', linewidth=1.5,
                  label='Best cost:J(C / Theta_{best}, Y) = ' + "{:.5e}".format(
                      f_inner_best[-1]))
@@ -418,7 +423,8 @@ if __name__ == '__main__':
         for iAx, ax in enumerate(axes.flatten()):
             for iIter in range(len(theta_best)):
                 x_visited_iter = theta_visited[iIter][:, iAx]
-                ax.scatter(iIter * np.ones(len(x_visited_iter)), x_visited_iter, c='k', marker='.', alpha=.2, linewidth=0)
+                ax.scatter(iIter * np.ones(len(x_visited_iter)), x_visited_iter, c='k', marker='.', alpha=.2,
+                           linewidth=0)
             # ax.plot(range(iIter+1),np.ones(iIter+1)*theta_true[iAx], '--m', linewidth=2.5,alpha=.5, label=r"true: log("+param_names[iAx]+") = " +"{:.6f}".format(theta_true[iAx]))
             # ax.plot(theta_guessed[:,iAx],'--r',linewidth=1.5,label=r"guessed: $\theta_{"+str(iAx+1)+"} = $" +"{:.4f}".format(theta_guessed[-1,iAx]))
             ax.plot(theta_best[:, iAx], '-m', linewidth=1.5,
