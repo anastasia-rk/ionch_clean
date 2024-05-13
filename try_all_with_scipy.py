@@ -28,7 +28,7 @@ lambd = 10e5  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-8
 iter_for_convergence = 20
-max_iter_outer = 2
+max_iter_outer = 200
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]
