@@ -273,6 +273,12 @@ if __name__ == '__main__':
         ####################################################################################################################
         ## simulate the optimised model using B-splines
         Thetas_ODE = theta_best[-1]
+        # dont forget to convert to decimal scale if the search was done in log scale
+        if inLogScale:
+            # convert thetas to decimal scale for inner optimisation
+            Thetas_ODE = np.exp(Thetas_ODE)
+        else:
+            Thetas_ODE = Thetas_ODE
         test_output = inner_optimisation(Thetas_ODE, lambd, times_roi, voltage_roi, current_roi, knots_roi,
                                          collocation_roi)
         betas_sample, inner_cost_sample, data_cost_sample, grad_cost_sample, state_fitted_at_sample = test_output

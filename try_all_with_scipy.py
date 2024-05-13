@@ -28,9 +28,9 @@ lambd = 10e5  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-8
 iter_for_convergence = 20
-max_iter_outer = 50
+max_iter_outer = 2
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
-theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(110e-5), np.log(10e-5),
+theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]
 theta_upper_boundary = [np.log(10e3), np.log(0.4), np.log(10e3), np.log(0.4), np.log(10e3), np.log(0.4),
                         np.log(10e3), np.log(0.4), np.log(10)]
@@ -64,7 +64,7 @@ inner_optimisation_scipy.fitted_model = fitted_model
 
 # main
 if __name__ == '__main__':
-    debug_opt = False
+    debug_opt = True
 
     # generate synthetic data
     if model_name.lower() not in available_models:
@@ -251,6 +251,7 @@ if __name__ == '__main__':
                     break
             ## end convergence check condition
         ## end loop over iterations
+    ## close the cvs file into which we were writing the results
     big_toc = tm.time()
     # convert the lists to numpy arrays
     theta_best = np.array(theta_best)
@@ -268,6 +269,11 @@ if __name__ == '__main__':
     ####################################################################################################################
     ## simulate the optimised model using B-splines
     Thetas_ODE = theta_best[-1]
+    if inLogScale:
+        # convert thetas to decimal scale for inner optimisation
+        Thetas_ODE = np.exp(Thetas_ODE)
+    else:
+        Thetas_ODE = Thetas_ODE
     test_output = inner_optimisation(Thetas_ODE, lambd, times_roi, voltage_roi, current_roi, knots_roi,
                                      collocation_roi)
     betas_sample, inner_cost_sample, data_cost_sample, grad_cost_sample, state_fitted_at_sample = test_output
