@@ -16,7 +16,7 @@ tlim = [300, 14899]
 times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
 voltage = V(times)  # must read voltage at the correct times to match the output
 del tlim
-model_name = 'HH' # this is the generative model name, can be HH or Kemp
+model_name = 'Kemp' # this is the generative model name, can be HH or Kemp
 snr_db = 20 # signal to noise ratio in dB
 ## set up the parameters for the fitted model
 fitted_model = hh_model
@@ -86,6 +86,8 @@ if __name__ == '__main__':
     # loop over lambda values
     for weight in lambda_exps:
         lambd = 10 ** weight
+        print('===========================================================================================================')
+        print('Starting optimisation for lambda: {:.2E}'.format(lambd) + '.')  # print the current weight
         ####################################################################################################################
         # set up table for saving results
         # gen_model means generative model - we are denoting which model we are using to generate the data

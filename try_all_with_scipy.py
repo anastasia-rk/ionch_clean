@@ -28,7 +28,7 @@ lambd = 10e5  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-8
 iter_for_convergence = 20
-max_iter_outer = 100
+max_iter_outer = 50
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(110e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]
@@ -226,7 +226,7 @@ if __name__ == '__main__':
             # f_guessed.append(optimiser_outer.guesses())
 
             # print the results
-            print('Iteration: ', i)
+            print('Iteration: ', i+1)
             print('Best parameters: ', theta_best[-1])
             print('Best objective: ', f_outer_best[-1])
             print('Mean objective: ', np.mean(OuterCosts))
