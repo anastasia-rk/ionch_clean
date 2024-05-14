@@ -29,7 +29,7 @@ lambda_exps = [7, 6, 5, 4, 3, 2, 1]  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-7
 iter_for_convergence = 20
-max_iter_outer = 500
+max_iter_outer = 5000
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(110e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]
@@ -191,18 +191,19 @@ if __name__ == '__main__':
                     state_all_segments = np.array(state_fitted_at_sample)
                     pints_classes.state_all_segments = state_all_segments # send the variable into pint classes
                     # evaluate the cost functions at the sampled value of ODE parameter vector
-                    InnerCost = inner_cost_sample
-                    OuterCost = error_outer(thetas[iSample, :])
-                    GradCost = (InnerCost - OuterCost) / lambd
-                    if debug_opt:
-                        print('Outer cost via pints: ' + str(OuterCost))
-                        print('Outer cost from inner scipy: ' + str(data_cost_sample))
-                        print('Gradient cost obtained as difference: ' + str(GradCost))
-                        print('Gradient cost obtained as difference: ' + str(grad_cost_sample))
+                    # evaluate the cost functions at the sampled value of ODE parameter vector
+                    # InnerCost = inner_cost_sample
+                    # OuterCost = error_outer(thetasForInner[iSample, :])
+                    # GradCost = (InnerCost - OuterCost) / lambd
+                    # if debug_opt:
+                    #     print('Outer cost via pints: ' + str(OuterCost))
+                    #     print('Outer cost from inner scipy: ' + str(data_cost_sample))
+                    #     print('Gradient cost obtained as difference: ' + str(GradCost))
+                    #     print('Gradient cost obtained from inner scipy: ' + str(grad_cost_sample))
                     # store the costs
-                    InnerCosts.append(InnerCost)
-                    OuterCosts.append(OuterCost)
-                    GradCosts.append(GradCost)
+                    InnerCosts.append(inner_cost_sample)
+                    OuterCosts.append(data_cost_sample)
+                    GradCosts.append(grad_cost_sample)
                     betas_visited.append(betas_sample)
                 # tell the optimiser about the costs
                 optimiser_outer.tell(OuterCosts)
@@ -327,30 +328,30 @@ if __name__ == '__main__':
         # axes['a)'].set_xlim(times_of_segments[0], times_of_segments[-1])
         # axes['a)'].set_xlim(1890, 1920)
         axes['b)'].plot(times, state_all_segments[0, :], '-c',
-                        label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
+                        label=r'B-spline approx. at $\lambda$ = ' + str(int(lambd)),
                         linewidth=1, alpha=0.7)
         axes['c)'].plot(times, state_all_segments[1, :], '-c',
-                        label=r'B-spline approx. at $\lambda$ = ' + str(int(weight)),
+                        label=r'B-spline approx. at $\lambda$ = ' + str(int(lambd)),
                         linewidth=1, alpha=0.7)
         axes['b)'].plot(times, states_optimised_ODE[0, :], ':m',
-                        label=r'Fitted ODE solution at $\lambda$ = ' + str(int(weight)),
+                        label=r'Fitted ODE solution at $\lambda$ = ' + str(int(lambd)),
                         linewidth=1, alpha=0.7)
         axes['c)'].plot(times, states_optimised_ODE[1, :], ':m',
-                        label=r'Fitted ODE solution at $\lambda$ = ' + str(int(weight)),
+                        label=r'Fitted ODE solution at $\lambda$ = ' + str(int(lambd)),
                         linewidth=1, alpha=0.7)
         axes1['a)'].plot(times, current_all_segments - current_true, '--c', label=r'Current from B-spline approx.',
                          linewidth=1, alpha=0.7)
         axes1['a)'].plot(times, current_optimised_ODE - current_true, ':m',
                          label=r'Current from ODE solution', linewidth=1, alpha=0.7)
         axes1['b)'].plot(times, np.array(rhs_of_roi[state_names[0]]) - np.array(deriv_of_roi[state_names[0]]),
-                         '--k', label=r'Gradient matching error at $\lambda$ = ' + str(int(weight)), linewidth=1,
+                         '--k', label=r'Gradient matching error at $\lambda$ = ' + str(int(lambd)), linewidth=1,
                          alpha=0.7)
         axes1['c)'].plot(times, np.array(rhs_of_roi[state_names[1]]) - np.array(deriv_of_roi[state_names[1]]),
-                         '--k', label=r'Gradient matching at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
+                         '--k', label=r'Gradient matching at $\lambda$ = ' + str(int(lambd)), linewidth=1, alpha=0.7)
         axes1['d)'].plot(times, state_all_segments[0, :] - states_optimised_ODE[0, :], '--k',
-                         label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
+                         label=r'B-spline approx. error at $\lambda$ = ' + str(int(lambd)), linewidth=1, alpha=0.7)
         axes1['e)'].plot(times, state_all_segments[1, :] - states_optimised_ODE[1, :], '--k',
-                         label=r'B-spline approx. error at $\lambda$ = ' + str(int(weight)), linewidth=1, alpha=0.7)
+                         label=r'B-spline approx. error at $\lambda$ = ' + str(int(lambd)), linewidth=1, alpha=0.7)
         ## save the figures
         iAx = 0
         for _, ax in axes.items():
