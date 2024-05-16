@@ -24,12 +24,12 @@ state_names = ['a', 'r'] # how many states we have in the model that we are fitt
 ## settings for the inner optimisation
 upper_bound_beta = 0.9999 # upper bound for the betas
 lambd = 10e5  # gradient matching weight - test
-lambda_exps = [7, 6, 5, 4, 3, 2, 1]  # gradient matching weight - test
+lambda_exps = [5, 4, 3, 2, 1, 6]  # gradient matching weight - test
 # outer optimisation settings
 inLogScale = True  # is the search of thetas in log scale
-convergence_threshold = 1e-7
+convergence_threshold = 1e-6
 iter_for_convergence = 20
-max_iter_outer = 5000
+max_iter_outer = 500
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(110e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]

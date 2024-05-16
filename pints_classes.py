@@ -106,8 +106,6 @@ class OuterCriterion(pints.ProblemErrorMeasure):
         d_y = current_model - self._values[:, 0]  # this part depends on theta_g
         data_fit_cost = np.transpose(d_y) @ d_y
         return data_fit_cost
-
-
 class OuterCriterionNoModel(pints.ProblemErrorMeasure):
     # do I need to redefine custom init or can just drop this part?
     def __init__(self, problem, weights=None):
@@ -185,6 +183,120 @@ class BoundariesTwoStates(pints.Boundaries):
 
     def n_parameters(self):
         return 9
+
+    def check(self, transformed_parameters):
+
+        debug = False
+
+        # # check if parameters are sampled in log space
+        # if InLogScale:
+        #     # Transform parameters back to decimal space
+        #     parameters = np.exp(transformed_parameters)
+        # else:
+        #     # leave as is
+        #     parameters = transformed_parameters
+
+        # Transform parameters back to decimal space
+        parameters = np.exp(transformed_parameters)
+
+        # Check parameter boundaries
+        if np.any(parameters < self.lower):
+            if debug:
+                print('Lower')
+            return False
+        if np.any(parameters > self.upper):
+            if debug:
+                print('Upper')
+            return False
+
+        # Check maximum rate constants
+        p1, p2, p3, p4, p5, p6, p7, p8 = parameters[:8]
+        # Check positive signed rates
+        r = p1 * np.exp(p2 * self.vmax)
+        if r < self.rmin or r > self.rmax:
+            if debug:
+                print('r1')
+            return False
+        r = p5 * np.exp(p6 * self.vmax)
+        if r < self.rmin or r > self.rmax:
+            if debug:
+                print('r2')
+            return False
+
+        # Check negative signed rates
+        r = p3 * np.exp(-p4 * self.vmin)
+        if r < self.rmin or r > self.rmax:
+            if debug:
+                print('r3')
+            return False
+        r = p7 * np.exp(-p8 * self.vmin)
+        if r < self.rmin or r > self.rmax:
+            if debug:
+                print('r4')
+            return False
+        return True
+
+class BoundariesTwoStatesWithInit(pints.Boundaries):
+    """
+    Boundary constraints on the parameters for a two state variables
+
+    """
+
+    def __init__(self):
+
+        super(BoundariesTwoStatesWithInit, self).__init__()
+
+        # Limits on p1-p4 for a signle gative variable model
+        self.lower_alpha = 1e-7  # Kylie: 1e-7
+        self.upper_alpha = 1e3  # Kylie: 1e3
+        self.lower_beta = 1e-7  # Kylie: 1e-7
+        self.upper_beta = 0.4  # Kylie: 0.4
+        self.upper_init = 1
+        self.lower_init = 1e-7
+        self.lower_conductance = 1e-4  # arbitrary
+        self.upper_conductance = self.lower_conductance*100000 # 10
+
+        # Lower and upper bounds for all parameters
+        self.lower = [
+            self.lower_alpha,
+            self.lower_beta,
+            self.lower_alpha,
+            self.lower_beta,
+            self.lower_alpha,
+            self.lower_beta,
+            self.lower_alpha,
+            self.lower_beta,
+            self.lower_conductance,
+            self.lower_init,
+            self.lower_init
+        ]
+        self.upper = [
+            self.upper_alpha,
+            self.upper_beta,
+            self.upper_alpha,
+            self.upper_beta,
+            self.upper_alpha,
+            self.upper_beta,
+            self.upper_alpha,
+            self.upper_beta,
+            self.upper_conductance,
+            self.upper_init,
+            self.upper_init
+        ]
+
+        self.lower = np.array(self.lower)
+        self.upper = np.array(self.upper)
+
+        # Limits on maximum reaction rates
+        self.rmin = 1.67e-5
+        self.rmax = 1000
+
+        # Voltages used to calculate maximum rates
+        self.vmin = -120
+        self.vmax = 60
+
+    def n_parameters(self):
+        return 11
 
     def check(self, transformed_parameters):
 
