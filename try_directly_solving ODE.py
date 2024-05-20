@@ -16,7 +16,7 @@ tlim = [300, 14899]
 times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
 voltage = V(times)  # must read voltage at the correct times to match the output
 del tlim
-model_name = 'Kemp' # this is the generative model name, can be HH or Kemp
+model_name = 'Wang' # this is the generative model name, can be HH or Kemp
 snr_db = 20 # signal to noise ratio in dB
 ## set up the parameters for the fitted model
 fitted_model = hh_model
@@ -28,7 +28,7 @@ lambd = 10e5  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-8
 iter_for_convergence = 1000
-max_iter_outer = 1000
+max_iter_outer = 2
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3), np.log(10e-10),np.log(10e-10)]
@@ -36,7 +36,7 @@ theta_upper_boundary = [np.log(10e3), np.log(0.4), np.log(10e3), np.log(0.4), np
                         np.log(10e3), np.log(0.4), np.log(10), 0, 0]
 # parallelisation settings
 ncpu = mp.cpu_count()
-ncores = 12
+ncores = 1000
 ####################################################################################################################
 ### from this point no user changes are required
 ####################################################################################################################
@@ -69,6 +69,8 @@ if __name__ == '__main__':
         thetas_true = thetas_hh_baseline
     elif model_name.lower() == 'kemp':
         thetas_true = thetas_kemp  # the last parameter is the conductance - get it as a separate variable just in case
+    elif model_name.lower() == 'wang':
+        thetas_true = thetas_wang  # the last parameter is the conductance
     Thetas_ODE = thetas_true
     param_names = [f'p_{i}' for i in range(1, len(Thetas_ODE) + 1)]
     solution, current_model = generate_synthetic_data(model_name, thetas_true, times)
@@ -346,7 +348,7 @@ if __name__ == '__main__':
                 ax.scatter(iIter * np.ones(len(x_visited_iter)), np.exp(x_visited_iter), c='k', marker='.', alpha=.2,
                            linewidth=0)
             ax.plot(np.exp(theta_best[:, iAx]), '-m', linewidth=1.5,
-                    label=r"best: log(" + param_names[iAx] + ") = " + "{:.6f}".format(np.exp(theta_best[-1, iAx])))
+                    label=r"best: " + param_names[iAx] + " = " + "{:.6f}".format(np.exp(theta_best[-1, iAx])))
             ax.set_ylabel('log(' + param_names[iAx] + ')')
             ax.legend(loc='best')
         plt.tight_layout()
@@ -373,7 +375,7 @@ if __name__ == '__main__':
                 ax.scatter(iIter * np.ones(len(x_visited_iter)), x_visited_iter, c='k', marker='.', alpha=.2,
                            linewidth=0)
             ax.plot(theta_best[:, iAx], '-m', linewidth=1.5,
-                    label=r"best: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_best[-1, iAx]))
+                    label=r"best: " + param_names[iAx] + " = " + "{:.6f}".format(theta_best[-1, iAx]))
             ax.set_ylabel('log(' + param_names[iAx] + ')')
             ax.legend(loc='best')
         plt.tight_layout()

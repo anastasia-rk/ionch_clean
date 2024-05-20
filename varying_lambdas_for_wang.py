@@ -16,7 +16,7 @@ tlim = [300, 14899]
 times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
 voltage = V(times)  # must read voltage at the correct times to match the output
 del tlim
-model_name = 'Kemp' # this is the generative model name, can be HH or Kemp
+model_name = 'Wang' # this is the generative model name, can be HH or Kemp
 snr_db = 20 # signal to noise ratio in dB
 ## set up the parameters for the fitted model
 fitted_model = hh_model
@@ -24,12 +24,12 @@ state_names = ['a', 'r'] # how many states we have in the model that we are fitt
 ## settings for the inner optimisation
 upper_bound_beta = 0.9999 # upper bound for the betas
 lambd = 10e5  # gradient matching weight - test
-lambda_exps = [8, 7, 6, 1, 0]  # gradient matching weight - test
+lambda_exps = [8, 7, 6, 5, 4, 3, 2, 1, 0]  # gradient matching weight - test
 # outer optimisation settings
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-6
 iter_for_convergence = 20
-max_iter_outer = 500
+max_iter_outer = 350
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(110e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3)]
@@ -72,9 +72,9 @@ if __name__ == '__main__':
     elif model_name.lower() == 'hh':
         thetas_true = thetas_hh_baseline
     elif model_name.lower() == 'kemp':
-        thetas_true = thetas_kemp  # the last parameter is the conductance
+        thetas_true = thetas_kemp  # the last parameter is the conductance - get it as a separate variable just in case
     elif model_name.lower() == 'wang':
-        thetas_true = thetas_wang  # the last parameter is the conductance
+        thetas_true = thetas_wang
     Thetas_ODE = thetas_true
     param_names = [f'p_{i}' for i in range(1, len(Thetas_ODE) + 1)]
     solution, current_model = generate_synthetic_data(model_name, thetas_true, times)
@@ -400,8 +400,6 @@ if __name__ == '__main__':
         iIter += 1
         plt.scatter(iIter * np.ones(len(GradCost_all[iIter])), GradCost_all[iIter], c='k', marker='.', alpha=.5,
                     linewidths=0, label='Sample cost: G_{ODE}(C / Theta, Y)')
-        # plt.plot(range(len(f_gradient_best)), np.ones(len(f_gradient_best)) * GradCost_given_true_theta, '--m', linewidth=2.5, alpha=.5,label='Collocation solution: G_{ODE}( C /  Theta_{true}, Y) = ' + "{:.5e}".format(
-        #              GradCost_given_true_theta))
         plt.plot(f_gradient_best, '-b', linewidth=1.5,
                  label='Best cost:G_{ODE}(C / Theta, Y) = ' + "{:.5e}".format(f_gradient_best[-1]))
         plt.legend(loc='best')
@@ -415,8 +413,6 @@ if __name__ == '__main__':
                 x_visited_iter = theta_visited[iIter][:, iAx]
                 ax.scatter(iIter * np.ones(len(x_visited_iter)), x_visited_iter, c='k', marker='.', alpha=.2,
                            linewidth=0)
-            # ax.plot(range(iIter+1),np.ones(iIter+1)*theta_true[iAx], '--m', linewidth=2.5,alpha=.5, label=r"true: log("+param_names[iAx]+") = " +"{:.6f}".format(theta_true[iAx]))
-            # ax.plot(theta_guessed[:,iAx],'--r',linewidth=1.5,label=r"guessed: $\theta_{"+str(iAx+1)+"} = $" +"{:.4f}".format(theta_guessed[-1,iAx]))
             ax.plot(theta_best[:, iAx], '-m', linewidth=1.5,
                     label=r"best: log(" + param_names[iAx] + ") = " + "{:.6f}".format(theta_best[-1, iAx]))
             ax.set_ylabel('log(' + param_names[iAx] + ')')
