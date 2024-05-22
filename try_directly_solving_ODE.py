@@ -16,7 +16,7 @@ tlim = [300, 14899]
 times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
 voltage = V(times)  # must read voltage at the correct times to match the output
 del tlim
-model_name = 'Wang' # this is the generative model name, can be HH or Kemp
+model_name = 'Kemp' # this is the generative model name, can be HH or Kemp
 snr_db = 20 # signal to noise ratio in dB
 ## set up the parameters for the fitted model
 fitted_model = hh_model
@@ -28,7 +28,7 @@ lambd = 10e5  # gradient matching weight - test
 inLogScale = True  # is the search of thetas in log scale
 convergence_threshold = 1e-8
 iter_for_convergence = 1000
-max_iter_outer = 2
+max_iter_outer = 1000
 ## rectangular boundaries of thetas from Clerx et.al. paper - they are the same for two gating variables + one for conductance
 theta_lower_boundary = [np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5), np.log(10e-5),
                         np.log(10e-5), np.log(10e-5), np.log(10e-3), np.log(10e-10),np.log(10e-10)]
@@ -36,7 +36,7 @@ theta_upper_boundary = [np.log(10e3), np.log(0.4), np.log(10e3), np.log(0.4), np
                         np.log(10e3), np.log(0.4), np.log(10), 0, 0]
 # parallelisation settings
 ncpu = mp.cpu_count()
-ncores = 1000
+ncores = 12
 ####################################################################################################################
 ### from this point no user changes are required
 ####################################################################################################################
