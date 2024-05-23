@@ -353,5 +353,15 @@ if __name__ == '__main__':
         ax = pretty_axis(ax)
     plt.tight_layout()
     fig.savefig('Figures/generated_data_test_model_'+model_name+'.png',dpi=400)
+
+    # plot output for poster
+    fig, ax = plt.subplots(figsize=(5,2))
+    ax.plot(times, current_true,'-k', linewidth=1, alpha=0.5)
+    ax.set_xlabel('Time, ms')
+    ax.set_ylabel('Current, nA')
+    ax = pretty_axis(ax, legendFlag=False)
+    plt.tight_layout()
+    fig.savefig('Figures/current_true_gen_model_'+model_name+'.png', dpi=400)
+
     # test complete
     print('Produced synthetic data for model training based on the pre-loaded voltage protocol.')

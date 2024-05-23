@@ -23,7 +23,6 @@ fitted_model = hh_model
 state_names = ['a', 'r'] # how many states we have in the model that we are fitting
 ## settings for the inner optimisation
 upper_bound_beta = 0.9999 # upper bound for the betas
-lambd = 10e5  # gradient matching weight - test
 lambda_exps = [8, 7, 6, 5, 4, 3, 2, 1, 0]  # gradient matching weight - test
 # outer optimisation settings
 inLogScale = True  # is the search of thetas in log scale

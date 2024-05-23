@@ -2,18 +2,17 @@
 # trying to remove everything related to synthetic data generation
 # imports
 import matplotlib
-import latex
 import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (20,10)
 plt.rcParams['figure.dpi'] = 400
 plt.rcParams['axes.facecolor']='white'
 plt.rcParams['savefig.facecolor']='white'
 plt.style.use("ggplot")
-# plt.rcParams.update({
-#     # "text.usetex": True,
-#     # "font.family": "sans-serif",
-#     # "font.sans-serif": ["Helvetica"]
-#         })
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica"]
+        })
 import numpy as np
 import scipy as sp
 from scipy.interpolate import BSpline
@@ -41,6 +40,10 @@ def collocm(splinelist, tau):
 
 def generate_knots(times):
     volts_new = V(times)
+    ## prepare figure
+    fig, ax = plt.subplots()
+    # for iSegment, SegmentStart in enumerate(jumps_odd):
+    #     ax.axvspan(times[SegmentStart], times[jumps_even[iSegment]], facecolor='0.2', alpha=0.1)
     ####################################################################################################################
     ## B-spline representation setup
     # set times of jumps and a B-spline knot sequence
@@ -129,9 +132,7 @@ def generate_knots(times):
         knots_roi.append(knots)
         # build the collocation matrix using the defined knot structure
         coeffs = np.zeros(len(knots) - degree - 1)  # number of splines will depend on the knot order
-        spl_ones = BSpline(knots, np.ones_like(coeffs), degree)
         splinest = [None] * len(coeffs)
-        splineder = [None] * len(coeffs)  # the grid of indtividual splines is required to generate a collocation matrix
         for i in range(len(coeffs)):
             coeffs[i] = 1.
             splinest[i] = BSpline(knots, coeffs.copy(), degree,
@@ -141,6 +142,103 @@ def generate_knots(times):
         # create inital values of beta to be used at the true value of parameters
     ##^ this loop stores the time intervals from which to draw collocation points and the data for piece-wise fitting # this to be used in params method of class ForwardModel
     return jump_indeces, times_roi, voltage_roi, knots_roi, collocation_roi,  degree
+
+def plot_knots(jump_indeces):
+    ####################################################################################################################
+    ## prepare figure
+    fig, ax = plt.subplots(figsize=(10,2))
+    for iSegment, SegmentStart in enumerate(jumps_odd):
+        ax.axvspan(times[SegmentStart], times[jumps_even[iSegment]], facecolor='0.2', alpha=0.1)
+    ####################################################################################################################
+    ## B-spline representation setup
+    # set times of jumps and a B-spline knot sequence
+    # nPoints_closest = 4  # the number of points from each jump where knots are placed at the finest grid
+    # nPoints_between_closest = 2  # step between knots at the finest grid
+    # nPoints_around_jump = 80  # the time period from jump on which we place medium grid
+    # step_between_knots = 16  # this is the step between knots around the jump in the medium grid
+    # nPoints_between_jumps = 2  # this is the number of knots at the coarse grid corresponding to slowly changing values
+
+    ## try a finer grid
+    nPoints_closest = 6  # the number of points from each jump where knots are placed at the finest grid
+    nPoints_between_closest = 2  # step between knots at the finest grid
+    nPoints_around_jump = 84  # the time period from jump on which we place medium grid
+    step_between_knots = 12  # this is the step between knots around the jump in the medium grid
+    nPoints_between_jumps = 2  # this is the number of knots at the coarse grid corresponding to slowly changing values
+    ## create multiple segments limited by time instances of jumps
+    times_roi = []
+    voltage_roi = []
+    knots_roi = []
+    collocation_roi = []
+    for iJump, jump in enumerate(jump_indeces[:-1]):  # loop oversegments (nJumps - )
+        # define a region of interest - we will need this to preserve the
+        # trajectories of states given the full clamp and initial position, while
+        ROI_start = jump
+        ROI_end = jump_indeces[iJump + 1] + 1  # add one to ensure that t_end equals to t_start of the following segment
+        ROI = times[ROI_start:ROI_end]
+        # get time points to compute the fit to ODE cost
+        times_roi.append(ROI)
+        ## add colloation points
+        abs_distance_lists = [[(num - index) for num in range(ROI_start, ROI_end)] for index in
+                              [ROI_start, ROI_end]]  # compute absolute distance between each time and time of jump
+        min_pos_distances = [min(filter(lambda x: x >= 0, lst)) for lst in zip(*abs_distance_lists)]
+        max_neg_distances = [max(filter(lambda x: x <= 0, lst)) for lst in zip(*abs_distance_lists)]
+        # create a knot sequence that has higher density of knots after each jump
+        knots_after_jump = [((x <= nPoints_closest) and (x % nPoints_between_closest == 0)) or (
+                (nPoints_closest < x <= nPoints_around_jump) and (x % step_between_knots == 0)) for
+                            x in min_pos_distances]  ##  ((x <= 2) and (x % 1 == 0)) or
+        # knots_before_jump = [((x >= -nPoints_closest) and (x % (nPoints_closest + 1) == 0)) for x in
+        #                      max_neg_distances]  # list on knots befor each jump - use this form if you don't want fine grid before the jump
+        knots_before_jump = [(x >= -1) for x in max_neg_distances]  # list on knots before each jump - add a fine grid
+        knots_jump = [a or b for a, b in
+                      zip(knots_after_jump, knots_before_jump)]  # logical sum of mininal and maximal distances
+        # convert to numeric array again
+        knot_indeces = [i + ROI_start for i, x in enumerate(knots_jump) if x]
+        indeces_inner = knot_indeces.copy()
+        # add additional coarse grid of knots between two jumps:
+        for iKnot, timeKnot in enumerate(knot_indeces[:-1]):
+            # add coarse grid knots between jumps
+            if knot_indeces[iKnot + 1] - timeKnot > step_between_knots:
+                # create evenly spaced points and drop start and end - those are already in the grid
+                knots_between_jumps = np.rint(
+                    np.linspace(timeKnot, knot_indeces[iKnot + 1], num=nPoints_between_jumps + 2)[1:-1]).astype(int)
+                # add indeces to the list
+                indeces_inner = indeces_inner + list(knots_between_jumps)
+            # add copies of the closest points to the jump
+        ## end loop over knots
+        indeces_inner.sort()  # sort list in ascending order - this is done inplace
+        degree = 3
+        # define the Boor points to
+        indeces_outer = [indeces_inner[0]] * 3 + [indeces_inner[-1]] * 3
+        boor_indeces = np.insert(indeces_outer, degree,
+                                 indeces_inner)  # create knots for which we want to build splines
+        knots = times[boor_indeces]
+        # save knots for the segment - including additional points at the edges
+        knots_roi.append(knots)
+        # build the collocation matrix using the defined knot structure
+        coeffs = np.zeros(len(knots) - degree - 1)  # number of splines will depend on the knot order
+        spl_ones = BSpline(knots, np.ones_like(coeffs), degree)
+        splinest = [None] * len(coeffs)
+        splineder = [None] * len(coeffs)  # the grid of indtividual splines is required to generate a collocation matrix
+        for i in range(len(coeffs)):
+            tau_current = np.arange(knots[i], knots[i + 4])
+            coeffs[i] = 1.
+            splinest[i] = BSpline(knots, coeffs.copy(), degree,
+                                  extrapolate=False)  # create a spline that only has one non-zero coeff
+            ax.plot(tau_current, splinest[i](tau_current), lw=0.5, alpha=0.7)
+            coeffs[i] = 0.
+        collocation = collocm(splinest, ROI)
+        ## uncomment this to plot the grid of splines with coeff 1 each
+        ax.plot(times_roi[iJump], np.ones_like(coeffs) @ collocation, '--k', lw=0.5, alpha=0.7, label='B-spline surface')
+    ax.grid(True)
+    ax.set_ylabel('B-spline grid')
+    ax.set_xlabel('times, ms')
+    # ax.legend(fontsize=14, loc='upper right')
+    ax = pretty_axis(ax, legendFlag=False)
+    plt.tight_layout()
+    plt.savefig('Figures/Bspline_grid.png')
+        # create inital values of beta to be used at the true value of parameters
+    ##^ this loop stores the time intervals from which to draw collocation points and the data for piece-wise fitting # this to be used in params method of class ForwardModel
+    return 0
 
 ####################################################################################################################
 # Load the training protocol
@@ -165,14 +263,21 @@ print('Loaded voltage protocol for validation.')
 # main
 if __name__ == '__main__':
     # test loading protocols and generating knots
+    # tlim = [1000, 3000]
     tlim = [0, 14899]
     times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
     # generate the segments with B-spline knots and intialise the betas for splines
     jump_indeces, times_roi, voltage_roi, knots_roi, collocation_roi, spline_order = generate_knots(times)
     nSegments = len(jump_indeces[:-1])
+    jumps_odd = jump_indeces[0::2]
+    jumps_even = jump_indeces[1::2]
+    if len(jumps_odd) > len(jumps_even):
+        jumps_odd = jumps_odd[:-1]
     print('Inner optimisation is split into ' + str(nSegments) + ' segments based on protocol steps.')
     # plot the staircase protocol and save into figures directory
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(6,2))
+    for iSegment, SegmentStart in enumerate(jumps_odd):
+        ax.axvspan(times[SegmentStart], times[jumps_even[iSegment]], facecolor='0.2', alpha=0.1)
     ax.plot(times, V(times), 'k')
     ax.set_xlabel('Time, ms')
     ax.set_ylabel('Voltage, mV')
@@ -182,7 +287,7 @@ if __name__ == '__main__':
     plt.savefig('Figures/staircase_protocol.png')
     # plot voltage against time andd save into figures directory
     volts_interpolated = volts_interpolated_ap
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(10,2))
     ax.plot(times_ap, V(times_ap), 'k')
     ax.set_xlabel('Time, ms')
     ax.set_ylabel('Voltage, mV')
@@ -190,3 +295,8 @@ if __name__ == '__main__':
     ax = pretty_axis(ax, legendFlag=False)
     plt.tight_layout()
     plt.savefig('Figures/ap_protocol.png')
+
+    exit = plot_knots(jump_indeces)
+
+
+
