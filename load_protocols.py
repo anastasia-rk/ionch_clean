@@ -26,6 +26,7 @@ def pretty_axis(ax, legendFlag=True):
     if legendFlag:
         ax.legend(loc='best', fontsize=12)
     return ax
+
 def V(t):
     return volts_interpolated(t/ 1000)
 
