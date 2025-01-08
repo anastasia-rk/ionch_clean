@@ -20,6 +20,21 @@ def hh_model(t, x, theta):
     dr = (r_inf - r) / tau_r
     return [da,dr]
 
+def hh_model_ss(t, x, theta, v):
+    a, r = x[:2]
+    *p, g = theta[:9]
+    k1 = p[0] * np.exp(p[1] * v)
+    k2 = p[2] * np.exp(-p[3] * v)
+    k3 = p[4] * np.exp(p[5] * v)
+    k4 = p[6] * np.exp(-p[7] * v)
+    tau_a = 1 / (k1 + k2)
+    a_inf = tau_a * k1
+    tau_r = 1 / (k3 + k4)
+    r_inf = tau_r * k4
+    da = (a_inf - a) / tau_a
+    dr = (r_inf - r) / tau_r
+    return [da,dr]
+
 def kemp_model(t, x, theta):
     # this function computes the ODE for the Kemp model: independent gating
     # activation: 3 state Markov C2 - C1 - O
@@ -204,7 +219,11 @@ def generate_synthetic_data(model_name, thetas_true, times):
     elif model_name.lower() == 'hh':
         # initialise and solve ODE
         x0 = [0, 1]
-        solution = sp.integrate.solve_ivp(hh_model, [0, times[-1]], x0, args=[thetas_true], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+        t_end = 10e5  # run for a long time to make sure that the steady state is reached for the slow gating variables
+        v_ss = V(times[0])
+        solution_ss = sp.integrate.solve_ivp(hh_model_ss, [0, t_end], x0, args=[thetas_true, v_ss], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+        ss = solution_ss.sol(t_end)
+        solution = sp.integrate.solve_ivp(hh_model, [0, times[-1]], ss, args=[thetas_true], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
         current_model = observation_hh
     elif model_name.lower() == 'kemp':
         # find steady state at -80mV to use as initial condition
