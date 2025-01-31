@@ -244,8 +244,8 @@ def plot_knots(jump_indeces):
 ####################################################################################################################
 # Load the training protocol
 #  load the voltage data:
-volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',')
-#  check when the voltage jumps
+# volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',')
+# #  check when the voltage jumps
 # read the times and valued of voltage clamp
 volt_times, volts = np.genfromtxt("./protocol-staircaseramp.csv", skip_header=1, dtype=float, delimiter=',').T
 # interpolate with smaller time step (milliseconds)

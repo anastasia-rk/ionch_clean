@@ -20,8 +20,34 @@ def hh_model(t, x, theta):
     dr = (r_inf - r) / tau_r
     return [da,dr]
 
-def hh_model_ss(t, x, theta, v):
-    a, r = x[:2]
+def hh_model_markov(t, x, theta):
+    C, s_I, s_O = x[:3]
+    *p, g = theta[:9]
+    v = V(t)
+    k1 = p[0] * np.exp(p[1] * v)
+    k2 = p[2] * np.exp(-p[3] * v)
+    k3 = p[4] * np.exp(p[5] * v)
+    k4 = p[6] * np.exp(-p[7] * v)
+    IC = 1 - C - s_I - s_O
+    dC = C * (-k1 - k3) + IC * k4 + k2 * s_O
+    ds_I = IC * k1 + k3 * s_O + s_I * (-k2 - k4)
+    ds_O = C * k1 + k4 * s_I + s_O * (-k2 - k3)
+    return [dC, ds_I, ds_O]
+
+def hh_model_markov_ss(t, x, theta, v):
+    C, s_I, s_O = x[:3]
+    *p, g = theta[:9]
+    k1 = p[0] * np.exp(p[1] * v)
+    k2 = p[2] * np.exp(-p[3] * v)
+    k3 = p[4] * np.exp(p[5] * v)
+    k4 = p[6] * np.exp(-p[7] * v)
+    IC = 1 - C - s_I - s_O
+    dC = C * (-k1 - k3) + IC * k4 + k2 * s_O
+    ds_I = IC * k1 + k3 * s_O + s_I * (-k2 - k4)
+    ds_O = C * k1 + k4 * s_I + s_O * (-k2 - k3)
+    return [dC, ds_I, ds_O]
+
+def hh_model_ss_analytical(theta, v):
     *p, g = theta[:9]
     k1 = p[0] * np.exp(p[1] * v)
     k2 = p[2] * np.exp(-p[3] * v)
@@ -31,9 +57,7 @@ def hh_model_ss(t, x, theta, v):
     a_inf = tau_a * k1
     tau_r = 1 / (k3 + k4)
     r_inf = tau_r * k4
-    da = (a_inf - a) / tau_a
-    dr = (r_inf - r) / tau_r
-    return [da,dr]
+    return [a_inf, r_inf]
 
 def kemp_model(t, x, theta):
     # this function computes the ODE for the Kemp model: independent gating
@@ -57,6 +81,53 @@ def kemp_model(t, x, theta):
     h_inf = tau_h * ah
     dh = (h_inf - h)/tau_h
     return [dop,dc1,dh]
+
+def kemp_model_markov(t, x, theta):
+    # this function computes the ODE for the Kemp model: independent gating
+    # activation: 3 state Markov C2 - C1 - O
+    # inactivation: 2 state HH I - O
+    c1, c2, i, ic1, ic2, o = x[:6]
+    *p, g = theta[:13]
+    v = V(t)
+    a1 = p[0] * np.exp(p[1] * v)
+    b1 = p[2] * np.exp(-p[3] * v)
+
+    ah = p[6] * np.exp(-p[7] * v)
+    bh = p[4] * np.exp(p[5] * v)
+
+    a2 = p[8] * np.exp(p[9] * v)
+    b2 = p[10] * np.exp(-p[11] * v)
+
+    dc1 = a1 * c2 + ah * ic1 + b2 * o - (b1 + bh + a2) * c1
+    dc2 = b1 * c1 + ah * ic2 - (a1 + bh) * c2
+    di = a2 * ic1 + bh * o - (b2 + ah) * i
+    dic1 = a1 * ic2 + bh * c1 + b2 * i - (b1 + ah + a2) * ic1
+    dic2 = b1 * ic1 + bh * c2 - (ah + a1) * ic2
+    do = a2 * c1 + ah * i - (b2 + bh) * o
+
+    return [dc1, dc2, di, dic1, dic2, do]
+
+def kemp_model_markov_ss(t, x, theta, v):
+    # Markovian representation of the Kemp model
+    c1, c2, i, ic1, ic2, o = x[:6]
+    *p, g = theta[:13]
+    a1 = p[0] * np.exp(p[1] * v)
+    b1 = p[2] * np.exp(-p[3] * v)
+
+    ah = p[6] * np.exp(-p[7] * v)
+    bh = p[4] * np.exp(p[5] * v)
+
+    a2 = p[8] * np.exp(p[9] * v)
+    b2 = p[10] * np.exp(-p[11] * v)
+
+    dc1 = a1 * c2 + ah * ic1 + b2 * o - (b1 + bh + a2) * c1
+    dc2 = b1 * c1 + ah * ic2 - (a1 + bh) * c2
+    di = a2 * ic1 + bh * o - (b2 + ah) * i
+    dic1 = a1 * ic2 + bh * c1 + b2 * i - (b1 + ah + a2) * ic1
+    dic2 = b1 * ic1 + bh * c2 - (ah + a1) * ic2
+    do = a2 * c1 + ah * i - (b2 + bh) * o
+
+    return [dc1, dc2, di, dic1, dic2, do]
 
 def kemp_model_ss(t, x, theta, v):
     # this function computes the steady state of the Kemp model at voltage v
@@ -158,6 +229,20 @@ def observation_kemp(t, ode_solution, theta, snr=None):
         sigma_noise = np.sqrt(signal_power / snr)
         return  noiseless_output + np.random.normal(0, sigma_noise, size=len(t))
 
+def observation_kemp_markov(t, ode_solution, theta, snr=None):
+    # this function computes the observation from the ODE solution using Kemp dynamics
+    x = ode_solution.sol(t)
+    c1, c2, i, ic1, ic2, o = x[:6]
+    *p, g = theta[:13]
+    noiseless_output = g * o * (V(t) - EK)
+    # compute power of noiseless output
+    signal_power = np.mean(noiseless_output ** 2)
+    if snr is None:
+        return noiseless_output
+    else:
+        sigma_noise = np.sqrt(signal_power / snr)
+        return  noiseless_output + np.random.normal(0, sigma_noise, size=len(t))
+
 def observation_wang(t, ode_solution, theta, snr=None):
     # this function computes the observation from the ODE solution using Kemp dynamics
     x = ode_solution.sol(t)
@@ -187,13 +272,32 @@ def observation_hh(t, ode_solution, theta, snr=None):
         sigma_noise = np.sqrt(signal_power / snr)
         return  noiseless_output + np.random.normal(0, sigma_noise, size=len(t))
 
-def observation(t, x, theta):
-    # this function computes the observation from the ODE solution using HH dynamics
-    a, r = x[:2]
+def observation_hh_markov(t, ode_solution, theta, snr=None):
+    # observation model to match the HH model with Markovian gating
+    x = ode_solution.sol(t)
+    C, s_I, s_O = x[:3]
     *ps, g = theta[:9]
-    # generate noise from normal distr to match dimension of the output
-    noiseless_output = g * a * r * (V(t) - EK)
-    return noiseless_output
+    noiseless_output = g * s_O * (V(t) - EK)
+    # compute power of noiseless output
+    signal_power = np.mean(noiseless_output ** 2)
+    if snr is None:
+        return noiseless_output
+    else:
+        sigma_noise = np.sqrt(signal_power / snr)
+        return  noiseless_output + np.random.normal(0, sigma_noise, size=len(t))
+
+def observation_markovian_convention(t, ode_solution, theta, snr=None):
+    x = ode_solution.sol(t)
+    open_state = x[-1,:]
+    *ps, g = theta[:9]
+    noiseless_output = g * open_state * (V(t) - EK)
+    # compute power of noiseless output
+    signal_power = np.mean(noiseless_output ** 2)
+    if snr is None:
+        return noiseless_output
+    else:
+        sigma_noise = np.sqrt(signal_power / snr)
+        return  noiseless_output + np.random.normal(0, sigma_noise, size=len(t))
 
 def observation_direct_input(x, v, theta):
     # this function computes the observation from the ODE solution and the voltage passed as time series
@@ -218,32 +322,34 @@ def generate_synthetic_data(model_name, thetas_true, times):
         raise ValueError(f'Unknown model name: {model_name}. Available models are: {available_models}')
     elif model_name.lower() == 'hh':
         # initialise and solve ODE
-        x0 = [0, 1]
-        t_end = 10e5  # run for a long time to make sure that the steady state is reached for the slow gating variables
+        x0 = [0, 1, 0]
+        t_end = 10e3  # run for a long time to make sure that the steady state is reached for the slow gating variables
         v_ss = V(times[0])
-        solution_ss = sp.integrate.solve_ivp(hh_model_ss, [0, t_end], x0, args=[thetas_true, v_ss], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+        solution_ss = sp.integrate.solve_ivp(hh_model_markov_ss, [0, t_end], x0, args=[thetas_true, v_ss], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
         ss = solution_ss.sol(t_end)
-        solution = sp.integrate.solve_ivp(hh_model, [0, times[-1]], ss, args=[thetas_true], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
-        current_model = observation_hh
+        # ss = hh_model_ss_analytical(thetas_true, v_ss)
+        solution = sp.integrate.solve_ivp(hh_model_markov, [0, times[-1]], ss, args=[thetas_true], dense_output=True, method='LSODA',rtol=1e-8, atol=1e-8)
+        current_model = observation_hh_markov
     elif model_name.lower() == 'kemp':
         # find steady state at -80mV to use as initial condition
-        x0_init = [0.5, 0.5, 0]
+        x0_init = [0, 0.85, 0, 0, 0.15, 0]
         # run for a long time for the slow rate states to settle
-        t_end = 10e5 # run for a long time to make sure that the steady state is reached for the slow gating variables
-        v_ss = -80 # the voltage for which we wish to compute the steady state
-        solution_ss = sp.integrate.solve_ivp(kemp_model_ss, [0, t_end], x0_init, args=[thetas_true, v_ss], dense_output=True,
+        t_end = 10e3 # run for a long time to make sure that the steady state is reached for the slow gating variables
+        v_ss = V(times[0]) # the voltage for which we wish to compute the steady state
+        solution_ss = sp.integrate.solve_ivp(kemp_model_markov_ss, [0, t_end], x0_init, args=[thetas_true, v_ss], dense_output=True,
                                              method='LSODA', rtol=1e-8, atol=1e-8)
         ss = solution_ss.sol(t_end)
         # obtain solution initialised at SS
-        solution = sp.integrate.solve_ivp(kemp_model, [0, times[-1]], ss, args=[thetas_true], dense_output=True,
+        # ss = x0_init
+        solution = sp.integrate.solve_ivp(kemp_model_markov, [0, times[-1]], ss, args=[thetas_true], dense_output=True,
                                               method='LSODA', rtol=1e-8, atol=1e-8)
-        current_model = observation_kemp
+        current_model = observation_kemp_markov
     elif model_name.lower() == 'wang':
         # find steady state at -80mV to use as initial condition
         x0_init = [0.2, 0.2, 0.2, 0.2, 0.2]
         # run for a long time for the slow rate states to settle
-        t_end = 10e5  # run for a long time to make sure that the steady state is reached for the slow gating variables
-        v_ss = -80  # the voltage for which we wish to compute the steady state
+        t_end = 10e3  # run for a long time to make sure that the steady state is reached for the slow gating variables
+        v_ss = V(times[0])  # the voltage for which we wish to compute the steady state
         solution_ss = sp.integrate.solve_ivp(wang_model_ss, [0, t_end], x0_init, args=[thetas_true, v_ss],
                                              dense_output=True,
                                              method='LSODA', rtol=1e-8, atol=1e-8)
@@ -282,10 +388,10 @@ EK = -80
 thetas_hh_baseline = [2.26e-4, 0.0699, 3.45e-5, 0.05462, 0.0873, 8.91e-3, 5.15e-3, 0.03158, 0.1524]
 # From Chon's paper on temperature dependence of HH model
 thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 3.1e-2]
-theta_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 3.33e-2]
+thetas_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 3.33e-2]
 # Changed conductances
-thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 8.471005e-02]
-thetas_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 8.471005e-02]
+# thetas_hh_25 = [7.65e-5, 9.05e-2, 2.84e-5, 4.74e-2, 1.03e-1, 2.13e-2, 8.01e-3, 2.96e-2, 8.471005e-02]
+# thetas_hh_37 = [2.07e-3, 7.17e-2, 3.44e-5, 6.18e-2, 4.18e-1, 2.58e-2, 4.57e-2, 2.51e-2, 8.471005e-02]
 # Kemp model:
 thetas_kemp = [8.5318e-03, 8.3176e-02, 1.2628e-02, 1.03628e-07, 2.702763e-01, 1.580004e-02, 7.6669948e-02,
                   2.2457500e-02, 1.490338e-01, 2.431569e-02, 5.58072e-04, 4.06619e-02, 8.471005e-02]
@@ -298,7 +404,7 @@ if __name__ == '__main__':
     # select the model that we will use to generate the synthetic data
     load_protocols # this module will load the voltage protocol ad give times of interest so we dont have to generate it again
     ## define the time interval on which the fitting will be done
-    tlim = [300, 14899]
+    tlim = [0, 14899]
     times = np.linspace(*tlim, tlim[-1] - tlim[0], endpoint=False)
     del tlim
     # generate the segments with B-spline knots and intialise the betas for splines
@@ -311,15 +417,19 @@ if __name__ == '__main__':
     print('Number of B-spline coeffs per segment: ' + str(nBsplineCoeffs) +'.')
     ####################################################################################################################
     # parameters needed to generate synthetic data
-    model_name = 'wang'
+    model_name = 'kemp'
     if model_name.lower() not in available_models:
         raise ValueError(f'Unknown model name: {model_name}. Available models are: {available_models}.')
     elif model_name.lower() == 'hh':
-        thetas_true = thetas_hh_baseline
+        y_labels8 = ['C', 's_I', 's_O', 'Current, nA', 'Voltage, mV']
+        thetas_true = thetas_hh_37
     elif model_name.lower() == 'kemp':
+        y_labels8 = ['c1', 'c2', 'i', 'ic1', 'ic2', 'o', 'Current, nA', 'Voltage, mV']
         thetas_true = thetas_kemp
     elif model_name.lower() == 'wang':
         thetas_true = thetas_wang
+        y_labels8 = ['op', 'c1', 'c2', 'c3', 'ih', 'Current, nA', 'Voltage, mV']
+
     solution, current_model = generate_synthetic_data(model_name, thetas_true, times)
     true_states = solution.sol(times)
     # set signal to noise ratio in decibels
@@ -381,6 +491,26 @@ if __name__ == '__main__':
     ax = pretty_axis(ax, legendFlag=False)
     plt.tight_layout()
     fig.savefig('Figures/current_true_gen_model_'+model_name+'.png', dpi=400)
+
+    # test running things for the AP protocol
+    load_protocols.volts_interpolated = volts_interpolated_ap
+    voltage_ap = V(times_ap)
+    solution, current_model = generate_synthetic_data(model_name, thetas_true, times_ap)
+    current_ap_noiseless = current_model(times_ap, solution, thetas_true)
+    # plot the states at times_ap, voltage and current of the true model
+    fig8, axes8 = plt.subplots(len(y_labels8), 1, figsize=(10, 15), sharex=True)
+    for iAx, ax in enumerate(axes8):
+        ax.set_ylabel(y_labels8[iAx], fontsize=12)
+        ax.set_facecolor('white')
+        ax.grid(which='major', color='grey', linestyle='solid', alpha=0.2, linewidth=1)
+    axes8[-1].set_xlabel('Time [ms]')
+    axes8[-1].plot(times_ap, voltage_ap, '-k', label='Voltage', linewidth=1.5, alpha=0.27)
+    axes8[-2].plot(times_ap, current_ap_noiseless, '-k', label='True current', linewidth=1.5, alpha=0.27)
+    for iState in range(len(y_labels8)-2):
+        axes8[iState].plot(times_ap, solution.sol(times_ap)[iState, :], '-k', label='True state', linewidth=1.5, alpha=0.27)
+    # save
+    fig8.tight_layout()
+    fig8.savefig('Figures/' + model_name.lower() +  '_check_on_ap_protocol.png', dpi=400)
 
     # test complete
     print('Produced synthetic data for model training based on the pre-loaded voltage protocol.')
